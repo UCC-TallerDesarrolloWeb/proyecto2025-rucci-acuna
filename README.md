@@ -4,10 +4,10 @@ Estructura de Proyecto Taller de Desarrollo Web - 2025
 ## Requisitos del Primer Parcial
 
 ### Sobre el Sketch
-- [ ] Versión Desktop y Mobile
-- [ ] Guardado en formato PNG, JPG ó PDF
-- [ ] Dentro de una carpeta llamada "Sketch"
-- [ ] En el diseño tener en cuenta los mensajes de error para el usuario
+- [x] Versión Desktop y Mobile
+- [x] Guardado en formato PNG, JPG ó PDF
+- [x] Dentro de una carpeta llamada "Sketch"
+- [x] En el diseño tener en cuenta los mensajes de error para el usuario
 
 Tener en cuenta:
 * ¿Qué opciones debe ofrecer al usuario?
@@ -17,11 +17,11 @@ Tener en cuenta:
 * Mensajes de Error
 
 ### Sobre el Wireframe/Mockup
-- [ ] Dibujado con algún programa como: Figma, AdobeXD, Canvas, Draw.io en Drive, Pencil Project, Mockups, NinjaMock, o similares.
+- [x] Dibujado con algún programa como: Figma, AdobeXD, Canvas, Draw.io en Drive, Pencil Project, Mockups, NinjaMock, o similares.
 - [ ] Diseño de Mensajes de error para el usuario
-- [ ] Versión Desktop y Mobile
-- [ ] Guardado en formato PNG, JPG ó PDF
-- [ ] Dentro de una carpeta llamada "Wireframe" ó "Mockup"
+- [x] Versión Desktop y Mobile
+- [x] Guardado en formato PNG, JPG ó PDF
+- [x] Dentro de una carpeta llamada "Wireframe" ó "Mockup"
 
 ### Sobre el Repositorio
 - [ ] El proyecto debe estar subido al repositorio adecuado "Proyecto2025-ApellidoAlumno1-ApellidoAlumno2"
