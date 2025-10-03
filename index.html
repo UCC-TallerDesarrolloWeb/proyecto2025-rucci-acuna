@@ -1,2 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
- 
+  <title>BRÚJULA – Agencia de viajes | Inicio</title>
+
+  <!-- Metadatos requeridos -->
+  <meta name="author" content="Lu-Isa" />
+  <meta name="description" content="BRÚJULA es una agencia de viajes. Descubrí destinos, itinerarios y contactate con nosotros." />
+  <meta name="keywords" content="viajes, turismo, destinos, itinerarios, agencia de viajes, vacaciones" />
+
+  <!-- Favicon (según tu carpeta) -->
+  <link rel="icon" type="image/png" href="imagenes/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+
+<body>
+  <!-- HOME sin barra de menú (la agregamos en las otras páginas) -->
+  <main id="main">
+    <!-- Hero con video de fondo -->
+    <section class="hero" aria-label="Presentación BRÚJULA">
+      <video class="hero-video" src="imagenes/videofondo.mp4" autoplay muted loop playsinline></video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content wrap">
+        <!-- Logo superior + nombre -->
+        <div class="logo" aria-label="Brújula - Agencia de viajes">
+        <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="90" height="90" />
+        <div class="logo-title">BRÚJULA</div>
+        <div class="logo-sub">Agencia de viajes</div>
+        </div>
+
+
+        <h1 class="hero-title">
+          Es hora de tu <span class="strong">próxima aventura</span>
+        </h1>
+        <p class="hero-sub">Dejanos planearlo para vos</p>
+
+        <div class="cta" role="group" aria-label="Acciones principales">
+          <a class="btn" href="destinos.html">Destinos</a>
+          <a class="btn" href="itinerario.html">Itinerario</a>
+          <a class="btn" href="contacto.html">Contacto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- JS externo -->
+  <script src="script.js"></script>
+</body>
+</html>
