@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BRÚJULA - Destinos</title>
+
+  <meta name="author" content="Lu-Isa" />
+  <meta name="description" content="Explorá los destinos disponibles de BRÚJULA: ciudades, imágenes y detalles de viaje." />
+  <meta name="keywords" content="destinos, turismo, viajes, ciudades" />
+
+  <link rel="icon" type="image/png" href="imagenes/favicon.png" />
+
+  <!-- Tipografías e íconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+
+<body class="page-destinos">
+  <header class="site-header">
+    <div class="wrap header-grid">
+      <a class="brand" href="index.html" aria-label="Volver al inicio">
+        <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
+        <div class="brand-text">
+          <h1 class="brand-title">BRÚJULA</h1>
+          <span class="brand-sub">Agencia de viajes</span>
+        </div>
+      </a>
+
+      <div class="top-actions">
+        <!-- Buscador: -->
+        <form id="form-buscar" class="search" role="search" aria-label="Buscar destinos" novalidate>
+          <label for="q" class="sr-only">Buscar</label>
+          <input id="q" name="q" type="search" placeholder="Buscar" size="18" maxlength="32" />
+          <button type="submit" aria-label="Buscar">
+            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+          </button>
+        </form>
+
+        <!-- Menú -->
+        <div class="menu-wrapper" id="menuWrapper">
+          <button id="btnMenu" class="btn-hamb" aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false">
+            <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+          </button>
+
+          <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
+            <ul class="menu-list">
+              <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> INICIO</a></li>
+              <li><a href="destinos.html"><span class="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS</a></li>
+              <li><a href="itinerario.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO</a></li>
+              <li><a href="contacto.html"><span class="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Encabezado -->
+    <section class="wrap destinos-head">
+      <header>
+        <h2 class="page-title">DESTINOS</h2>
+        <p class="page-sub">
+          <button id="btnVerTodo" type="button" class="link-reset">VER TODO</button>
+        </p>
+      </header>
+
+      <!-- FILTROS  -->
+      <div class="destinos-filtros">
+        <button id="btnFiltros" class="btn-filtro" aria-controls="filtrosOverlay" aria-expanded="false">
+          <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+          FILTROS
+        </button>
+      </div>
+    </section>
+
+    <!-- Grilla  -->
+    <section class="wrap destinos-layout">
+      <div class="destinos-grid" id="destinosGrid" aria-live="polite">
+        <!--  TARJETAS  -->
+        <!-- 1. Amalfi -->
+        <article class="card"
+          data-id="amalfi" data-nombre="Amalfi" data-precio="200" data-categorias="playa,cultural"
+          data-duracion="5" data-temporada="Mayo-junio o septiembre-octubre"
+          data-historia="La ciudad de Amalfi fue una de las repúblicas marítimas más importantes de Italia en la Edad Media, destacándose por su comercio en el Mediterráneo. Su prosperidad dejó huella en sus iglesias y arquitectura, y hoy es Patrimonio de la Humanidad por la UNESCO."
+          data-atracciones="Catedral de San Andrés, casas blancas colgadas de la montaña, playas como Marina Grande y caminos costeros con vistas espectaculares."
+          data-img1="imagenes/destinos/detalle/amalfi1.webp"
+          data-img2="imagenes/destinos/detalle/amalfi2.avif"
+          data-img3="imagenes/destinos/detalle/amalfi3.avif">
+          <img src="imagenes/destinos/amalfi.avif" alt="Costa Amalfitana, Italia" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Amalfi</h3>
+            <button type="button" class="btn btn-detalles" data-id="amalfi">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 2. Bali -->
+        <article class="card"
+          data-id="bali" data-nombre="Bali" data-precio="90" data-categorias="playa,exotica"
+          data-duracion="7" data-temporada="Abril-octubre (estación seca)"
+          data-historia="Bali se distingue dentro de Indonesia por su fuerte identidad cultural hinduista. La isla es reconocida por sus tradiciones artísticas, la danza y la espiritualidad."
+          data-atracciones="Templos Tanah Lot y Uluwatu, arrozales de Ubud, playas de surf en Kuta, retiros de yoga y cascadas."
+          data-img1="imagenes/destinos/detalle/bali1.jpg"
+          data-img2="imagenes/destinos/detalle/bali2.jpg"
+          data-img3="imagenes/destinos/detalle/bali3.webp">
+          <img src="imagenes/destinos/bali.jpg" alt="Bali, Indonesia" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Bali</h3>
+            <button type="button" class="btn btn-detalles" data-id="bali">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 3. Barcelona -->
+        <article class="card"
+          data-id="barcelona" data-nombre="Barcelona" data-precio="160" data-categorias="urbana,cultural"
+          data-duracion="4" data-temporada="Abril-junio o septiembre-octubre"
+          data-historia="Fundada por los romanos, Barcelona creció como ciudad portuaria y en el siglo XIX fue el centro del modernismo catalán, con Gaudí como figura clave."
+          data-atracciones="Sagrada Familia, Parque Güell, Barrio Gótico, Las Ramblas y playas urbanas."
+          data-img1="imagenes/destinos/detalle/barcelona1.jpg"
+          data-img2="imagenes/destinos/detalle/barcelona2.webp"
+          data-img3="imagenes/destinos/detalle/barcelona3.jpg">
+          <img src="imagenes/destinos/barcelona.jpg" alt="Barcelona, España" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Barcelona</h3>
+            <button type="button" class="btn btn-detalles" data-id="barcelona">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 4. Bariloche -->
+        <article class="card"
+          data-id="bariloche" data-nombre="Bariloche" data-precio="130" data-categorias="naturaleza,aventura"
+          data-duracion="5" data-temporada="Julio-septiembre (ski) o diciembre-marzo (lagos/trek)"
+          data-historia="San Carlos de Bariloche nació a fines del siglo XIX con influencia de inmigrantes alemanes y suizos. Hoy es un polo turístico patagónico."
+          data-atracciones="Lago Nahuel Huapi, Cerro Catedral, Circuito Chico y chocolates artesanales."
+          data-img1="imagenes/destinos/detalle/bariloche1.jpg"
+          data-img2="imagenes/destinos/detalle/bariloche2.jpg"
+          data-img3="imagenes/destinos/detalle/bariloche3.jpg">
+          <img src="imagenes/destinos/bariloche.jpg" alt="Bariloche, Argentina" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Bariloche</h3>
+            <button type="button" class="btn btn-detalles" data-id="bariloche">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 5. Dubrovnik -->
+        <article class="card"
+          data-id="dubrovnik" data-nombre="Dubrovnik" data-precio="170" data-categorias="historica,cultural"
+          data-duracion="3" data-temporada="Mayo-junio o septiembre"
+          data-historia="Fundada en el siglo VII, Dubrovnik se convirtió en una república independiente y próspera gracias al comercio marítimo. Su casco histórico amurallado es Patrimonio UNESCO."
+          data-atracciones="Murallas medievales, casco antiguo de mármol, vistas al Adriático y escenarios de Game of Thrones."
+          data-img1="imagenes/destinos/detalle/dubrovnik1.jpg"
+          data-img2="imagenes/destinos/detalle/dubrovnik2.webp"
+          data-img3="imagenes/destinos/detalle/dubrovnik3.jpg">
+          <img src="imagenes/destinos/dubrovnik.jpg" alt="Dubrovnik, Croacia" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Dubrovnik</h3>
+            <button type="button" class="btn btn-detalles" data-id="dubrovnik">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 6. Ibiza -->
+        <article class="card"
+          data-id="ibiza" data-nombre="Ibiza" data-precio="200" data-categorias="playa,fiesta"
+          data-duracion="4" data-temporada="Junio-septiembre"
+          data-historia="Antigua colonia fenicia, Ibiza combina patrimonio histórico con fama mundial por su vida nocturna y sus playas."
+          data-atracciones="Casco antiguo Dalt Vila (UNESCO), calas como Cala Comte y discotecas como Pacha o Amnesia."
+          data-img1="imagenes/destinos/detalle/ibiza1.jpg"
+          data-img2="imagenes/destinos/detalle/ibiza2.jpg"
+          data-img3="imagenes/destinos/detalle/ibiza3.jpeg">
+          <img src="imagenes/destinos/ibiza.jpg" alt="Ibiza, España" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Ibiza</h3>
+            <button type="button" class="btn btn-detalles" data-id="ibiza">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 7. Lisboa -->
+        <article class="card"
+          data-id="lisboa" data-nombre="Lisboa" data-precio="140" data-categorias="urbana,historica"
+          data-duracion="4" data-temporada="Marzo-junio o septiembre-noviembre"
+          data-historia="Capital portuguesa desde hace siglos, Lisboa resurgió tras el terremoto de 1755 y hoy mezcla tradición y modernidad."
+          data-atracciones="Torre de Belém, barrio de Alfama (fado), tranvía 28 y miradores como Santa Lucía."
+          data-img1="imagenes/destinos/detalle/lisboa1.jpg"
+          data-img2="imagenes/destinos/detalle/lisboa2.jpeg"
+          data-img3="imagenes/destinos/detalle/lisboa3.jpg">
+          <img src="imagenes/destinos/lisboa.webp" alt="Lisboa, Portugal" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Lisboa</h3>
+            <button type="button" class="btn btn-detalles" data-id="lisboa">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 8. Londres -->
+        <article class="card"
+          data-id="londres" data-nombre="Londres" data-precio="220" data-categorias="urbana,cultural"
+          data-duracion="5" data-temporada="Mayo-septiembre"
+          data-historia="Fundada por los romanos como Londinium, Londres fue capital del Imperio Británico y hoy es un centro financiero y cultural clave."
+          data-atracciones="Big Ben, London Eye, British Museum, Hyde Park, Camden Market y Soho."
+          data-img1="imagenes/destinos/detalle/londres1.avif"
+          data-img2="imagenes/destinos/detalle/londres2.webp"
+          data-img3="imagenes/destinos/detalle/londres3.jpg">
+          <img src="imagenes/destinos/londres.jpg" alt="Londres, Reino Unido" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Londres</h3>
+            <button type="button" class="btn btn-detalles" data-id="londres">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 9. Machu Picchu -->
+        <article class="card"
+          data-id="machupichu" data-nombre="Machu Picchu" data-precio="150" data-categorias="naturaleza,historica"
+          data-duracion="4" data-temporada="Mayo-septiembre (seco)"
+          data-historia="Construida en el siglo XV por los incas, redescubierta en 1911 y una de las siete maravillas del mundo moderno."
+          data-atracciones="Ciudadela y Templo del Sol, terrazas agrícolas, subida a Huayna Picchu y vistas andinas."
+          data-img1="imagenes/destinos/detalle/machupichu1.avif"
+          data-img2="imagenes/destinos/detalle/machupichu2.jpeg"
+          data-img3="imagenes/destinos/detalle/machupichu3.jpg">
+          <img src="imagenes/destinos/machupichu.jpg" alt="Machu Picchu, Perú" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Machu Picchu</h3>
+            <button type="button" class="btn btn-detalles" data-id="machupichu">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 10. Marrakech -->
+        <article class="card"
+          data-id="marrakech" data-nombre="Marrakech" data-precio="100" data-categorias="exotica,cultural"
+          data-duracion="4" data-temporada="Marzo-mayo u octubre-noviembre"
+          data-historia="Fundada en el siglo XI, fue capital de varios imperios marroquíes y conserva una medina vibrante y colorida."
+          data-atracciones="Plaza Jemaa el-Fna, zocos de artesanía, mezquita Koutoubia y jardines Majorelle."
+          data-img1="imagenes/destinos/detalle/marrakech1.jpg"
+          data-img2="imagenes/destinos/detalle/marrakech2.webp"
+          data-img3="imagenes/destinos/detalle/marrakech3.jpg">
+          <img src="imagenes/destinos/marrakech.jpg" alt="Marrakech, Marruecos" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Marrakech</h3>
+            <button type="button" class="btn btn-detalles" data-id="marrakech">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 11. Nueva York -->
+        <article class="card"
+          data-id="nuevayork" data-nombre="Nueva York" data-precio="260" data-categorias="urbana,moderna"
+          data-duracion="5" data-temporada="Abril-junio o septiembre-octubre"
+          data-historia="De colonia holandesa a metrópoli mundial, símbolo de diversidad, finanzas y cultura del siglo XX."
+          data-atracciones="Estatua de la Libertad, Central Park, Times Square, Broadway, MoMA y MET."
+          data-img1="imagenes/destinos/detalle/nuevayork1.jpg"
+          data-img2="imagenes/destinos/detalle/nuevayork2.jpg"
+          data-img3="imagenes/destinos/detalle/nuevayork3.gif">
+          <img src="imagenes/destinos/nuevayork.jpg" alt="Nueva York, Estados Unidos" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Nueva York</h3>
+            <button type="button" class="btn btn-detalles" data-id="nuevayork">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 12. París -->
+        <article class="card"
+          data-id="paris" data-nombre="París" data-precio="230" data-categorias="cultural,romantica"
+          data-duracion="5" data-temporada="Abril-junio o septiembre-octubre"
+          data-historia="Centro político, artístico y cultural europeo desde la Edad Media; capital del romanticismo y escenario de revoluciones."
+          data-atracciones="Torre Eiffel, Museo del Louvre, Notre Dame, Campos Elíseos y Montmartre."
+          data-img1="imagenes/destinos/detalle/paris1.jpg"
+          data-img2="imagenes/destinos/detalle/paris2.jpg"
+          data-img3="imagenes/destinos/detalle/paris3.jpg">
+        <img src="imagenes/destinos/paris.jpg" alt="París, Francia" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">París</h3>
+            <button type="button" class="btn btn-detalles" data-id="paris">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 13. Punta del Este -->
+        <article class="card"
+          data-id="pde" data-nombre="Punta del Este" data-precio="180" data-categorias="playa,urbana"
+          data-duracion="3" data-temporada="Diciembre-marzo (temporada alta)"
+          data-historia="Balneario uruguayo que desde el siglo XX atrae turismo internacional; conocida como la Mónaco de Sudamérica."
+          data-atracciones="Playa Brava con “La Mano”, Playa Mansa, puerto e isla Gorriti."
+          data-img1="imagenes/destinos/detalle/pde1.jpg"
+          data-img2="imagenes/destinos/detalle/pde2.avif"
+          data-img3="imagenes/destinos/detalle/pde3.avif">
+          <img src="imagenes/destinos/pde.jpeg" alt="Punta del Este, Uruguay" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Punta del Este</h3>
+            <button type="button" class="btn btn-detalles" data-id="pde">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 14. Roma -->
+        <article class="card"
+          data-id="roma" data-nombre="Roma" data-precio="180" data-categorias="historica,cultural"
+          data-duracion="5" data-temporada="Abril-junio o septiembre-octubre"
+          data-historia="Capital del Imperio Romano, cuna de la civilización occidental y sede del Vaticano."
+          data-atracciones="Coliseo, Foro Romano, Fontana di Trevi, Piazza Navona y Basílica de San Pedro."
+          data-img1="imagenes/destinos/detalle/roma1.jpg"
+          data-img2="imagenes/destinos/detalle/roma2.jpeg"
+          data-img3="imagenes/destinos/detalle/roma3.webp">
+          <img src="imagenes/destinos/roma.webp" alt="Roma, Italia" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Roma</h3>
+            <button type="button" class="btn btn-detalles" data-id="roma">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 15. Shanghái -->
+        <article class="card"
+          data-id="shangai" data-nombre="Shanghái" data-precio="150" data-categorias="urbana,moderna"
+          data-duracion="4" data-temporada="Marzo-mayo o septiembre-noviembre"
+          data-historia="De pueblo pesquero a gran centro financiero global, representa la modernización acelerada de China."
+          data-atracciones="El Bund, Torre Perla Oriental, jardín Yuyuan y Nanjing Road."
+          data-img1="imagenes/destinos/detalle/shangai1.avif"
+          data-img2="imagenes/destinos/detalle/shangai2.jpg"
+          data-img3="imagenes/destinos/detalle/shangai3.jpg">
+          <img src="imagenes/destinos/shangai.jpg" alt="Shanghái, China" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Shanghái</h3>
+            <button type="button" class="btn btn-detalles" data-id="shangai">Detalles</button>
+          </div>
+        </article>
+
+        <!-- 16. Tokio -->
+        <article class="card"
+          data-id="tokio" data-nombre="Tokio" data-precio="210" data-categorias="urbana,tecnologica"
+          data-duracion="5" data-temporada="Marzo-mayo (sakura) o septiembre-noviembre (otoño)"
+          data-historia="Antiguamente Edo; capital desde 1868 con la Restauración Meiji. Combina tradición ancestral y alta tecnología."
+          data-atracciones="Shibuya Crossing, Templo Sensō-ji, Torre de Tokio, Akihabara y jardines imperiales."
+          data-img1="imagenes/destinos/detalle/tokio1.jpg"
+          data-img2="imagenes/destinos/detalle/tokio2.jpg"
+          data-img3="imagenes/destinos/detalle/tokio3.webp">
+          <img src="imagenes/destinos/tokio.jpg" alt="Tokio, Japón" class="card-img" />
+          <div class="card-body">
+            <h3 class="card-title">Tokio</h3>
+            <button type="button" class="btn btn-detalles" data-id="tokio">Detalles</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FILTROS ===== -->
+  <div id="filtrosOverlay" class="filtros-overlay" hidden>
+    <div class="filtros-backdrop" data-close="1"></div>
+    <section class="filtros-panel" role="dialog" aria-modal="true" aria-labelledby="titulo-filtros">
+      <button type="button" class="filtros-close" aria-label="Cerrar filtros">✕</button>
+      <h3 id="titulo-filtros">
+        <span class="material-symbols-outlined" aria-hidden="true">filter_alt</span>
+        Filtros
+      </h3>
+
+      <form id="form-filtros" class="filtros-form" novalidate>
+        <div class="filtro-item">
+          <label for="rangoPrecio">Precio por día (USD)</label>
+          <div class="range-wrap">
+            <input type="range" id="rangoPrecio" min="50" max="300" value="300" />
+            <output id="precioOut">300</output>
+          </div>
+        </div>
+
+        <div class="filtro-item">
+          <label for="categoria">Categoría</label>
+          <select id="categoria">
+            <option value="todas">Todas</option>
+            <option value="playa">Playa</option>
+            <option value="naturaleza">Naturaleza</option>
+            <option value="cultural">Cultural</option>
+            <option value="historica">Histórica</option>
+            <option value="urbana">Urbana</option>
+            <option value="romantica">Romántica</option>
+            <option value="fiesta">Fiesta</option>
+            <option value="aventura">Aventura</option>
+            <option value="exotica">Exótica</option>
+            <option value="moderna">Moderna</option>
+            <option value="tecnologica">Tecnológica</option>
+          </select>
+        </div>
+
+        <div class="filtro-item">
+          <label for="orden">Orden alfabético</label>
+          <select id="orden">
+            <option value="asc">Ascendente (A-Z)</option>
+            <option value="desc">Descendente (Z-A)</option>
+          </select>
+        </div>
+
+        <div class="filtro-actions">
+          <button class="btn" type="submit">Aplicar</button>
+          <button class="btn btn-sec" type="reset">Limpiar</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- ===== DETALLES + RESERVA ===== -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" data-close="1"></div>
+    <section class="modal-card" aria-describedby="modal-desc">
+      <button id="modal-close" class="modal-close" aria-label="Cerrar detalles">✕</button>
+
+      <h3 id="modal-title">Destino: detalle</h3>
+
+      <div class="slider" aria-label="Galería de imágenes">
+        <button class="slider-prev" aria-label="Imagen anterior">‹</button>
+        <figure class="slider-frame">
+          <img id="slider-img" src="" alt="Imagen del destino" />
+          <figcaption id="modal-desc" class="sr-only">Imágenes ilustrativas del destino.</figcaption>
+        </figure>
+        <button class="slider-next" aria-label="Imagen siguiente">›</button>
+      </div>
+
+      <article class="modal-info">
+        <h4 class="modal-sub">Historia</h4>
+        <p id="modal-historia">—</p>
+
+        <h4 class="modal-sub">Atracciones</h4>
+        <p id="modal-atracciones">—</p>
+
+        <h4 class="modal-sub">Datos útiles</h4>
+        <p id="modal-extra">—</p>
+
+        <!-- RESERVA -->
+        <div class="reserva">
+          <h4 class="modal-sub">Reservar</h4>
+          <div class="reserva-grid">
+            <label for="res-fecha">Fecha de inicio</label>
+            <input type="date" id="res-fecha" />
+            <label for="res-dias">Días</label>
+            <input type="number" id="res-dias" min="1" inputmode="numeric" placeholder="Ej: 5" />
+          </div>
+
+          <div class="reserva-actions">
+            <button type="button" id="btnCalcular" class="btn">Calcular costo</button>
+            <span id="res-total" class="reserva-total" aria-live="polite"></span>
+          </div>
+
+          <button type="button" id="btnReservar" class="btn btn-reservar" hidden>Guardar en Itinerario</button>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span id="anio">2025</span> BRÚJULA - Agencia de viajes</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
