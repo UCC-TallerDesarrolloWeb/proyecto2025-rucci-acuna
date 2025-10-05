@@ -1,94 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>BRÚJULA – Agencia de viajes | Inicio</title>
+    <title>BRÚJULA - Agencia de viajes | Inicio</title>
 
-  <!-- Metadatos requeridos -->
-  <meta name="author" content="Tu Nombre" />
-  <meta name="description" content="BRÚJULA es una agencia de viajes. Descubrí destinos, itinerarios y contactate con nosotros." />
-  <meta name="keywords" content="viajes, turismo, destinos, itinerarios, agencia de viajes, vacaciones" />
+    <meta name="author" content="Lu-Isa" />
+    <meta
+      name="description"
+      content="BRÚJULA es una agencia de viajes. Descubrí destinos, itinerarios y contactate con nosotros."
+    />
+    <meta
+      name="keywords"
+      content="viajes, turismo, destinos, itinerarios, agencia de viajes, vacaciones"
+    />
 
-  <!-- Favicon -->
-  <link rel="icon" href="favicon/favicon.ico" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="imagenes/favicon.png" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Google Fonts, elgimos montserrat -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- CSS externo (prohibido inline) -->
-  <link rel="stylesheet" href="estilos.css" />
-</head>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
 
-<body>
-  <!-- Sitio desde cero, sin templates -->
-  <header class="site-header">
-    <div class="wrap header-grid">
-      <a class="brand" href="index.html">
-        <img src="imagenes/logo-brujula.svg" alt="Logo de BRÚJULA" width="40" height="40" />
-        <h1 class="brand-title">BRÚJULA</h1>
-        <span class="brand-sub">Agencia de viajes</span>
-      </a>
+  <body>
+    <main id="main">
+      <section class="hero" aria-label="Presentación BRÚJULA">
+        <video
+          class="hero-video"
+          src="imagenes/videofondo.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        <div class="hero-overlay" aria-hidden="true"></div>
 
-      <!-- Contenedor del botón + panel para manejar hover/focus -->
-      <div class="menu-wrapper" id="menuWrapper">
-        <button id="btnMenu" class="btn-hamb" aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false">
-          <span class="bar" aria-hidden="true"></span>
-          <span class="bar" aria-hidden="true"></span>
-          <span class="bar" aria-hidden="true"></span>
-        </button>
+        <div class="hero-content wrap">
+          <div class="logo" aria-label="Brújula - Agencia de viajes">
+            <img
+              src="imagenes/logo.png"
+              alt="Logo de BRÚJULA"
+              width="90"
+              height="90"
+            />
+            <div class="logo-title">BRÚJULA</div>
+            <div class="logo-sub">Agencia de viajes</div>
+          </div>
 
-        <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
-          <ul class="menu-list">
-            <li><a href="index.html">Inicio</a></li>
-            <li><button class="menu-link pseudo" type="button" id="menuDetalles">Detalles</button></li>
-            <li><a href="itinerario.html">Itinerario</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
+          <h1 class="hero-title">
+            Es hora de tu <span class="strong">próxima aventura</span>
+          </h1>
+          <p class="hero-sub">Dejanos planearlo para vos</p>
 
-  <main id="main">
-    <!-- Hero con video de fondo -->
-    <section class="hero" aria-label="Presentación BRÚJULA">
-      <!-- Sugerencia: si el video pesa, usá una imagen o un mp4 liviano -->
-      <video class="hero-video" src="media/videofondo.mp4" autoplay muted loop playsinline></video>
-      <div class="hero-overlay" aria-hidden="true"></div>
-
-      <div class="hero-content wrap">
-        <div class="logo-block" aria-label="Isotipo brújula">
-          <!-- Podés reemplazar por tu SVG si querés -->
-          <svg class="isotipo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="32" cy="32" r="22" stroke="white" stroke-width="2" opacity=".85" />
-            <path d="M32 6v10M32 48v10M6 32h10M48 32h10" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            <path d="M23 41l8-20l10 10l-18 10z" fill="white" opacity=".95"/>
-          </svg>
+          <div class="cta" role="group" aria-label="Acciones principales">
+            <a class="btn" href="destinos.html">Destinos</a>
+            <a class="btn" href="itinerario.html">Itinerario</a>
+            <a class="btn" href="contacto.html">Contacto</a>
+          </div>
         </div>
+      </section>
+    </main>
 
-        <h2 class="hero-title">
-          Es hora de tu <span class="strong">próxima aventura</span>
-        </h2>
-        <p class="hero-sub">Dejanos planearlo para vos</p>
-
-        <div class="cta" role="group" aria-label="Acciones principales">
-          <a class="btn" href="destinos.html">Destinos</a>
-          <a class="btn" href="itinerario.html">Itinerario</a>
-          <a class="btn" href="contacto.html">Contacto</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>&copy; <span id="anio">2025</span> BRÚJULA – Agencia de viajes</p>
-    </div>
-  </footer>
-
-  <!-- JS externo -->
-  <script src="funciones.js"></script>
-</body>
+    <!-- JS -->
+    <script src="script.js"></script>
+  </body>
 </html>

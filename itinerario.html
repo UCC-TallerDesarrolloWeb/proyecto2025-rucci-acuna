@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BRÚJULA - Itinerario</title>
+
+    <meta name="author" content="Lu-Isa" />
+    <meta name="description" content="Explorá itinerarios sugeridos y administrá tus reservas guardadas en BRÚJULA." />
+    <meta name="keywords" content="itinerarios, turismo, viajes, reservas, destinos" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="imagenes/favicon.png" />
+
+    <!-- Tipografías e íconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body class="page-itinerario">
+    <header class="site-header">
+      <div class="wrap header-grid">
+        <a class="brand" href="index.html" aria-label="Volver al inicio">
+          <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
+          <div class="brand-text">
+            <h1 class="brand-title">BRÚJULA</h1>
+            <span class="brand-sub">Agencia de viajes</span>
+          </div>
+        </a>
+
+        <div class="top-actions">
+          <div class="menu-wrapper" id="menuWrapper">
+            <button id="btnMenu" class="btn-hamb" aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false" type="button">
+              <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            </button>
+
+            <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
+              <ul class="menu-list">
+                <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> INICIO</a></li>
+                <li><a href="destinos.html"><span class="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS</a></li>
+                <li><a href="itinerario.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO</a></li>
+                <li><a href="contacto.html"><span class="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ===== Encabezado ===== -->
+      <section class="wrap itinerario-head">
+        <header>
+          <h1 class="page-title">ITINERARIO</h1>
+          <p class="page-sub">Tus reservas guardadas y recorridos sugeridos.</p>
+        </header>
+      </section>
+
+      <!-- ===== MIS RESERVAS ===== -->
+      <section class="wrap" aria-label="Mis reservas">
+        <div class="filtros mb-20">
+          <h2 class="filtros-title">
+            <span class="material-symbols-outlined" aria-hidden="true">event_available</span>
+            Mis reservas
+          </h2>
+
+          <!-- Estado vacío -->
+          <p id="res-empty" class="notice mb-10">
+            Aún no agregaste reservas. Abrí Destinos, elegí un lugar, y en el modal usá <em>Calcular costo</em> → Guardar en Itinerario.
+          </p>
+
+          <div class="tabla-scroll">
+            <table id="res-list">
+              <caption class="sr-only">Listado de reservas guardadas</caption>
+              <thead>
+                <tr>
+                  <th>Destino</th>
+                  <th>Fecha</th>
+                  <th>Días</th>
+                  <th>USD/día</th>
+                  <th>Total</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="toolbar-row mt-12">
+            <span>Total del itinerario: <span id="res-total-all">USD 0</span></span>
+            <button type="button" id="btnVaciarRes" class="btn btn-sec">Vaciar itinerario</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>&copy; <span id="anio">2025</span> BRÚJULA – Agencia de viajes</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
