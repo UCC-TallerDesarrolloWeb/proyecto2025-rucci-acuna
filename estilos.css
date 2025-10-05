@@ -251,9 +251,9 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
   background:#d2c3a9; color:#2a241a; border-radius:12px; padding:18px;
   display:grid; gap:18px; grid-template-columns:1fr 1fr; box-shadow:0 12px 32px rgba(0,0,0,.45);
 }
-.modal-close{position:absolute; left:14px; top:14px; border:0; background:#2a241a; color:#fff; width:34px; height:34px; border-radius:6px; cursor:pointer; z-index:1}
+.modal-close{position:absolute; right:14px; top:14px; border:0; background:#2a241a; color:#fff; width:34px; height:34px; border-radius:6px; cursor:pointer; z-index:1}
 .modal-close:focus-visible{ outline:3px solid #fff8; outline-offset:2px }
-.modal h3{grid-column:1/-1; margin:0 0 4px; padding-left:44px; font-weight:900}
+.modal h3{grid-column:1/-1; margin:0 0 4px; padding:0 50px 0 0; font-weight:900}
 .slider{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:10px}
 .slider-frame{margin:0}
 .slider-frame img{width:100%; height:300px; object-fit:cover; border-radius:8px}
@@ -268,9 +268,18 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 .reserva-grid input{
   background:#ffffff22; color:#2a241a; border:2px solid #2a241a66; border-radius:8px; padding:10px 12px;
 }
-.reserva-actions{ display:flex; align-items:center; gap:16px; margin-top:4px; flex-wrap:wrap; }
+.reserva-actions{ 
+  display: flex; 
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px; 
+  margin-top: 4px;
+}
+.reserva-actions .btn { 
+  width: 100%;
+}
 .reserva-total{ font-weight:800; }
-.btn-reservar{ margin-left:12px; }
+.btn-reservar{ margin-left:0; }
 
 @media (max-width:780px){
   .modal-card{ grid-template-columns:1fr }
@@ -320,18 +329,19 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 /* ========== CONTACTO ========== */
 .page-contacto{ background:#b7a88d; color:#fff }
 .page-contacto main{ background:var(--beige) }
-.page-contacto .wrap{ padding-bottom:56px; }
+.page-contacto .wrap{ padding-bottom:100px; }
 
 .contacto-head{ display:grid; grid-template-columns:1fr; padding:36px 0 26px }
 .page-contacto .page-title{ margin:0; font-size:clamp(32px, 4.6vw, 48px); font-weight:900 }
 .page-contacto .page-sub{ margin:0; font-weight:700; opacity:.95 }
 
 .contacto-layout{
-  display:grid; grid-template-columns:1fr 520px; gap:36px; align-items:start; padding:0 0 80px;
+  display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:stretch; padding:0 0 120px;
 }
 .contacto-form,
 .contacto-aside{
   background:var(--card); border-radius:14px; box-shadow:0 10px 18px rgba(0,0,0,.18); padding:24px;
+  height: 100%;
 }
 .contacto-form{ display:grid; gap:14px }
 .contacto-form .field{ display:grid; gap:6px }
@@ -365,12 +375,12 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 .mapa iframe{ width:100%; height:360px; border:0; border-radius:10px; box-shadow:0 8px 16px rgba(0,0,0,.2); margin-bottom:6px }
 
 /* ==========  FOOTER  ========== */
-.site-footer{ background:#000 }
+.site-footer{ background: #3c2f1f;   }
 .site-footer p{ margin:0; padding:12px 0; text-align:center; color:#e8e8e8; font-size:13px; letter-spacing:.02em }
 
 .page-destinos .wrap,
 .page-itinerario .wrap,
-.page-contacto .wrap{ padding:0 24px }
+.page-contacto main{ padding-bottom:80px; }
 @media (min-width:1200px){
   .page-destinos .wrap, .page-itinerario .wrap, .page-contacto .wrap{ padding:0 36px }
 }
@@ -432,3 +442,78 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 .btn.btn-sec{ color:#fff; border-color:#ffffff80; }
+
+/* ==== ITINERARIO EN TARJETAS ==== */
+.itinerario-head .page-title { color:#fff; }
+.itinerario-head .page-sub { color:#e7e0d0; }
+
+.itinerario-cards .cards-top{
+  display:flex; gap:1.25rem; margin:.25rem 0 1rem;
+}
+.itinerario-cards .cards-link{ color:#e7e0d0; opacity:.9; }
+
+.lista-itinerario{ display:grid; gap:1rem; }
+
+/* Tarjeta */
+.it-card{
+  display:grid;
+  grid-template-columns: 1fr 260px;
+  gap:1rem;
+  background:#45331f;          /* marrón oscuro */
+  color:#fff;
+  border-radius:22px;
+  padding:1.25rem;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  align-items:center;
+}
+.it-card.open{ box-shadow:0 14px 28px rgba(0,0,0,.24); }
+
+.it-card-body{ display:grid; gap:.5rem; }
+.it-card-titulo{ font-size:1.6rem; margin:0 0 .25rem; font-weight:800; }
+.it-card-linea{ margin:0; color:#eee3d2; }
+
+.it-card-media{ display:flex; justify-content:flex-end; }
+.it-mapa{
+  width:240px; height:150px; border:0;
+  border-radius:12px; outline:2px solid rgba(255,255,255,.1);
+}
+
+/* Panel de detalles */
+.it-card-detalles{
+  margin-top:.75rem; padding-top:.75rem;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.det-grid{
+  display:grid; gap:1rem;
+  grid-template-columns: repeat(3, minmax(120px, 180px));
+  margin-bottom:.75rem;
+}
+.det-grid span{ display:block; font-size:.85rem; color:#e7dccb; opacity:.9; }
+.det-grid strong{ font-size:1.05rem; }
+.det-acciones{ display:flex; gap:.75rem; }
+
+/* Botones */
+.btn{ cursor:pointer; border:0; padding:.7rem 1.1rem; border-radius:999px;
+  font-weight:700; line-height:1;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.18), 0 6px 14px rgba(0,0,0,.2);
+}
+.btn:active{ transform:translateY(1px); }
+.btn-detalles{ background:#ff8a00; color:#fff; }        /* naranja */
+.btn.btn-sec{ background:#c8b698; color:#2b1e10; }      /* ya tenías color; defino fondo */
+
+/* Acciones globales */
+.acciones-globales{ display:flex; justify-content:flex-end; margin-top:1rem; }
+
+/* Estado vacío */
+.notice{ color:#fff; opacity:.9; }
+
+/* Responsive */
+@media (max-width: 900px){
+  .it-card{ grid-template-columns:1fr; }
+  .it-card-media{ justify-content:flex-start; }
+  .it-mapa{ width:100%; height:190px; }
+  .det-grid{ grid-template-columns:1fr 1fr 1fr; }
+}
+@media (max-width: 520px){
+  .det-grid{ grid-template-columns:1fr; }
+}

@@ -360,7 +360,7 @@ const abrirModal = (card) => {
     setSrc(0);
   }
 
-  if (h3) h3.textContent = `${nombre}: detalle de destino`;
+  if (h3) h3.textContent = `${nombre}: Detalle de destino`;
   const hist = card.dataset.historia?.trim();
   const atr = card.dataset.atracciones?.trim();
   const dur = card.dataset.duracion?.trim();
@@ -368,13 +368,13 @@ const abrirModal = (card) => {
   if (pHist) pHist.textContent = hist || `Historia breve de ${nombre}. (Reemplazar con contenido real.)`;
   if (pAtr) pAtr.textContent = atr || `Atracciones principales de ${nombre}. (Reemplazar con contenido real.)`;
 
-  if (pExtra) {
-    const partes = [];
-    if (dur) partes.push(`Duración sugerida: ${dur} día${/^\d+$/.test(dur) && Number(dur) !== 1 ? 's' : ''}.`);
-    if (temp) partes.push(`Mejor época: ${temp}.`);
-    partes.push(`Precio por día aprox.: USD ${Number.isFinite(precioDiaActual) && precioDiaActual > 0 ? fmtUSD(precioDiaActual) : '—'}.`);
-    pExtra.textContent = partes.join(' ');
-  }
+if (pExtra) {
+  const partes = [];
+  if (dur) partes.push(`<strong>Duración sugerida:</strong> ${dur} día${/^\d+$/.test(dur) && Number(dur) !== 1 ? 's' : ''}`);
+  if (temp) partes.push(`<strong>Mejor época:</strong> ${temp}`);
+  partes.push(`<strong>Precio por día aprox.:</strong> USD ${Number.isFinite(precioDiaActual) && precioDiaActual > 0 ? fmtUSD(precioDiaActual) : '—'}`);
+  pExtra.innerHTML = partes.join('<br>');
+}
 
   // Limpiar reserva
   const f = document.getElementById('res-fecha');
@@ -642,89 +642,117 @@ const initContacto = () => {
   });
 };
 
-
-/* ========================= ITINERARIO ========================= */
-
 /**
- * Pinta la tabla del Itinerario desde localStorage y calcula el total.
- * Permite eliminar filas y vaciar todo.
- * @method pintarItinerario
- * @returns {void}
- */
-const pintarItinerario = () => {
-  const tbl = document.getElementById('res-list');
-  const empty = document.getElementById('res-empty');
-  const totalOut = document.getElementById('res-total-all');
-  if (!tbl || !empty || !totalOut) return;
-
-  const viajes = safeJSONParse(localStorage.getItem('itinerario') || '[]', []);
-
-  tbl.innerHTML = `
-    <thead>
-      <tr style="text-align:left">
-        <th>Destino</th><th>Fecha</th><th>Días</th><th>USD/día</th><th>Total</th><th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  `;
-  const tbody = tbl.querySelector('tbody');
-
-  if (!Array.isArray(viajes) || viajes.length === 0) {
-    empty.style.display = '';
-    totalOut.textContent = 'USD 0';
-    return;
-  }
-  empty.style.display = 'none';
-
-  let totalAll = 0;
-  viajes.forEach((v, idx) => {
-    const tr = document.createElement('tr');
-    tr.dataset.idx = String(idx);
-    tr.innerHTML = `
-      <td>${v.destino}</td>
-      <td>${v.fecha}</td>
-      <td>${v.dias}</td>
-      <td>USD ${fmtUSD(Number(v.precioDia))}</td>
-      <td>USD ${fmtUSD(Number(v.total))}</td>
-      <td><button type="button" class="btn btn-sec btn-del">Eliminar</button></td>
-    `;
-    totalAll += Number(v.total) || 0;
-    tbody.appendChild(tr);
-  });
-
-  totalOut.textContent = `USD ${fmtUSD(totalAll)}`;
-
-  tbody.querySelectorAll('.btn-del').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      const i = Number(e.currentTarget.closest('tr')?.dataset.idx || -1);
-      const arr = safeJSONParse(localStorage.getItem('itinerario') || '[]', []);
-      if (i >= 0 && i < arr.length) {
-        if (!confirm(`¿Eliminar "${arr[i].destino}" del itinerario?`)) return;
-        arr.splice(i, 1);
-        localStorage.setItem('itinerario', JSON.stringify(arr));
-        pintarItinerario();
-      }
-    });
-  });
-};
-
-/**
- * Inicializa la página de Itinerario 
+ * Inicializa la página de Itinerario con tarjetas expandibles
  * @method initItinerario
  * @returns {void}
  */
 const initItinerario = () => {
-  if (!document.getElementById('res-list')) return;
-  pintarItinerario();
-  document.getElementById('btnVaciarRes')?.addEventListener('click', () => {
-    if (confirm('¿Vaciar todo el itinerario?')) {
-      localStorage.removeItem('itinerario');
-      pintarItinerario();
+  const $lista = document.getElementById('lista-itinerario');
+  const $vacio = document.getElementById('res-empty');
+  const $acciones = document.getElementById('acciones-globales');
+  const $btnVaciar = document.getElementById('btnVaciarRes');
+  
+  if (!$lista) return;
+
+  const toUSD = (n) => `USD ${Number(n || 0).toLocaleString('en-US')}`;
+  const srcMapa = (dest) => `https://www.google.com/maps?q=${encodeURIComponent(dest || '')}&output=embed`;
+
+  function calcularTotal(item) {
+    const dias = Number(item.dias ?? item.Dias ?? 0);
+    const usdDia = Number(item.usdDia ?? item.precioDia ?? item.usd ?? 0);
+    return dias * usdDia;
+  }
+
+  function render() {
+    const data = safeJSONParse(localStorage.getItem('itinerario') || '[]', []);
+    $lista.innerHTML = '';
+
+    if (data.length === 0) {
+      $vacio.hidden = false;
+      $acciones.hidden = true;
+      return;
     }
-  });
+    $vacio.hidden = true;
+
+    data.forEach((item, idx) => {
+      const destino = item.destino ?? item.Destino ?? 'Destino';
+      const fecha = item.fecha ?? item.Fecha ?? '—';
+      const dias = item.dias ?? item.Dias ?? '—';
+      const usdDia = item.usdDia ?? item.precioDia ?? item.usd ?? '—';
+      const total = calcularTotal(item);
+
+      const art = document.createElement('article');
+      art.className = 'it-card';
+      art.innerHTML = `
+        <div class="it-card-body">
+          <h3 class="it-card-titulo">${destino}</h3>
+          <p class="it-card-linea"><strong>DESTINO:</strong> ${destino}</p>
+          <p class="it-card-linea"><strong>FECHA:</strong> ${fecha}</p>
+          <button class="btn btn-detalles" data-idx="${idx}">DETALLES</button>
+
+          <div class="it-card-detalles" hidden>
+            <div class="det-grid">
+              <div><span>DÍAS</span><strong>${dias}</strong></div>
+              <div><span>USD/día</span><strong>${toUSD(usdDia)}</strong></div>
+              <div><span>Total</span><strong>${toUSD(total)}</strong></div>
+            </div>
+            <div class="det-acciones">
+              <button class="btn btn-sec" data-eliminar="${idx}">ELIMINAR</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="it-card-media">
+          <iframe class="it-mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="${srcMapa(destino)}" aria-label="Mapa ${destino}"></iframe>
+        </div>
+      `;
+      $lista.appendChild(art);
+    });
+
+    // Listeners botón detalles
+    $lista.querySelectorAll('.btn-detalles').forEach((b) => {
+      b.onclick = (e) => {
+        const card = e.currentTarget.closest('.it-card');
+        const panel = card.querySelector('.it-card-detalles');
+        const abierto = panel.hidden === false;
+        panel.hidden = abierto;
+        card.classList.toggle('open', !abierto);
+
+        const data = safeJSONParse(localStorage.getItem('itinerario') || '[]', []);
+        const algunoAbierto = data.length > 0 && [...document.querySelectorAll('.it-card-detalles')].some((p) => p.hidden === false);
+        $acciones.hidden = !algunoAbierto;
+      };
+    });
+
+    // Listeners botón eliminar
+    $lista.querySelectorAll('[data-eliminar]').forEach((b) => {
+      b.onclick = (e) => {
+        const i = Number(e.currentTarget.getAttribute('data-eliminar'));
+        const data = safeJSONParse(localStorage.getItem('itinerario') || '[]', []);
+        if (i >= 0 && i < data.length) {
+          if (!confirm(`¿Eliminar "${data[i].destino}" del itinerario?`)) return;
+          data.splice(i, 1);
+          localStorage.setItem('itinerario', JSON.stringify(data));
+          render();
+        }
+      };
+    });
+
+    // Botón vaciar
+    if ($btnVaciar) {
+      $btnVaciar.onclick = () => {
+        if (confirm('¿Vaciar todo el itinerario?')) {
+          localStorage.removeItem('itinerario');
+          render();
+        }
+      };
+    }
+  }
+
+  render();
 };
-
-
 /* ========================= INIT GLOBAL ========================= */
 
 /**
