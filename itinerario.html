@@ -19,35 +19,35 @@
     <link rel="stylesheet" href="estilos.css" />
   </head>
 
-  <body class="page-itinerario">
-    <header class="site-header">
-      <div class="wrap header-grid">
-        <a class="brand" href="index.html" aria-label="Volver al inicio">
-          <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
-          <div class="brand-text">
-            <h1 class="brand-title">BRÚJULA</h1>
-            <span class="brand-sub">Agencia de viajes</span>
-          </div>
-        </a>
-
-        <div class="top-actions">
-          <div class="menu-wrapper" id="menuWrapper">
-            <button id="btnMenu" class="btn-hamb" aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false" type="button">
-              <span class="material-symbols-outlined" aria-hidden="true">menu</span>
-            </button>
-
-            <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
-              <ul class="menu-list">
-                <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> INICIO</a></li>
-                <li><a href="destinos.html"><span class="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS</a></li>
-                <li><a href="itinerario.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO</a></li>
-                <li><a href="contacto.html"><span class="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+<body class="page-itinerario">
+  <header class="site-header">
+  <div class="wrap header-grid">
+    <a class="brand" href="index.html" aria-label="Volver al inicio">
+      <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
+      <div class="brand-text">
+        <h1 class="brand-title">BRÚJULA</h1>
+        <span class="brand-sub">Agencia de viajes</span>
       </div>
-    </header>
+    </a>
+
+    <!-- Menú -->
+    <div class="menu-wrapper" id="menuWrapper">
+      <button id="btnMenu" class="btn-hamb" type="button"
+              aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false">
+        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+      </button>
+
+      <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
+        <ul class="menu-list">
+          <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> INICIO</a></li>
+          <li><a href="destinos.html"><span class="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS</a></li>
+          <li><a href="itinerario.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO</a></li>
+          <li><a href="contacto.html"><span class="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
 
     <main id="main">
       <!-- ===== Encabezado ===== -->
@@ -197,5 +197,6 @@
 
       document.addEventListener("DOMContentLoaded", render);
     </script>
+    <script src="script.js" defer></script>
   </body>
 </html>
