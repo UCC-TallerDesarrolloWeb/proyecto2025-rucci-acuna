@@ -180,79 +180,77 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 }
 
 /* ====== Vista móvil ====== */
-@media (max-width: 768px){
+/* ===============================
+   SOLO MOBILE: header/footer más finos y a todo el ancho
+   =============================== */
+@media (max-width: 640px){
 
-  /* botones tabla */
-  #res-list tbody button.btn {
-    padding: 10px 16px;
-    white-space: nowrap;
+  /* ---------- HEADER ---------- */
+  .site-header {
+    background: var(--panel);
+    padding: 2px 0;           /* franja marrón más fina */
+    min-height: 44px;         /* altura total reducida */
+    width: 100%;              /* ocupa todo el ancho */
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
   }
 
-  /* HEADER: logo, buscador y menú en línea */
-  .header-grid{
-    display: flex;
-    flex-wrap: nowrap;
+  .header-grid {
+    min-height: 44px;
+    gap: 6px;
+    padding: 0 8px;           /* menos espacio interno */
     align-items: center;
-    gap: 8px;
-    min-height: 50px;
-    padding: 6px 0;
   }
-  
-  .brand{
+
+  .brand {
     flex: 0 0 auto;
     margin-right: 0;
   }
-  
-  .brand-title{ 
-    font-size: 15px;
-  }
-  
-  /* Buscador en el medio, más chico */
-  .search{
-    flex: 1 1 auto;
-    min-width: 0;
-    max-width: 300px;
-    padding: 4px 8px;
-  }
-  
-  .search input{
-    width: 100%;
-    min-width: 0 !important;
-    font-size: 13px;
-    padding: 4px 6px;
-  }
-  
-  .search button .material-symbols-outlined{
-    font-size: 18px;
-  }
-  
-  /* Menú hamburguesa al final */
-  .menu-wrapper{
-    flex: 0 0 auto;
-    margin-left: 0;
-  }
-  
-  .btn-hamb{
-    width: 36px;
-    height: 36px;
-  }
-  
-  .btn-hamb .material-symbols-outlined{
-    font-size: 26px;
+
+  .brand-title {
+    font-size: 15px;          /* texto un poco más chico */
   }
 
-  /* FOOTER más fino en mobile */
-  .site-footer{
-    padding: 0;
+  .search {
+    flex: 1 1 auto;
+    padding: 3px 8px;
+    max-height: 30px;
   }
-  
-  .site-footer p{
+
+  .search input {
+    font-size: 14px;
+    padding: 3px 6px;
+  }
+
+  .btn-hamb {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .site-footer {
+    background: var(--panel);
+    padding: 2px 0;           /* franja marrón más fina */
+    width: 100%;              /* ocupa todo el ancho */
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+  }
+
+  .site-footer .wrap {
+    padding: 0 8px;           /* menos espacio lateral */
+  }
+
+  .site-footer p {
     margin: 0;
-    padding: 10px 12px;
+    padding: 4px 0;           /* menos espacio vertical del texto */
     font-size: 11px;
-    line-height: 1.4;
+    line-height: 1.2;
+    text-align: center;
   }
 }
+
 
 /* Home (index) */
 .hero{ position:relative; min-height:100vh; display:grid; place-items:center; isolation:isolate; overflow:hidden; }
@@ -554,4 +552,156 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 }
 @media (max-width: 520px){
   .det-grid{ grid-template-columns:1fr; }
+}
+
+/* ===============================
+   SOLO MOBILE — Header y Footer más finos y full-width
+   =============================== */
+@media (max-width: 640px) {
+
+  /* HEADER */
+  .site-header {
+    min-height: 48px;              /* más fino */
+    padding: 4px 0;
+    background: var(--panel);
+    width: 100vw;                  /* ocupa todo el ancho */
+    margin-left: calc(50% - 50vw); /* elimina márgenes laterales */
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
+  }
+
+  .header-grid {
+    min-height: 48px;
+    gap: 8px;
+    padding: 4px 10px;
+    align-items: center;
+  }
+
+  .brand-sub {
+    display: none;                 /* elimina subtítulo si lo hay */
+  }
+
+  .btn-hamb {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--panel);
+    padding: 6px 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
+  }
+
+  .site-footer p {
+    margin: 0;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.3;
+  }
+}
+
+/* ===== HOTFIX MOBILE (≤640px): header/footer sin desborde y más finos ===== */
+@media (max-width:640px){
+  html, body{ overflow-x:hidden; }
+
+  /* Anula 100vw + márgenes negativos que cortaban a la derecha */
+  .site-header,
+  .site-footer{
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* Header compacto */
+  .site-header{ 
+    min-height: 44px !important;
+    padding: 4px 0 !important;
+    background: var(--panel);
+  }
+  .header-grid{
+    min-height: 44px !important;
+    padding: 0 10px !important;
+    gap: 8px !important;
+    align-items: center;
+  }
+  .brand-sub{ display:none !important; }
+  .search{ max-width:100%; padding:3px 8px; }
+  .search input{ font-size:14px; padding:3px 6px; }
+
+  /* Footer compacto */
+  .site-footer{
+    padding: 6px 0 !important;
+    background: var(--panel);
+  }
+  .site-footer .wrap{ padding: 0 10px; }
+  .site-footer p{
+    margin:0; font-size:12px; line-height:1.25; text-align:center;
+  }
+}
+
+/* ===== HEADER y FOOTER finos en TODAS LAS VERSIONES ===== */
+
+/* Evita scroll lateral */
+html, body {
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.site-header {
+  width: 100%;
+  margin: 0;
+  padding: 4px 0;
+  min-height: 44px;
+  background: var(--panel);
+  box-sizing: border-box;
+}
+
+.site-header .wrap {
+  padding: 0 10px;
+}
+
+.header-grid {
+  min-height: 44px;
+  gap: 8px;
+  padding: 0 10px;
+  align-items: center;
+}
+
+.brand-sub {
+  display: none; /* elimina subtítulo que agranda el alto */
+}
+
+.search {
+  max-width: 100%;
+  padding: 3px 8px;
+}
+
+.search input {
+  font-size: 14px;
+  padding: 3px 6px;
+}
+
+/* FOOTER */
+.site-footer {
+  width: 100%;
+  margin: 0;
+  padding: 6px 0;
+  background: var(--panel);
+  box-sizing: border-box;
+}
+
+.site-footer .wrap {
+  padding: 0 10px;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.25;
+  text-align: center;
 }
