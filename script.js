@@ -753,6 +753,9 @@ const initItinerario = () => {
 
   render();
 };
+
+
+
 /* ========================= INIT GLOBAL ========================= */
 
 /**
@@ -772,3 +775,119 @@ const init = () => {
 };
 
 document.addEventListener('DOMContentLoaded', init);
+
+/* ===========================================
+   MÓDULO: ITINERARIO
+   =========================================== */
+
+if (document.body.classList.contains("page-itinerario")) {
+
+  const STORAGE_KEY = "itinerario";
+  const $lista = document.getElementById("lista-itinerario");
+  const $vacio = document.getElementById("res-empty");
+  const $acciones = document.getElementById("acciones-globales");
+  const $btnVaciar = document.getElementById("btnVaciarRes");
+
+  const toUSD = (n) => `USD ${Number(n || 0).toLocaleString("en-US")}`;
+  const srcMapa = (dest) => `https://www.google.com/maps?q=${encodeURIComponent(dest || "")}&output=embed`;
+
+  function leerData() {
+    try {
+      const arr = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      return Array.isArray(arr) ? arr : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function guardarData(arr) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr || []));
+  }
+
+  function calcularTotal(item) {
+    const dias = Number(item.dias ?? item.Dias ?? 0);
+    const usdDia = Number(item.usdDia ?? item.precioDia ?? item.usd ?? 0);
+    return dias * usdDia;
+  }
+
+  function render() {
+    const data = leerData();
+    $lista.innerHTML = "";
+
+    if (data.length === 0) {
+      $vacio.hidden = false;
+      $acciones.hidden = true;
+      return;
+    }
+    $vacio.hidden = true;
+
+    data.forEach((item, idx) => {
+      const destino = item.destino ?? item.Destino ?? "Destino";
+      const fecha = item.fecha ?? item.Fecha ?? "—";
+      const dias = item.dias ?? item.Dias ?? "—";
+      const usdDia = item.usdDia ?? item.precioDia ?? item.usd ?? "—";
+      const total = calcularTotal(item);
+
+      const art = document.createElement("article");
+      art.className = "it-card";
+      art.innerHTML = `
+        <div class="it-card-body">
+          <h3 class="it-card-titulo">${destino}</h3>
+          <p class="it-card-linea"><strong>DESTINO:</strong> ${destino}</p>
+          <p class="it-card-linea"><strong>FECHA:</strong> ${fecha}</p>
+          <button class="btn btn-detalles" data-idx="${idx}">DETALLES</button>
+
+          <div class="it-card-detalles" hidden>
+            <div class="det-grid">
+              <div><span>DÍAS</span><strong>${dias}</strong></div>
+              <div><span>USD/día</span><strong>${toUSD(usdDia)}</strong></div>
+              <div><span>Total</span><strong>${toUSD(total)}</strong></div>
+            </div>
+            <div class="det-acciones">
+              <button class="btn btn-sec" data-eliminar="${idx}">ELIMINAR</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="it-card-media">
+          <iframe class="it-mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="${srcMapa(destino)}" aria-label="Mapa ${destino}"></iframe>
+        </div>
+      `;
+      $lista.appendChild(art);
+    });
+
+    // listeners
+    $lista.querySelectorAll(".btn-detalles").forEach((b) => {
+      b.onclick = (e) => {
+        const card = e.currentTarget.closest(".it-card");
+        const panel = card.querySelector(".it-card-detalles");
+        const abierto = panel.hidden === false;
+        panel.hidden = abierto;
+        card.classList.toggle("open", !abierto);
+
+        const algunoAbierto = [...document.querySelectorAll(".it-card-detalles")].some((p) => p.hidden === false);
+        $acciones.hidden = !algunoAbierto;
+      };
+    });
+
+    $lista.querySelectorAll("[data-eliminar]").forEach((b) => {
+      b.onclick = (e) => {
+        const i = Number(e.currentTarget.getAttribute("data-eliminar"));
+        const data = leerData();
+        data.splice(i, 1);
+        guardarData(data);
+        render();
+      };
+    });
+
+    $btnVaciar.onclick = () => {
+      if (confirm("¿Vaciar itinerario?")) {
+        guardarData([]);
+        render();
+      }
+    };
+  }
+
+  document.addEventListener("DOMContentLoaded", render);
+}
