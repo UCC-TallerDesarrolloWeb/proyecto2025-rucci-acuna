@@ -1,4 +1,4 @@
-/* ========== Variables ========== */
+
 :root{
   --primary:#ff8a00;
   --bg:#000;
@@ -13,14 +13,14 @@
   --header-h-mobile:44px;
 
   /* espaciados verticales comunes */
-  --y-head-top:26px;            /* margen superior de heads internos */
-  --y-head-bottom-tight:6px;    /* cierre más compacto bajo títulos (destinos/contacto) */
-  --y-head-bottom-itin:16px;    /* cierre un poco más amplio para itinerario */
+  --y-head-top:26px;            /* margen superior  */
+  --y-head-bottom-tight:6px;    
+  --y-head-bottom-itin:16px;    /* cierre un poco mas amplio para itinerario */
   --y-wrap-bottom:64px;         /* padding inferior general de sección */
   --y-wrap-bottom-roomy:96px;   
 }
 
-/* ========== Reset / base ========== */
+/* Reset / base*/
 *{ box-sizing:border-box }
 html,body{ height:100%; overflow-x:hidden }
 body{
@@ -48,7 +48,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
   outline:3px solid #fff8; outline-offset:2px;
 }
 
-/* ========== Utilidades ========== */
+/* utilidades */
 .mb-20{ margin-bottom:20px }
 .table-scroll{ overflow:auto }
 .flex-between{ display:flex; align-items:center; justify-content:space-between; gap:12px }
@@ -58,35 +58,48 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
   background:#00000022; color:#fff; font-weight:600;
 }
 
-/* ========== Tipografías por página ========== */
+/* Tipografías por pagina */
 .page-home{ font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
 .page-destinos, .page-itinerario, .page-contacto{
   font-family:"Noto Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 }
 
-/* =======================================================
-   Header + Menú (unificado)
-   ======================================================= */
+/* 
+   encabezadp y menu (unificado) */
 .site-header{
   position:sticky; top:0; z-index:20;
   background:var(--panel); color:#fff;
   box-shadow:0 2px 10px rgba(0,0,0,.25);
 }
-.header-grid{
-  display:flex; align-items:center; gap:18px;
-  min-height:var(--header-h-desktop);
-  padding:0 10px;
+.site-header .wrap{
+  max-width: none;     
+  width: 100%;        
+  margin: 0;         
+  padding: 0;          
 }
+
+.header-grid{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;  
+  min-height:var(--header-h-desktop);
+  padding: 0 12px;                
+}
+
 .brand{
-  display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff;
-  margin-right:auto; min-width:0;
+  display:flex; align-items:center; gap:12px;
+  color:#fff; text-decoration:none;
+  min-width:0;   
 }
 .brand-text{ display:flex; flex-direction:column; line-height:1.05; min-width:0 }
 .brand-title{ margin:0; font-size:20px; font-weight:900; letter-spacing:.06em; white-space:nowrap }
 .brand-sub{ font-size:12px; opacity:.95; margin-left:0 }
 
-.top-actions{ display:flex; gap:14px; align-items:center; margin-left:auto; flex-wrap:nowrap; }
-
+.top-actions{
+  display:flex; align-items:center; gap:14px; flex-wrap:nowrap;
+}
+.top-actions .search{ display:none; }                 
+.page-destinos .top-actions .search{ display:flex; }  
 .search{
   display:flex; align-items:center; gap:8px;
   background:#fff1; border:2px solid #fff6; border-radius:999px; padding:6px 12px;
@@ -127,7 +140,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 .menu-list a:hover,.menu-list .menu-link:hover{ background:rgba(255,255,255,.08) }
 .menu-list .material-symbols-outlined{ font-size:20px; line-height:1; color:#fff }
 
-/* ====== Header/Footer en móvil ====== */
+/* ====== Header/Footer en mobile ====== */
 @media (max-width:640px){
   .brand-sub{ display:none }
   .site-header{ min-height:var(--header-h-mobile) }
@@ -137,9 +150,8 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
   .btn-hamb{ width:36px; height:36px }
 }
 
-/* =======================================================
-   Footer (unificado)
-   ======================================================= */
+/*
+   Footer  */
 .site-footer{
   background:var(--panel);
   margin-top:auto;
@@ -150,9 +162,8 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
   font-size:13px; letter-spacing:.02em; line-height:1.25;
 }
 
-/* =======================================================
-   Botones
-   ======================================================= */
+/* 
+   Botones */
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
   cursor:pointer; border:0; padding:.7rem 1.1rem; border-radius:999px;
@@ -171,9 +182,13 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 }
 .btn.btn-sec:hover{ filter:brightness(1.03) }
 
-/* =======================================================
-   Home
-   ======================================================= */
+.btn, .btn:link, .btn:visited{
+  text-decoration:none;
+}
+
+
+/*
+   Home */
 .hero{ position:relative; min-height:100vh; display:grid; place-items:center; isolation:isolate; overflow:hidden; }
 .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
 .hero-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.35); z-index:-1; }
@@ -187,12 +202,10 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 .hero-sub{ margin:0; font-weight:700; font-size:clamp(18px,2.4vw,36px) }
 .cta{ display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-top:6px }
 
-/* =======================================================
-   Destinos
-   ======================================================= */
+/* 
+   Destinos*/
 .page-destinos{ background:#b7a88d; color:#fff; }
 
-/* Head con TÍTULO a la izquierda y ACCIONES a la derecha */
 .page-destinos .destinos-head{
   background:var(--beige);
   color:#fff;
@@ -205,14 +218,13 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 .page-destinos .page-title{ margin:0; font-size:clamp(32px, 4.6vw, 48px); font-weight:900 }
 .page-destinos .page-sub{ margin:0; font-weight:700; opacity:.95 }
 
-/* Contenedor de acciones (opcional en tu HTML) */
+/* Contenedor de acciones */
 .page-destinos .destinos-actions{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-/* Asegura visibilidad/alineación aunque no uses .destinos-actions */
 .page-destinos .destinos-head :where(.btn, .btn-filtro, .filtro-inline){
   display:inline-flex;
   align-items:center;
@@ -247,7 +259,6 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 .card-title{ margin:0; font-size:28px; font-weight:800 }
 .btn.btn-detalles{ padding:14px 32px }
 
-/* 1 sola card centrada */
 .destinos-grid.is-single{
   grid-template-columns:minmax(0, 380px);
   justify-content:center;
@@ -256,7 +267,7 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
   max-width:380px; width:100%; margin-inline:auto;
 }
 
-/* Filtros (overlay/modal) */
+/* Filtros  */
 .filtros-overlay[hidden]{ display:none }
 .filtros-overlay{ position:fixed; inset:0; z-index:60; display:grid; place-items:start center; padding-top:96px; background:rgba(0,0,0,.55) }
 .filtros-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.55) }
@@ -310,9 +321,8 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
   .btn-reservar{ margin-left:0 }
 }
 
-/* =======================================================
-   Itinerario
-   ======================================================= */
+/*
+   Itinerario*/
 .page-itinerario{ background:#b7a88d; color:#fff; }
 .page-itinerario main{ background:var(--beige); }
 
@@ -452,9 +462,8 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 .contacto-list li{ margin:6px 0 }
 .mapa iframe{ width:100%; height:360px; border:0; border-radius:10px; box-shadow:0 8px 16px rgba(0,0,0,.2); margin-bottom:6px }
 
-/* =======================================================
-   Responsivo general
-   ======================================================= */
+/* 
+   Responsivo general*/
 @media (min-width:1200px){
   .page-destinos .wrap, .page-itinerario .wrap, .page-contacto .wrap{ padding:0 36px }
 }
@@ -466,3 +475,4 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
   .contacto-form, .contacto-aside{ padding:20px }
   .mapa iframe{ height:280px }
 }
+
