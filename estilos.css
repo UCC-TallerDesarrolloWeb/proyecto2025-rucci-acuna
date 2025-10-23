@@ -500,9 +500,55 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 @media (max-width:1100px){
   .contacto-layout{ grid-template-columns:1fr }
 }
-@media (max-width:640px){
-  .destinos-grid{ grid-template-columns:1fr }
-  .contacto-form, .contacto-aside{ padding:20px }
-  .mapa iframe{ height:280px }
-}
 
+
+/* Header mobile con buscador ajustado ya que se sobreponia con el buscador y el logo */
+@media (max-width:640px){
+
+  .site-header{ min-height:var(--header-h-mobile); }
+
+  .header-grid{
+    min-height:var(--header-h-mobile);
+    gap:10px;               
+  }
+
+
+  .brand-title{
+    font-size:15px;
+    letter-spacing:.04em;
+  }
+
+  .search{
+    max-width:130px;      
+    padding:2px 6px;       
+    border:1px solid #fff6;
+    gap:4px;
+  }
+  .search input{
+    font-size:12px;
+    padding:2px;
+    min-width:60px;        
+  .search input::placeholder{
+    font-size:12px;
+  }
+  .search button .material-symbols-outlined{
+    font-size:18px;
+  }
+
+  /* Ícono menu */
+  .btn-hamb{
+    width:32px;
+    height:32px;
+  }
+}}
+
+/* Separación del contenido y el footer en CONTACTO (mobile) */
+@media (max-width:640px){
+  .page-contacto main > .wrap:last-of-type{
+    padding-bottom: 72px;  
+  }
+
+  .page-contacto .contacto-layout{
+    margin-bottom: 16px;
+  }
+}
