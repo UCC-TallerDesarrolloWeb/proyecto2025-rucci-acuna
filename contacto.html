@@ -3,32 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>BRÚJULA - Contacto</title>
 
     <meta name="author" content="Lu-Isa" />
-    <meta
-      name="description"
-      content="Formulario de contacto de BRÚJULA: dejanos tus datos."
-    />
-    <meta
-      name="keywords"
-      content="contacto, formulario, agencia de viajes, ubicación"
-    />
+    <meta name="description" content="Formulario de contacto de BRÚJULA: dejanos tus datos." />
+    <meta name="keywords" content="contacto, formulario, agencia de viajes, ubicación" />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="imagenes/favicon.png" />
 
     <!-- Tipografías e íconos -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+    <!-- CSS unificado -->
     <link rel="stylesheet" href="estilos.css" />
   </head>
 
@@ -36,12 +23,7 @@
     <header class="site-header">
       <div class="wrap header-grid">
         <a class="brand" href="index.html" aria-label="Volver al inicio">
-          <img
-            src="imagenes/logo.png"
-            alt="Logo de BRÚJULA"
-            width="40"
-            height="40"
-          />
+          <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
           <div class="brand-text">
             <h1 class="brand-title">BRÚJULA</h1>
             <span class="brand-sub">Agencia de viajes</span>
@@ -50,66 +32,42 @@
 
         <div class="top-actions">
           <div class="menu-wrapper" id="menuWrapper">
-            <button
-              id="btnMenu"
-              class="btn-hamb"
-              aria-label="Abrir menú"
-              aria-controls="panelMenu"
-              aria-expanded="false"
-              type="button"
-            >
-              <span class="material-symbols-outlined" aria-hidden="true"
-                >menu</span
-              >
+            <button id="btnMenu" class="btn-hamb" aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false" type="button">
+              <span class="material-symbols-outlined" aria-hidden="true">menu</span>
             </button>
 
             <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
               <ul class="menu-list">
                 <li>
                   <a href="index.html">
-                    <span
-                      class="material-symbols-outlined"
-                      aria-hidden="true"
-                      >home</span
-                    >
+                    <span class="material-symbols-outlined" aria-hidden="true">home</span>
                     INICIO
                   </a>
                 </li>
                 <li>
                   <a href="destinos.html">
-                    <span
-                      class="material-symbols-outlined"
-                      aria-hidden="true"
-                      >map</span
-                    >
+                    <span class="material-symbols-outlined" aria-hidden="true">map</span>
                     DESTINOS
                   </a>
                 </li>
                 <li>
                   <a href="itinerario.html">
-                    <span
-                      class="material-symbols-outlined"
-                      aria-hidden="true"
-                      >calendar_add_on</span
-                    >
+                    <span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span>
                     ITINERARIO
                   </a>
                 </li>
                 <li>
                   <a href="contacto.html" aria-current="page">
-                    <span
-                      class="material-symbols-outlined"
-                      aria-hidden="true"
-                      >contact_page</span
-                    >
+                    <span class="material-symbols-outlined" aria-hidden="true">contact_page</span>
                     CONTACTO
                   </a>
                 </li>
               </ul>
             </nav>
           </div>
-        </div>
-      </div>
+        </div> 
+
+      </div> 
     </header>
 
     <main id="main">
@@ -121,60 +79,24 @@
         </header>
       </section>
 
-      <!-- ===== formulario + mapa ===== -->
-      <section
-        class="wrap contacto-layout"
-        aria-label="Formulario y datos de contacto"
-      >
+      <section class="wrap contacto-layout" aria-label="Formulario y datos de contacto">
         <!-- Formulario -->
-        <form
-          id="form-contacto"
-          class="contacto-form"
-          novalidate
-          aria-labelledby="titulo-form"
-        >
+        <form id="form-contacto" class="contacto-form" novalidate aria-labelledby="titulo-form">
           <h3 id="titulo-form" class="sr-only">Formulario de contacto</h3>
 
           <div class="field">
             <label for="nombre">Nombre:</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              placeholder="Ingresa tu nombre"
-              size="36"
-              maxlength="40"
-              autocomplete="given-name"
-              required
-            />
+            <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" size="36" maxlength="40" autocomplete="given-name" required />
           </div>
 
           <div class="field">
             <label for="apellido">Apellido:</label>
-            <input
-              type="text"
-              id="apellido"
-              name="apellido"
-              placeholder="Ingresa tu apellido"
-              size="36"
-              maxlength="40"
-              autocomplete="family-name"
-              required
-            />
+            <input type="text" id="apellido" name="apellido" placeholder="Ingresa tu apellido" size="36" maxlength="40" autocomplete="family-name" required />
           </div>
 
           <div class="field">
             <label for="email">Correo electrónico:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="ejemplo@correo.com"
-              size="36"
-              maxlength="60"
-              autocomplete="email"
-              required
-            />
+            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" size="36" maxlength="60" autocomplete="email" required />
           </div>
 
           <div class="field select">
@@ -200,23 +122,18 @@
         <aside class="contacto-aside" aria-labelledby="titulo-aside">
           <h3 id="titulo-aside" class="aside-title">CONTACTANOS</h3>
 
-        <ul class="contacto-list">
-        <li><strong>Teléfono:</strong> 3517338697</li>
-        <li><strong>Email:</strong> lueisa@gmail.com</li>
-        <li><strong>Dirección:</strong> Av. Armada Argentina 3555, Córdoba, Argentina</li>
-        </ul>
+          <ul class="contacto-list">
+            <li><strong>Teléfono:</strong> 3517338697</li>
+            <li><strong>Email:</strong> lueisa@gmail.com</li>
+            <li><strong>Dirección:</strong> Av. Armada Argentina 3555, Córdoba, Argentina</li>
+          </ul>
 
           <div class="mapa">
             <iframe
               title="Ubicación BRÚJULA - Córdoba"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d218198.9361962344!2d-64.43249685141848!3d-31.2938385269709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432a3df896024af%3A0xfac12a594425f547!2sUniversidad%20Cat%C3%B3lica%20de%20C%C3%B3rdoba%20-%20Campus%20Universitario!5e0!3m2!1ses!2sar!4v1759517661560!5m2!1ses!2sar"
-              width="600"
-              height="360"
-              style="border:0"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+              width="600" height="360" style="border:0" allowfullscreen loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </aside>
       </section>

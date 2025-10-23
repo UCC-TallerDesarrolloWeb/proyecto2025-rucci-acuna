@@ -30,21 +30,23 @@
           </div>
         </a>
 
-        <!-- Menú -->
-        <div class="menu-wrapper" id="menuWrapper">
-          <button id="btnMenu" class="btn-hamb" type="button"
-                  aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false">
-            <span class="material-symbols-outlined" aria-hidden="true">menu</span>
-          </button>
+        <div class="top-actions">
+          <!-- Menú -->
+          <div class="menu-wrapper" id="menuWrapper">
+            <button id="btnMenu" class="btn-hamb" type="button"
+                    aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false">
+              <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            </button>
 
-          <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
-            <ul class="menu-list">
-              <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> INICIO</a></li>
-              <li><a href="destinos.html"><span class="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS</a></li>
-              <li><a href="itinerario.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO</a></li>
-              <li><a href="contacto.html"><span class="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO</a></li>
-            </ul>
-          </nav>
+            <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
+              <ul class="menu-list">
+                <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> INICIO</a></li>
+                <li><a href="destinos.html"><span class="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS</a></li>
+                <li><a href="itinerario.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO</a></li>
+                <li><a href="contacto.html"><span class="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </header>
@@ -67,7 +69,6 @@
             Aún no agregaste reservas. Abrí Destinos, elegí un lugar, y en el modal usá <em>Calcular costo</em> → Guardar en Itinerario.
           </p>
 
-          <!-- Contenedor de tarjetas -->
           <section id="lista-itinerario" class="lista-itinerario" aria-live="polite"></section>
 
           <!-- Acciones globales (solo si hay detalles abiertos) -->
@@ -85,8 +86,6 @@
       </div>
     </footer>
 
-    <!-- JS global del sitio -->
     <script src="script.js" defer></script>
   </body>
 </html>
-
