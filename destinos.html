@@ -33,7 +33,7 @@
         <!-- Buscador: -->
         <form id="form-buscar" class="search" role="search" aria-label="Buscar destinos" novalidate>
           <label for="q" class="sr-only">Buscar</label>
-          <input id="q" name="q" type="search" placeholder="Buscar" size="18" maxlength="32" />
+          <input id="q" name="q" type="text" placeholder="Buscar" size="18" maxlength="32" spellcheck="false" />
           <button type="submit" aria-label="Buscar">
             <span class="material-symbols-outlined" aria-hidden="true">search</span>
           </button>
@@ -337,7 +337,7 @@
     </section>
   </main>
 
-  <!-- ===== FILTROS ===== -->
+  <!--FILTROS -->
   <div id="filtrosOverlay" class="filtros-overlay" hidden>
     <div class="filtros-backdrop" data-close="1"></div>
     <section class="filtros-panel" role="dialog" aria-modal="true" aria-labelledby="titulo-filtros">
@@ -390,7 +390,7 @@
     </section>
   </div>
 
-  <!-- ===== DETALLES + RESERVA ===== -->
+  <!-- DETALLES y RESERVA -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
     <div class="modal-backdrop" data-close="1"></div>
     <section class="modal-card" aria-describedby="modal-desc">

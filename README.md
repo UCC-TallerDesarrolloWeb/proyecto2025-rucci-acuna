@@ -2,11 +2,19 @@
 Proyecto 2025 – Taller de Desarrollo Web
 
 ## Autoras
-- Lucía Rucci - 2418308
-- Isabela Acuña - 2405404
+- Lucía Rucci - 2418308  
+- Isabela Acuña - 2405404  
 
 ## Link al sitio
--> [Visitar BRÚJULA en GitHub Pages](https://isaacunaa.github.io/proyecto2025-rucci-acuna/)
+→ [Visitar BRÚJULA en GitHub Pages](https://isaacunaa.github.io/proyecto2025-rucci-acuna/)
+
+## Índice
+- [Descripción del proyecto](#descripción-del-proyecto)
+- [Estructura del sitio](#estructura-del-sitio)
+- [Tecnologías utilizadas](#tecnologías-utilizadas)
+- [Requisitos del Primer Parcial](#requisitos-del-primer-parcial)
+- [Requisitos del Segundo Parcial](#requisitos-del-segundo-parcial)
+- [Requisitos del Final](#requisitos-del-final)
 
 
 ## Descripción del proyecto
@@ -24,13 +32,17 @@ El sitio fue desarrollado desde cero en HTML, CSS y JavaScript, cumpliendo con t
 | `script.js` | Funcionalidad JavaScript (menú, búsqueda, filtros, modal, validaciones) |
 
 ## Tecnologías utilizadas
-- **HTML5** (estructura semántica)
-- **CSS3** (estilos, pseudoclases, diseño responsive)
-- **JavaScript (ES6+)** con funciones flecha y validaciones
+### Lenguajes
+- **HTML5** (estructura semántica)  
+- **CSS3** (estilos, pseudoclases, diseño responsive)  
+- **JavaScript (ES6+)** con funciones flecha y validaciones  
+
+### Recursos externos
 - **Google Fonts** – Montserrat / Noto Sans  
-- **Material Symbols Outlined**
-- **GitHub Pages** para publicación
-- **Canva** para wireframe  
+- **Material Symbols Outlined**  
+- **GitHub Pages** para publicación  
+- **Canva** para wireframe
+
 
 ## Requisitos del Primer Parcial
 
