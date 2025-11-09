@@ -1,0 +1,133 @@
+.contacto-head,
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 16px;
+  padding: var(--y-head-top) 0 var(--y-head-bottom-tight);
+}
+
+.page-contacto {
+  background: var(--beige);
+  color: #fff;
+}
+.page-contacto main {
+  background: var(--beige);
+}
+.page-contacto .wrap {
+  padding-bottom: var(--y-wrap-bottom);
+}
+
+.contacto-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: stretch;
+  margin-top: 8px;
+}
+
+.contacto-form,
+.contacto-aside {
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+  padding: 24px;
+  height: 100%;
+}
+
+.contacto-form {
+  display: grid;
+  gap: 14px;
+}
+.contacto-form .field {
+  display: grid;
+  gap: 6px;
+}
+.contacto-form label {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.contacto-form input,
+.contacto-form select {
+  width: 100%;
+  background: #ffffff14;
+  color: #fff;
+  border: 2px solid #ffffff66;
+  border-radius: 10px;
+  padding: 10px 14px;
+  outline: 0;
+}
+.contacto-form input::placeholder {
+  color: #fffc;
+}
+
+.contacto-form .field.select {
+  position: relative;
+}
+.contacto-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  min-height: 44px;
+  line-height: 1.2;
+  padding-right: 44px;
+}
+.contacto-form .field.select::after {
+  content: "expand_more";
+  font-family: "Material Symbols Outlined";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  pointer-events: none;
+  font-size: 22px;
+}
+.contacto-form select option {
+  color: #111;
+  background: #fff;
+}
+
+.contacto-form .actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.aside-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.contacto-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.contacto-list li {
+  margin: 6px 0;
+}
+.mapa iframe {
+  width: 100%;
+  height: 360px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  margin-bottom: 6px;
+}
+
+/* responsive contacto */
+@media (max-width: 1100px) {
+  .contacto-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .page-contacto main > .wrap:last-of-type {
+    padding-bottom: 72px;
+  }
+  .page-contacto .contacto-layout {
+    margin-bottom: 16px;
+  }
+}

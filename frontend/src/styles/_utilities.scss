@@ -1,0 +1,23 @@
+.mb-20 {
+  margin-bottom: 20px;
+}
+.table-scroll {
+  overflow: auto;
+}
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.empty-msg {
+  margin: 18px 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #00000022;
+  color: #fff;
+  font-weight: 600;
+}

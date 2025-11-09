@@ -2,10 +2,10 @@
   "name": "frontend",
   "version": "0.0.0",
   "private": true,
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "description": "Proyecto Brújula - Agencia de viajes con React y Vite",
   "license": "ISC",
-  "author": "",
-  "type": "\\",
+  "author": "Lu-Isa",
+  "type": "module",
   "main": "eslint.config.js",
   "scripts": {
     "dev": "vite",
@@ -27,8 +27,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
-    "json": "^11.0.0",
-    "server": "^1.0.42",
+    "sass": "^1.93.3",
+    "sass-embedded": "^1.93.3",
     "vite": "^7.1.7"
   }
 }

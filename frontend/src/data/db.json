@@ -1,0 +1,260 @@
+{
+  "destinos": [
+    {
+      "id": "amalfi",
+      "nombre": "Amalfi",
+      "imagen": "/imagenes/destinos/amalfi.avif",
+      "precioDia": 200,
+      "categorias": ["playa", "cultural"],
+      "duracion": "5",
+      "temporada": "Mayo-junio o septiembre-octubre",
+      "historia": "La ciudad de Amalfi fue una de las repúblicas marítimas más importantes de Italia en la Edad Media, destacándose por su comercio en el Mediterráneo. Su prosperidad dejó huella en sus iglesias y arquitectura, y hoy es Patrimonio de la Humanidad por la UNESCO.",
+      "atracciones": "Catedral de San Andrés, casas blancas colgadas de la montaña, playas como Marina Grande y caminos costeros con vistas espectaculares.",
+      "galeria": [
+        "/imagenes/destinos/detalle/amalfi1.webp",
+        "/imagenes/destinos/detalle/amalfi2.avif",
+        "/imagenes/destinos/detalle/amalfi3.avif"
+      ]
+    },
+    {
+      "id": "bali",
+      "nombre": "Bali",
+      "imagen": "/imagenes/destinos/bali.jpg",
+      "precioDia": 90,
+      "categorias": ["playa", "exotica"],
+      "duracion": "7",
+      "temporada": "Abril-octubre (estación seca)",
+      "historia": "Bali se distingue dentro de Indonesia por su fuerte identidad cultural hinduista. La isla es reconocida por sus tradiciones artísticas, la danza y la espiritualidad.",
+      "atracciones": "Templos Tanah Lot y Uluwatu, arrozales de Ubud, playas de surf en Kuta, retiros de yoga y cascadas.",
+      "galeria": [
+        "/imagenes/destinos/detalle/bali1.jpg",
+        "/imagenes/destinos/detalle/bali2.jpg",
+        "/imagenes/destinos/detalle/bali3.webp"
+      ]
+    },
+    {
+      "id": "barcelona",
+      "nombre": "Barcelona",
+      "imagen": "/imagenes/destinos/barcelona.jpg",
+      "precioDia": 160,
+      "categorias": ["urbana", "cultural"],
+      "duracion": "4",
+      "temporada": "Abril-junio o septiembre-octubre",
+      "historia": "Fundada por los romanos, Barcelona creció como ciudad portuaria y en el siglo XIX fue el centro del modernismo catalán, con Gaudí como figura clave.",
+      "atracciones": "Sagrada Familia, Parque Güell, Barrio Gótico, Las Ramblas y playas urbanas.",
+      "galeria": [
+        "/imagenes/destinos/detalle/barcelona1.jpg",
+        "/imagenes/destinos/detalle/barcelona2.webp",
+        "/imagenes/destinos/detalle/barcelona3.jpg"
+      ]
+    },
+    {
+      "id": "bariloche",
+      "nombre": "Bariloche",
+      "imagen": "/imagenes/destinos/bariloche.jpg",
+      "precioDia": 130,
+      "categorias": ["naturaleza", "aventura"],
+      "duracion": "5",
+      "temporada": "Julio-septiembre (ski) o diciembre-marzo (lagos/trek)",
+      "historia": "San Carlos de Bariloche nació a fines del siglo XIX con influencia de inmigrantes alemanes y suizos. Hoy es un polo turístico patagónico.",
+      "atracciones": "Lago Nahuel Huapi, Cerro Catedral, Circuito Chico y chocolates artesanales.",
+      "galeria": [
+        "/imagenes/destinos/detalle/bariloche1.jpg",
+        "/imagenes/destinos/detalle/bariloche2.jpg",
+        "/imagenes/destinos/detalle/bariloche3.jpg"
+      ]
+    },
+    {
+      "id": "dubrovnik",
+      "nombre": "Dubrovnik",
+      "imagen": "/imagenes/destinos/dubrovnik.jpg",
+      "precioDia": 170,
+      "categorias": ["historica", "cultural"],
+      "duracion": "3",
+      "temporada": "Mayo-junio o septiembre",
+      "historia": "Fundada en el siglo VII, Dubrovnik se convirtió en una república independiente y próspera gracias al comercio marítimo. Su casco histórico amurallado es Patrimonio UNESCO.",
+      "atracciones": "Murallas medievales, casco antiguo de mármol, vistas al Adriático y escenarios de Game of Thrones.",
+      "galeria": [
+        "/imagenes/destinos/detalle/dubrovnik1.jpg",
+        "/imagenes/destinos/detalle/dubrovnik2.webp",
+        "/imagenes/destinos/detalle/dubrovnik3.jpg"
+      ]
+    },
+    {
+      "id": "ibiza",
+      "nombre": "Ibiza",
+      "imagen": "/imagenes/destinos/ibiza.jpg",
+      "precioDia": 200,
+      "categorias": ["playa", "fiesta"],
+      "duracion": "4",
+      "temporada": "Junio-septiembre",
+      "historia": "Antigua colonia fenicia, Ibiza combina patrimonio histórico con fama mundial por su vida nocturna y sus playas.",
+      "atracciones": "Casco antiguo Dalt Vila (UNESCO), calas como Cala Comte y discotecas como Pacha o Amnesia.",
+      "galeria": [
+        "/imagenes/destinos/detalle/ibiza1.jpg",
+        "/imagenes/destinos/detalle/ibiza2.jpg",
+        "/imagenes/destinos/detalle/ibiza3.jpeg"
+      ]
+    },
+    {
+      "id": "lisboa",
+      "nombre": "Lisboa",
+      "imagen": "/imagenes/destinos/lisboa.webp",
+      "precioDia": 140,
+      "categorias": ["urbana", "historica"],
+      "duracion": "4",
+      "temporada": "Marzo-junio o septiembre-noviembre",
+      "historia": "Capital portuguesa desde hace siglos, Lisboa resurgió tras el terremoto de 1755 y hoy mezcla tradición y modernidad.",
+      "atracciones": "Torre de Belém, barrio de Alfama (fado), tranvía 28 y miradores como Santa Lucía.",
+      "galeria": [
+        "/imagenes/destinos/detalle/lisboa1.jpg",
+        "/imagenes/destinos/detalle/lisboa2.jpeg",
+        "/imagenes/destinos/detalle/lisboa3.jpg"
+      ]
+    },
+    {
+      "id": "londres",
+      "nombre": "Londres",
+      "imagen": "/imagenes/destinos/londres.jpg",
+      "precioDia": 220,
+      "categorias": ["urbana", "cultural"],
+      "duracion": "5",
+      "temporada": "Mayo-septiembre",
+      "historia": "Fundada por los romanos como Londinium, Londres fue capital del Imperio Británico y hoy es un centro financiero y cultural clave.",
+      "atracciones": "Big Ben, London Eye, British Museum, Hyde Park, Camden Market y Soho.",
+      "galeria": [
+        "/imagenes/destinos/detalle/londres1.avif",
+        "/imagenes/destinos/detalle/londres2.webp",
+        "/imagenes/destinos/detalle/londres3.jpg"
+      ]
+    },
+    {
+      "id": "machupichu",
+      "nombre": "Machu Picchu",
+      "imagen": "/imagenes/destinos/machupichu.jpg",
+      "precioDia": 150,
+      "categorias": ["naturaleza", "historica"],
+      "duracion": "4",
+      "temporada": "Mayo-septiembre (seco)",
+      "historia": "Construida en el siglo XV por los incas, redescubierta en 1911 y una de las siete maravillas del mundo moderno.",
+      "atracciones": "Ciudadela y Templo del Sol, terrazas agrícolas, subida a Huayna Picchu y vistas andinas.",
+      "galeria": [
+        "/imagenes/destinos/detalle/machupichu1.avif",
+        "/imagenes/destinos/detalle/machupichu2.jpeg",
+        "/imagenes/destinos/detalle/machupichu3.jpg"
+      ]
+    },
+    {
+      "id": "marrakech",
+      "nombre": "Marrakech",
+      "imagen": "/imagenes/destinos/marrakech.jpg",
+      "precioDia": 100,
+      "categorias": ["exotica", "cultural"],
+      "duracion": "4",
+      "temporada": "Marzo-mayo u octubre-noviembre",
+      "historia": "Fundada en el siglo XI, fue capital de varios imperios marroquíes y conserva una medina vibrante y colorida.",
+      "atracciones": "Plaza Jemaa el-Fna, zocos de artesanía, mezquita Koutoubia y jardines Majorelle.",
+      "galeria": [
+        "/imagenes/destinos/detalle/marrakech1.jpg",
+        "/imagenes/destinos/detalle/marrakech2.webp",
+        "/imagenes/destinos/detalle/marrakech3.jpg"
+      ]
+    },
+    {
+      "id": "nuevayork",
+      "nombre": "Nueva York",
+      "imagen": "/imagenes/destinos/nuevayork.jpg",
+      "precioDia": 260,
+      "categorias": ["urbana", "moderna"],
+      "duracion": "5",
+      "temporada": "Abril-junio o septiembre-octubre",
+      "historia": "De colonia holandesa a metrópoli mundial, símbolo de diversidad, finanzas y cultura del siglo XX.",
+      "atracciones": "Estatua de la Libertad, Central Park, Times Square, Broadway, MoMA y MET.",
+      "galeria": [
+        "/imagenes/destinos/detalle/nuevayork1.jpg",
+        "/imagenes/destinos/detalle/nuevayork2.jpg",
+        "/imagenes/destinos/detalle/nuevayork3.gif"
+      ]
+    },
+    {
+      "id": "paris",
+      "nombre": "París",
+      "imagen": "/imagenes/destinos/paris.jpg",
+      "precioDia": 230,
+      "categorias": ["cultural", "romantica"],
+      "duracion": "5",
+      "temporada": "Abril-junio o septiembre-octubre",
+      "historia": "Centro político, artístico y cultural europeo desde la Edad Media; capital del romanticismo y escenario de revoluciones.",
+      "atracciones": "Torre Eiffel, Museo del Louvre, Notre Dame, Campos Elíseos y Montmartre.",
+      "galeria": [
+        "/imagenes/destinos/detalle/paris1.jpg",
+        "/imagenes/destinos/detalle/paris2.jpg",
+        "/imagenes/destinos/detalle/paris3.jpg"
+      ]
+    },
+    {
+      "id": "pde",
+      "nombre": "Punta del Este",
+      "imagen": "/imagenes/destinos/pde.jpeg",
+      "precioDia": 180,
+      "categorias": ["playa", "urbana"],
+      "duracion": "3",
+      "temporada": "Diciembre-marzo (temporada alta)",
+      "historia": "Balneario uruguayo que desde el siglo XX atrae turismo internacional; conocida como la Mónaco de Sudamérica.",
+      "atracciones": "Playa Brava con “La Mano”, Playa Mansa, puerto e isla Gorriti.",
+      "galeria": [
+        "/imagenes/destinos/detalle/pde1.jpg",
+        "/imagenes/destinos/detalle/pde2.avif",
+        "/imagenes/destinos/detalle/pde3.avif"
+      ]
+    },
+    {
+      "id": "roma",
+      "nombre": "Roma",
+      "imagen": "/imagenes/destinos/roma.webp",
+      "precioDia": 180,
+      "categorias": ["historica", "cultural"],
+      "duracion": "5",
+      "temporada": "Abril-junio o septiembre-octubre",
+      "historia": "Capital del Imperio Romano, cuna de la civilización occidental y sede del Vaticano.",
+      "atracciones": "Coliseo, Foro Romano, Fontana di Trevi, Piazza Navona y Basílica de San Pedro.",
+      "galeria": [
+        "/imagenes/destinos/detalle/roma1.jpg",
+        "/imagenes/destinos/detalle/roma2.jpeg",
+        "/imagenes/destinos/detalle/roma3.webp"
+      ]
+    },
+    {
+      "id": "shangai",
+      "nombre": "Shanghái",
+      "imagen": "/imagenes/destinos/shangai.jpg",
+      "precioDia": 150,
+      "categorias": ["urbana", "moderna"],
+      "duracion": "4",
+      "temporada": "Marzo-mayo o septiembre-noviembre",
+      "historia": "De pueblo pesquero a gran centro financiero global, representa la modernización acelerada de China.",
+      "atracciones": "El Bund, Torre Perla Oriental, jardín Yuyuan y Nanjing Road.",
+      "galeria": [
+        "/imagenes/destinos/detalle/shangai1.avif",
+        "/imagenes/destinos/detalle/shangai2.jpg",
+        "/imagenes/destinos/detalle/shangai3.jpg"
+      ]
+    },
+    {
+      "id": "tokio",
+      "nombre": "Tokio",
+      "imagen": "/imagenes/destinos/tokio.jpg",
+      "precioDia": 210,
+      "categorias": ["urbana", "tecnologica"],
+      "duracion": "5",
+      "temporada": "Marzo-mayo (sakura) o septiembre-noviembre (otoño)",
+      "historia": "Antiguamente Edo; capital desde 1868 con la Restauración Meiji. Combina tradición ancestral y alta tecnología.",
+      "atracciones": "Shibuya Crossing, Templo Sensō-ji, Torre de Tokio, Akihabara y jardines imperiales.",
+      "galeria": [
+        "/imagenes/destinos/detalle/tokio1.jpg",
+        "/imagenes/destinos/detalle/tokio2.jpg",
+        "/imagenes/destinos/detalle/tokio3.webp"
+      ]
+    }
+  ]
+}

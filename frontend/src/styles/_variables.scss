@@ -1,0 +1,22 @@
+:root{
+  --primary:#ff8a00;
+  --bg:#000;
+  --text:#fff;
+  --panel:#3c2f1f;
+  --card:#3b2f1f;      /* tarjetas internas */
+  --beige:#b7a88d;     /* fondo pantallas internas */
+
+  /* alturas del header */
+  --header-h-desktop:68px;
+  --header-h-mobile:44px;
+
+  /* espaciados comunes */
+  --y-head-top:26px;
+  --y-head-bottom-tight:6px;
+  --y-wrap-bottom:64px;
+}
+
+$primary:#ff8a00;
+$panel:#3c2f1f;
+$card:#3b2f1f;
+$beige:#b7a88d;

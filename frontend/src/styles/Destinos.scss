@@ -1,0 +1,89 @@
+/* head común para páginas */
+.destinos-head,
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 16px;
+  padding: var(--y-head-top) 0 var(--y-head-bottom-tight);
+}
+.page-title {
+  margin: 0;
+  font-size: clamp(32px, 4.6vw, 48px);
+  font-weight: 900;
+}
+.page-sub {
+  margin: 0;
+  font-weight: 700;
+  opacity: 0.95;
+}
+
+/* layout interior */
+.page-destinos {
+  background: var(--beige);
+  color: #fff;
+}
+.page-destinos .destinos-head {
+  background: var(--beige);
+  color: #fff;
+}
+
+.page-destinos .destinos-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.page-destinos .destinos-head :where(.btn, .btn-filtro, .filtro-inline) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  vertical-align: middle;
+}
+.btn-filtro,
+.filtro-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+.btn-filtro .material-symbols-outlined,
+.filtro-inline .material-symbols-outlined {
+  font-size: 20px;
+}
+.btn-filtro:hover,
+.filtro-inline:hover {
+  background: #ffffff1a;
+}
+
+.destinos-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  align-items: start;
+  padding-bottom: 0;
+}
+.destinos-grid {
+  background: var(--beige);
+  padding: 12px 0 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 36px 28px;
+}
+.destinos-grid.is-single {
+  grid-template-columns: minmax(0, 380px);
+  justify-content: center;
+}
+.destinos-grid .card {
+  max-width: 380px;
+  width: 100%;
+  margin-inline: auto;
+}

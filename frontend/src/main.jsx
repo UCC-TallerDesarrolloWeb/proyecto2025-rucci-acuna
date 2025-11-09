@@ -1,14 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { HashRouter } from "react-router-dom"; 
+import App from "./App.jsx";
+import "@styles/index.scss"; 
 
-createRoot(document.getElementById('root')).render
-<BrowseRouter>
-<Routes>
-  <Route path="/*" element={<Layout />} />
-    <Route index element={<Home />} />
-    <Route path="/tienda" element={<Store />} />
-    <Route path="/carrito" element={<Cart />} />
-</Routes>
-</BrowseRouter>
+createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </React.StrictMode>
+);
