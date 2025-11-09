@@ -1,11 +1,18 @@
 import { useEffect, useMemo } from "react";
 import data from "@data/db.json";
 import CardDestino from "@components/CardDestino";
+import { initBuscar, initFiltrosOverlay } from "@utils/funcionalidades";
 
 export default function Destinos() {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "BRÚJULA - Destinos";
+
+    // Esperar al render completo antes de iniciar scripts que manipulan el DOM
+    setTimeout(() => {
+      initBuscar();
+      initFiltrosOverlay();
+    }, 0);
   }, []);
 
   const destinos = useMemo(() => {
@@ -40,13 +47,18 @@ export default function Destinos() {
             aria-expanded="false"
             type="button"
           >
-            <span className="material-symbols-outlined" aria-hidden="true">tune</span>
+            <span className="material-symbols-outlined" aria-hidden="true">
+              tune
+            </span>
             FILTROS
           </button>
-          <button id="btnVerTodo" className="btn btn-sec" type="button" hidden>Ver todo</button>
+          <button id="btnVerTodo" className="btn btn-sec" type="button" hidden>
+            Ver todo
+          </button>
         </div>
       </section>
 
+      {/* 🔍 BUSCADOR */}
       <section className="wrap" aria-label="Buscar destinos">
         <form
           id="form-buscar"
@@ -55,14 +67,26 @@ export default function Destinos() {
           noValidate
           onSubmit={(e) => e.preventDefault()}
         >
-          <label htmlFor="q" className="sr-only">Buscar</label>
-          <input id="q" name="q" type="text" placeholder="Buscar" size={18} maxLength={32} />
+          <label htmlFor="q" className="sr-only">
+            Buscar
+          </label>
+          <input
+            id="q"
+            name="q"
+            type="text"
+            placeholder="Buscar"
+            size={18}
+            maxLength={32}
+          />
           <button type="submit" aria-label="Buscar">
-            <span className="material-symbols-outlined" aria-hidden="true">search</span>
+            <span className="material-symbols-outlined" aria-hidden="true">
+              search
+            </span>
           </button>
         </form>
       </section>
 
+      {/* 🧭 GRID DE DESTINOS */}
       <section className="wrap destinos-layout">
         <div className="destinos-grid" id="destinosGrid" aria-live="polite">
           {destinos.map((destino) => (
@@ -71,13 +95,26 @@ export default function Destinos() {
         </div>
       </section>
 
-      {/* Overlay de filtros  */}
+      {/* 🎛️ OVERLAY DE FILTROS */}
       <div id="filtrosOverlay" className="filtros-overlay" hidden>
         <div className="filtros-backdrop" data-close="1"></div>
-        <section className="filtros-panel" role="dialog" aria-modal="true" aria-labelledby="titulo-filtros">
-          <button type="button" className="filtros-close" aria-label="Cerrar filtros">✕</button>
+        <section
+          className="filtros-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="titulo-filtros"
+        >
+          <button
+            type="button"
+            className="filtros-close"
+            aria-label="Cerrar filtros"
+          >
+            ✕
+          </button>
           <h3 id="titulo-filtros">
-            <span className="material-symbols-outlined" aria-hidden="true">filter_alt</span>
+            <span className="material-symbols-outlined" aria-hidden="true">
+              filter_alt
+            </span>
             Filtros
           </h3>
 
@@ -85,7 +122,13 @@ export default function Destinos() {
             <div className="filtro-item">
               <label htmlFor="rangoPrecio">Precio por día (USD)</label>
               <div className="range-wrap">
-                <input type="range" id="rangoPrecio" min="50" max="300" defaultValue="300" />
+                <input
+                  type="range"
+                  id="rangoPrecio"
+                  min="50"
+                  max="300"
+                  defaultValue="300"
+                />
                 <output id="precioOut">300</output>
               </div>
             </div>
@@ -117,8 +160,12 @@ export default function Destinos() {
             </div>
 
             <div className="filtro-actions">
-              <button className="btn" type="submit">Aplicar</button>
-              <button className="btn btn-sec" type="reset">Limpiar</button>
+              <button className="btn" type="submit">
+                Aplicar
+              </button>
+              <button className="btn btn-sec" type="reset">
+                Limpiar
+              </button>
             </div>
           </form>
         </section>
