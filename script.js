@@ -222,41 +222,36 @@ const initBuscar = () => {
   const grid = document.getElementById("destinosGrid");
   if (!form || !q || !grid) return;
 
-  /** @type {HTMLDivElement|null} */
-  let emptyEl = null;
+  // Evitar inicialización duplicada al volver a /destinos
+  if (form.dataset.inited === "1") return;
+  form.dataset.inited = "1";
 
-  /**
-   * Muestra/oculta mensaje de lista vacía.
-   * @private
-   * @param {boolean} noHay
-   * @returns {void}
-   */
-  const showEmpty = (noHay) => {
-    if (noHay) {
-      if (!emptyEl) {
-        emptyEl = document.createElement("div");
-        emptyEl.className = "empty-msg";
-        emptyEl.textContent = "No se encontraron destinos. ";
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "link-reset";
-        btn.textContent = "Ver todos";
-        btn.addEventListener("click", resetear);
-        emptyEl.appendChild(btn);
-        grid.before(emptyEl);
-      }
-    } else {
-      if (emptyEl) emptyEl.remove();
-      emptyEl = null;
-    }
+  // Remover restos de inits anteriores (barra de estado previa, si quedó)
+  document.querySelectorAll(".search-status").forEach(el => el.remove());
+
+  // Barra de estado con "Ver todos"
+  const statusEl = document.createElement("div");
+  statusEl.className = "search-status";
+  statusEl.style.display = "none";
+  const statusText = document.createElement("span");
+  const btnVerTodo = document.createElement("button");
+  btnVerTodo.type = "button";
+  btnVerTodo.className = "link-reset";
+  btnVerTodo.textContent = "Ver todos";
+  statusEl.appendChild(statusText);
+  statusEl.appendChild(document.createTextNode(" "));
+  statusEl.appendChild(btnVerTodo);
+  grid.before(statusEl);
+
+  const showStatus = (term, count) => {
+    if (!term) { statusEl.style.display = "none"; return; }
+    statusText.textContent =
+      count === 0 ? "No se encontraron destinos." :
+      count === 1 ? "1 destino encontrado." :
+      `${count} destinos encontrados.`;
+    statusEl.style.display = "block";
   };
 
-  /**
-   * Aplica filtro por término (normalizado).
-   * @private
-   * @param {string} txt
-   * @returns {void}
-   */
   const filtrar = (txt) => {
     const term = normalizeSpaces((txt || "").toLowerCase());
     let visibles = 0;
@@ -266,22 +261,17 @@ const initBuscar = () => {
           card.querySelector(".card-title")?.textContent ||
           "") + ""
       ).toLowerCase();
-      const show = !term || nombre.indexOf(term) !== -1;
+      const show = !term || nombre.includes(term);
       card.style.display = show ? "" : "none";
       if (show) visibles++;
     });
-    showEmpty(visibles === 0);
     syncSingleGridClass(grid);
+    return visibles;
   };
 
-  /**
-   * Restaura grilla y controles a estado inicial.
-   * @private
-   * @returns {void}
-   */
-  const resetear = () => {
-    [...grid.querySelectorAll(".card")].forEach((c) => (c.style.display = ""));
+  function resetear() {
     q.value = "";
+    [...grid.querySelectorAll(".card")].forEach((c) => (c.style.display = ""));
     const rango = document.getElementById("rangoPrecio");
     const cat = document.getElementById("categoria");
     const ord = document.getElementById("orden");
@@ -289,28 +279,45 @@ const initBuscar = () => {
     if (cat) cat.value = "todas";
     if (ord) ord.value = "asc";
     setFieldError(q, false);
-    showEmpty(false);
+    statusEl.style.display = "none";
     syncSingleGridClass(grid);
-  };
+  }
 
+  // Buscar al enviar (Enter/botón)
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const term = normalizeSpaces(q.value);
-    // Si escribió algo pero no hay letras (solo números/símbolos/espacios)
-    if (term && !hasAnyLetter(term)) {
-      alert("Ingresá letras para buscar un destino.");
+
+    const typed = normalizeSpaces(q.value);
+
+    // Si no hay letras (solo números/símbolos), limpiar y restaurar
+    if (typed && !hasAnyLetter(typed)) {
       q.value = "";
       setFieldError(q, true);
-      q.focus();
-      showEmpty(false);
+      resetear();
       return;
     }
+
     setFieldError(q, false);
-    filtrar(term);
+
+    // Filtrar usando lo que escribió el usuario
+    const count = filtrar(typed);
+
+    if (typed && count === 0) {
+      // Mostrar “No se encontraron destinos.” y dejar el botón Ver todos
+      showStatus(typed, 0);
+      // Limpiar el input, pero mantener visible el estado (con el term previo)
+      q.value = "";
+      return;
+    }
+
+    // Si hay resultados o no hay término, mostrar/ocultar estado según corresponda
+    showStatus(typed, count);
   });
 
-  document.getElementById("btnVerTodo")?.addEventListener("click", resetear);
+  // “Ver todos” siempre limpia la búsqueda
+  btnVerTodo.addEventListener("click", resetear);
 };
+
 
 /* FILTROS */
 
