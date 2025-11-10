@@ -60,7 +60,6 @@ const Header = () => {
               aria-label="Buscar destinos"
               noValidate
               autoComplete="off"
-              onSubmit={(e) => e.preventDefault()}
             >
               <label htmlFor="q" className="sr-only">Buscar</label>
               <input

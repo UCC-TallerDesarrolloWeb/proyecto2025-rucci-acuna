@@ -60,25 +60,34 @@ function initBuscar() {
   const grid = document.getElementById("destinosGrid");
   if (!form || !q || !grid) return;
 
-  let emptyEl = null;
-  const showEmpty = (noHay) => {
-    if (noHay) {
-      if (!emptyEl) {
-        emptyEl = document.createElement("div");
-        emptyEl.className = "empty-msg";
-        emptyEl.textContent = "No se encontraron destinos. ";
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "link-reset";
-        btn.textContent = "Ver todos";
-        btn.addEventListener("click", resetear);
-        emptyEl.appendChild(btn);
-        grid.before(emptyEl);
-      }
-    } else {
-      if (emptyEl) emptyEl.remove();
-      emptyEl = null;
-    }
+  // Evitar inicialización duplicada al volver a /destinos
+  if (form.dataset.inited === "1") return;
+  form.dataset.inited = "1";
+
+  // Remover restos de inits anteriores
+  document.querySelectorAll(".search-status").forEach(el => el.remove());
+
+  // Barra de estado con "Ver todos"
+  const statusEl = document.createElement("div");
+  statusEl.className = "search-status";
+  statusEl.style.display = "none";
+  const statusText = document.createElement("span");
+  const btnVerTodo = document.createElement("button");
+  btnVerTodo.type = "button";
+  btnVerTodo.className = "link-reset";
+  btnVerTodo.textContent = "Ver todos";
+  statusEl.appendChild(statusText);
+  statusEl.appendChild(document.createTextNode(" "));
+  statusEl.appendChild(btnVerTodo);
+  grid.before(statusEl);
+
+  const showStatus = (term, count) => {
+    if (!term) { statusEl.style.display = "none"; return; }
+    statusText.textContent =
+      count === 0 ? "No se encontraron destinos." :
+      count === 1 ? "1 destino encontrado." :
+      `${count} destinos encontrados.`;
+    statusEl.style.display = "block";
   };
 
   const filtrar = (txt) => {
@@ -90,17 +99,17 @@ function initBuscar() {
           card.querySelector(".card-title")?.textContent ||
           "") + ""
       ).toLowerCase();
-      const show = !term || nombre.indexOf(term) !== -1;
+      const show = !term || nombre.includes(term);
       card.style.display = show ? "" : "none";
       if (show) visibles++;
     });
-    showEmpty(visibles === 0);
     syncSingleGridClass(grid);
+    return visibles;
   };
 
   function resetear() {
-    [...grid.querySelectorAll(".card")].forEach((c) => (c.style.display = ""));
     q.value = "";
+    [...grid.querySelectorAll(".card")].forEach((c) => (c.style.display = ""));
     const rango = document.getElementById("rangoPrecio");
     const cat = document.getElementById("categoria");
     const ord = document.getElementById("orden");
@@ -108,28 +117,50 @@ function initBuscar() {
     if (cat) cat.value = "todas";
     if (ord) ord.value = "asc";
     setFieldError(q, false);
-    showEmpty(false);
+    statusEl.style.display = "none";
     syncSingleGridClass(grid);
   }
 
-  const onSubmit = (e) => {
+  // Buscar al enviar (Enter/botón)
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const term = normalizeSpaces(q.value);
-    if (term && !hasAnyLetter(term)) {
-      alert("Ingresá letras para buscar un destino.");
+
+    const typed = normalizeSpaces(q.value);
+
+    // Si no hay letras (solo números/símbolos), limpiar y restaurar
+    if (typed && !hasAnyLetter(typed)) {
       q.value = "";
       setFieldError(q, true);
-      q.focus();
-      showEmpty(false);
+      resetear();
       return;
     }
-    setFieldError(q, false);
-    filtrar(term);
-  };
 
-  form.addEventListener("submit", onSubmit);
-  document.getElementById("btnVerTodo")?.addEventListener("click", resetear);
+    setFieldError(q, false);
+
+    // Filtrar usando lo que escribió el usuario
+    const count = filtrar(typed);
+
+    if (typed && count === 0) {
+      // Mostrar cartel de "No se encontraron..." y dejar el botón Ver todos
+      showStatus(typed, 0);
+      // Limpiar el input, pero mantener visible el estado (pasamos 'typed' arriba)
+      q.value = "";
+      // (opcional) enfocá el botón Ver todos
+      // btnVerTodo.focus?.();
+      return;
+    }
+
+    // Si hay resultados o no hay término, mostrar/ocultar estado según corresponda
+    showStatus(typed, count);
+  });
+
+  // “Ver todos” siempre limpia la búsqueda
+  btnVerTodo.addEventListener("click", resetear);
 }
+
+
+
+
 
 /* =========================
    FILTROS (Destinos)
@@ -429,13 +460,19 @@ function validarEmailInput(el) {
 function initContacto() {
   const form = document.getElementById("form-contacto");
   if (!form) return;
+
+  if (form.dataset.inited === "1") return;
+  form.dataset.inited = "1";
+
   const nombre = document.getElementById("nombre");
   const apellido = document.getElementById("apellido");
   const email = document.getElementById("email");
   const pais = document.getElementById("pais");
 
+  // Usamos handlers directos (oninput/onchange) para no acumular
   const filtrarLetrasEspacios = (el) => {
-    el?.addEventListener("input", () => {
+    if (!el) return;
+    el.oninput = () => {
       const orig = el.value || "";
       let limpio = "";
       for (let i = 0; i < orig.length; i++) {
@@ -444,15 +481,16 @@ function initContacto() {
       }
       if (limpio !== orig) el.value = limpio;
       setFieldError(el, false);
-    });
+    };
   };
   filtrarLetrasEspacios(nombre);
   filtrarLetrasEspacios(apellido);
 
-  email?.addEventListener("input", () => setFieldError(email, false));
-  pais?.addEventListener("change", () => setFieldError(pais, false));
+  if (email) email.oninput = () => setFieldError(email, false);
+  if (pais) pais.onchange = () => setFieldError(pais, false);
 
-  const onSubmit = (ev) => {
+  // Un solo submit handler
+  form.onsubmit = (ev) => {
     ev.preventDefault();
     if (!validarNoVacio(nombre, "Nombre")) return;
     if (!validarSoloLetras(nombre, "Nombre")) return;
@@ -472,9 +510,8 @@ function initContacto() {
     setFieldError(pais, false);
     nombre?.focus();
   };
-
-  form.addEventListener("submit", onSubmit);
 }
+
 
 /* =========================
    ITINERARIO (render/eliminar/vaciar)

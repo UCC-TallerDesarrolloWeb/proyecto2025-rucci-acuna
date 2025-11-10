@@ -1,16 +1,21 @@
 import { useEffect, useMemo } from "react";
 import data from "@data/db.json";
 import CardDestino from "@components/CardDestino";
-import { initBuscar, initFiltrosOverlay } from "@utils/funcionalidades";
 
 export default function Destinos() {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "BRÚJULA - Destinos";
 
+    // Asegura que runPerRoute() se ejecute con el DOM ya montado en esta ruta
+    // (no agrega listeners duplicados; solo dispara tu listener global de hashchange).
     setTimeout(() => {
-      initBuscar();
-      initFiltrosOverlay();
+      try {
+        window.dispatchEvent(new HashChangeEvent("hashchange"));
+      } catch {
+        // fallback para navegadores viejos
+        window.dispatchEvent(new Event("hashchange"));
+      }
     }, 0);
   }, []);
 
@@ -36,7 +41,6 @@ export default function Destinos() {
       <section className="wrap destinos-head">
         <header>
           <h2 className="page-title">DESTINOS</h2>
-          <p className="page-sub">Encontrá tu próxima aventura</p>
         </header>
 
         <div className="destinos-actions">
