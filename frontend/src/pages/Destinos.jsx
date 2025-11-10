@@ -8,8 +8,6 @@ export default function Destinos() {
     window.scrollTo(0, 0);
     document.title = "BRÚJULA - Destinos";
 
-    // El buscador ahora vive en el Header con el mismo id="form-buscar"
-    // y el input id="q", así que initBuscar lo engancha ahí.
     setTimeout(() => {
       initBuscar();
       initFiltrosOverlay();
