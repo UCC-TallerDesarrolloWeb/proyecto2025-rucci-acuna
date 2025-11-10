@@ -1,4 +1,3 @@
-
 // Obtiene todos los destinos desde el JSON local
 export async function getDestinos() {
   const response = await fetch("/data/db.json");
@@ -13,7 +12,6 @@ export async function getDestinoById(id) {
   return data.destinos.find((d) => d.id === id);
 }
 
-// Ejemplo si quisieras guardar algo en localStorage (itinerario)
 export function saveItinerario(itinerario) {
   localStorage.setItem("itinerario", JSON.stringify(itinerario));
 }

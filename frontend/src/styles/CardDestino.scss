@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 @layer components {
   .card {
     background: var(--card);
@@ -7,22 +9,26 @@
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.18);
     display: flex;
     flex-direction: column;
+
+    &-img {
+      height: 220px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    &-body {
+      padding: 22px 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    &-title {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+    }
   }
-  .card-img {
-    height: 220px;
-    object-fit: cover;
-    width: 100%;
-  }
-  .card-body {
-    padding: 22px 18px;
-    display: grid;
-    gap: 16px;
-  }
-  .card-title {
-    margin: 0;
-    font-size: 28px;
-    font-weight: 800;
-  }
+
   .btn.btn-detalles {
     padding: 14px 32px;
   }

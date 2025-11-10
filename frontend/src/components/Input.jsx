@@ -1,6 +1,6 @@
 /**
  * Input reutilizable con el estilo del formulario de contacto.
- * - Muestra label, input y mensaje de error accesible.
+ * - Muestra label, input y mensaje de error
  */
 const Input = ({
   id,

@@ -1,51 +1,49 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 /**
- * Header de la pagina BRÚJULA
- * - Si showSearch === true, muestra el buscador (solo para Destinos).
+ * Header de la página BRÚJULA
+ * - Muestra el buscador solo en la ruta /destinos
  */
-const Header = ({ showSearch = false }) => {
-  const [open, setOpen] = useState(false)
-  const wrapperRef = useRef(null)
-  const btnRef = useRef(null)
+const Header = () => {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef(null);
+  const btnRef = useRef(null);
+  const { pathname } = useLocation();
 
-  const toggle = () => setOpen(v => !v)
-  const close = () => setOpen(false)
+  const showSearch = pathname === "/destinos";
+
+  const toggle = () => setOpen(v => !v);
+  const close = () => setOpen(false);
 
   // Cerrar al hacer click afuera
   useEffect(() => {
     const onDocClick = (e) => {
-      if (!open) return
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) close()
-    }
-    document.addEventListener('click', onDocClick)
-    return () => document.removeEventListener('click', onDocClick)
-  }, [open])
+      if (!open) return;
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) close();
+    };
+    document.addEventListener("click", onDocClick);
+    return () => document.removeEventListener("click", onDocClick);
+  }, [open]);
 
   // Cerrar con ESC
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'Escape' && open) {
-        close()
-        btnRef.current?.focus()
+      if (e.key === "Escape" && open) {
+        close();
+        btnRef.current?.focus();
       }
-    }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [open])
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <header className="site-header">
       <div className="wrap header-grid">
         {/* Brand */}
         <Link className="brand" to="/" aria-label="Volver al inicio">
-          <img
-            src="/imagenes/logo.png"
-            alt="Logo de BRÚJULA"
-            width="40"
-            height="40"
-          />
+          <img src="/imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
           <div className="brand-text">
             <h1 className="brand-title">BRÚJULA</h1>
             <span className="brand-sub">Agencia de viajes</span>
@@ -53,7 +51,7 @@ const Header = ({ showSearch = false }) => {
         </Link>
 
         <div className="top-actions">
-          {/* Buscador: se muestra solo donde lo usamos */}
+          {/* Buscador solo en /destinos */}
           {showSearch && (
             <form
               id="form-buscar"
@@ -61,38 +59,45 @@ const Header = ({ showSearch = false }) => {
               role="search"
               aria-label="Buscar destinos"
               noValidate
+              autoComplete="off"
               onSubmit={(e) => e.preventDefault()}
             >
               <label htmlFor="q" className="sr-only">Buscar</label>
               <input
                 id="q"
                 name="q"
-                type="text"
+                type="search"
                 placeholder="Buscar"
                 size={18}
                 maxLength={32}
                 spellCheck="false"
               />
               <button type="submit" aria-label="Buscar">
-                <span className="material-symbols-outlined" aria-hidden="true">search</span>
+                <span className="material-symbols-outlined" aria-hidden="true">
+                  search
+                </span>
               </button>
             </form>
           )}
 
           {/* Menú */}
-          <div className={`menu-wrapper ${open ? 'is-open' : ''}`} id="menuWrapper" ref={wrapperRef}>
+          <div
+            className={`menu-wrapper ${open ? "is-open" : ""}`}
+            id="menuWrapper"
+            ref={wrapperRef}
+          >
             <button
               id="btnMenu"
               ref={btnRef}
               className="btn-hamb"
               type="button"
-              aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+              aria-label={open ? "Cerrar menú" : "Abrir menú"}
               aria-controls="panelMenu"
-              aria-expanded={open ? 'true' : 'false'}
+              aria-expanded={open ? "true" : "false"}
               onClick={toggle}
             >
               <span className="material-symbols-outlined" aria-hidden="true">
-                {open ? 'close' : 'menu'}
+                {open ? "close" : "menu"}
               </span>
             </button>
 
@@ -128,7 +133,7 @@ const Header = ({ showSearch = false }) => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

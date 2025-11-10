@@ -8,7 +8,8 @@ export default function Destinos() {
     window.scrollTo(0, 0);
     document.title = "BRÚJULA - Destinos";
 
-    // Esperar al render completo antes de iniciar scripts que manipulan el DOM
+    // El buscador ahora vive en el Header con el mismo id="form-buscar"
+    // y el input id="q", así que initBuscar lo engancha ahí.
     setTimeout(() => {
       initBuscar();
       initFiltrosOverlay();
@@ -33,6 +34,7 @@ export default function Destinos() {
 
   return (
     <div className="page-destinos">
+      {/* Encabezado de la página */}
       <section className="wrap destinos-head">
         <header>
           <h2 className="page-title">DESTINOS</h2>
@@ -52,41 +54,10 @@ export default function Destinos() {
             </span>
             FILTROS
           </button>
-          <button id="btnVerTodo" className="btn btn-sec" type="button" hidden>
-            Ver todo
-          </button>
         </div>
       </section>
 
-      {/* 🔍 BUSCADOR */}
-      <section className="wrap" aria-label="Buscar destinos">
-        <form
-          id="form-buscar"
-          className="search"
-          role="search"
-          noValidate
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <label htmlFor="q" className="sr-only">
-            Buscar
-          </label>
-          <input
-            id="q"
-            name="q"
-            type="text"
-            placeholder="Buscar"
-            size={18}
-            maxLength={32}
-          />
-          <button type="submit" aria-label="Buscar">
-            <span className="material-symbols-outlined" aria-hidden="true">
-              search
-            </span>
-          </button>
-        </form>
-      </section>
-
-      {/* 🧭 GRID DE DESTINOS */}
+      {/* GRID DE DESTINOS */}
       <section className="wrap destinos-layout">
         <div className="destinos-grid" id="destinosGrid" aria-live="polite">
           {destinos.map((destino) => (
@@ -95,7 +66,7 @@ export default function Destinos() {
         </div>
       </section>
 
-      {/* 🎛️ OVERLAY DE FILTROS */}
+      {/* FILTROS (overlay) */}
       <div id="filtrosOverlay" className="filtros-overlay" hidden>
         <div className="filtros-backdrop" data-close="1"></div>
         <section
@@ -111,6 +82,7 @@ export default function Destinos() {
           >
             ✕
           </button>
+
           <h3 id="titulo-filtros">
             <span className="material-symbols-outlined" aria-hidden="true">
               filter_alt
@@ -160,12 +132,8 @@ export default function Destinos() {
             </div>
 
             <div className="filtro-actions">
-              <button className="btn" type="submit">
-                Aplicar
-              </button>
-              <button className="btn btn-sec" type="reset">
-                Limpiar
-              </button>
+              <button className="btn" type="submit">Aplicar</button>
+              <button className="btn btn-sec" type="reset">Limpiar</button>
             </div>
           </form>
         </section>
