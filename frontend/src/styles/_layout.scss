@@ -277,6 +277,10 @@ body,
 }
 
 /* Forzar ancho completo en las páginas internas */
+.header-grid {
+  padding: 0 24px;
+}
+
 .page-destinos .wrap,
 .page-itinerario .wrap,
 .page-contacto .wrap {
