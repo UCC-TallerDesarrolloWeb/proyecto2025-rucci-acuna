@@ -23,11 +23,6 @@ body,
   flex-direction: column;
 }
 
-.site-footer {
-  margin-top: auto;
-  background: var(--panel);
-}
-
 /* HEADER + FOOTER */
 @layer layout {
   .site-header {
