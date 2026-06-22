@@ -1,15 +1,90 @@
+import { useEffect, useState } from "react";
+import {
+  isOnlyLettersAndSpaces,
+  isValidEmail,
+  setFieldError,
+} from "@utils/validate.js";
 
-import { useEffect } from "react";
+/** @type {{ nombre: string, apellido: string, email: string, pais: string }} */
+const EMPTY_ERRORS = { nombre: "", apellido: "", email: "", pais: "" };
 
+/**
+ * Página de Contacto con validación React controlada.
+ * Los errores se muestran inline; no usa alert() ni window.initContacto().
+ * @returns {JSX.Element}
+ */
 const Contacto = () => {
+  const [nombre,   setNombre]   = useState("");
+  const [apellido, setApellido] = useState("");
+  const [email,    setEmail]    = useState("");
+  const [pais,     setPais]     = useState("");
+  const [errores,  setErrores]  = useState(EMPTY_ERRORS);
+  const [exito,    setExito]    = useState(false);
+
   useEffect(() => {
     document.title = "BRÚJULA - Contacto";
     window.scrollTo(0, 0);
-    // Vuelve a vincular validaciones
-    if (typeof window !== "undefined" && typeof window.initContacto === "function") {
-      window.initContacto();
-    }
   }, []);
+
+  /**
+   * Borra el error de un campo cuando el usuario empieza a editarlo.
+   * @param {keyof typeof EMPTY_ERRORS} campo
+   * @returns {void}
+   */
+  const clearError = (campo) =>
+    setErrores((prev) => ({ ...prev, [campo]: "" }));
+
+  /**
+   * Valida todos los campos y devuelve un objeto con los mensajes de error.
+   * @returns {typeof EMPTY_ERRORS}
+   */
+  const validar = () => {
+    const errs = { ...EMPTY_ERRORS };
+    const nom = nombre.trim();
+    const ape = apellido.trim();
+    const em  = email.trim();
+
+    if (!nom)
+      errs.nombre = 'El campo "Nombre" es obligatorio.';
+    else if (!isOnlyLettersAndSpaces(nom))
+      errs.nombre = '"Nombre" debe tener solo letras y espacios (2 a 40 caracteres).';
+
+    if (!ape)
+      errs.apellido = 'El campo "Apellido" es obligatorio.';
+    else if (!isOnlyLettersAndSpaces(ape))
+      errs.apellido = '"Apellido" debe tener solo letras y espacios (2 a 40 caracteres).';
+
+    if (!em)
+      errs.email = 'El campo "Correo electrónico" es obligatorio.';
+    else if (!isValidEmail(em))
+      errs.email = 'Ingresá un correo electrónico válido (ej: nombre@dominio.com).';
+
+    if (!pais)
+      errs.pais = 'Seleccioná un país.';
+
+    return errs;
+  };
+
+  /**
+   * Maneja el envío: valida, muestra errores inline o mensaje de éxito.
+   * @param {React.FormEvent<HTMLFormElement>} e
+   * @returns {void}
+   */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errs = validar();
+    if (Object.values(errs).some(Boolean)) {
+      setErrores(errs);
+      setExito(false);
+      return;
+    }
+    setExito(true);
+    setNombre("");
+    setApellido("");
+    setEmail("");
+    setPais("");
+    setErrores(EMPTY_ERRORS);
+  };
 
   return (
     <div className="page-contacto">
@@ -21,57 +96,109 @@ const Contacto = () => {
         </header>
       </section>
 
-      {/* Formulario  */}
       <section className="wrap contacto-layout" aria-label="Formulario y datos de contacto">
-        {/* Formulario  */}
-        <form id="form-contacto" className="contacto-form" noValidate aria-labelledby="titulo-form">
+
+        {/* Formulario */}
+        <form
+          id="form-contacto"
+          className="contacto-form"
+          noValidate
+          aria-labelledby="titulo-form"
+          onSubmit={handleSubmit}
+        >
           <h3 id="titulo-form" className="sr-only">Formulario de contacto</h3>
 
+          {exito && (
+            <p className="form-success" role="alert">
+              ¡Gracias! Recibimos tus datos y te contactaremos a la brevedad.
+            </p>
+          )}
+
+          {/* Nombre */}
           <div className="field">
             <label htmlFor="nombre">Nombre:</label>
             <input
               type="text"
               id="nombre"
               name="nombre"
+              value={nombre}
+              onChange={(e) => { setNombre(e.target.value); clearError("nombre"); }}
               placeholder="Ingresa tu nombre"
-              size={36}
               maxLength={40}
               autoComplete="given-name"
               required
+              aria-invalid={errores.nombre ? "true" : "false"}
+              aria-describedby={errores.nombre ? "err-nombre" : undefined}
+              className={errores.nombre ? "is-invalid" : ""}
             />
+            {errores.nombre && (
+              <small id="err-nombre" className="error-text" role="alert">
+                {errores.nombre}
+              </small>
+            )}
           </div>
 
+          {/* Apellido */}
           <div className="field">
             <label htmlFor="apellido">Apellido:</label>
             <input
               type="text"
               id="apellido"
               name="apellido"
+              value={apellido}
+              onChange={(e) => { setApellido(e.target.value); clearError("apellido"); }}
               placeholder="Ingresa tu apellido"
-              size={36}
               maxLength={40}
               autoComplete="family-name"
               required
+              aria-invalid={errores.apellido ? "true" : "false"}
+              aria-describedby={errores.apellido ? "err-apellido" : undefined}
+              className={errores.apellido ? "is-invalid" : ""}
             />
+            {errores.apellido && (
+              <small id="err-apellido" className="error-text" role="alert">
+                {errores.apellido}
+              </small>
+            )}
           </div>
 
+          {/* Email */}
           <div className="field">
             <label htmlFor="email">Correo electrónico:</label>
             <input
               type="email"
               id="email"
               name="email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); clearError("email"); }}
               placeholder="ejemplo@correo.com"
-              size={36}
               maxLength={60}
               autoComplete="email"
               required
+              aria-invalid={errores.email ? "true" : "false"}
+              aria-describedby={errores.email ? "err-email" : undefined}
+              className={errores.email ? "is-invalid" : ""}
             />
+            {errores.email && (
+              <small id="err-email" className="error-text" role="alert">
+                {errores.email}
+              </small>
+            )}
           </div>
 
+          {/* País */}
           <div className="field select">
             <label htmlFor="pais">País</label>
-            <select id="pais" name="pais" required defaultValue="">
+            <select
+              id="pais"
+              name="pais"
+              value={pais}
+              onChange={(e) => { setPais(e.target.value); clearError("pais"); }}
+              required
+              aria-invalid={errores.pais ? "true" : "false"}
+              aria-describedby={errores.pais ? "err-pais" : undefined}
+              className={errores.pais ? "is-invalid" : ""}
+            >
               <option value="" disabled>Seleccione una opción</option>
               <option value="Argentina">Argentina</option>
               <option value="Brasil">Brasil</option>
@@ -81,6 +208,11 @@ const Contacto = () => {
               <option value="Peru">Perú</option>
               <option value="Otro">Otro</option>
             </select>
+            {errores.pais && (
+              <small id="err-pais" className="error-text" role="alert">
+                {errores.pais}
+              </small>
+            )}
           </div>
 
           <div className="actions">
@@ -93,9 +225,14 @@ const Contacto = () => {
           <h3 id="titulo-aside" className="aside-title">CONTACTANOS</h3>
 
           <ul className="contacto-list">
-            <li><strong>Teléfono:</strong> 3517338697</li>
+            <li>
+              <strong>Teléfono:</strong>{" "}
+              <a href="tel:3517338697">3517338697</a>
+            </li>
             <li><strong>Email:</strong> lueisa@gmail.com</li>
-            <li><strong>Dirección:</strong> Av. Armada Argentina 3555, Córdoba, Argentina</li>
+            <li>
+              <strong>Dirección:</strong> Av. Armada Argentina 3555, Córdoba, Argentina
+            </li>
           </ul>
 
           <div className="mapa">
