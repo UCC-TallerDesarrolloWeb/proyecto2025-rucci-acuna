@@ -49,13 +49,6 @@
     opacity: 0.95;
   }
 
-  :is(.page-destinos) .wrap {
-    max-width: none;
-    width: 100%;
-    margin: 0;
-    padding: 0; 
-  }
-
   .btn-filtro,
   .filtro-inline {
     display: inline-flex;
@@ -90,7 +83,7 @@
 
   .destinos-grid {
     background: var(--beige);
-    padding: 12px 0 60px;
+    padding: 12px 24px 60px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 36px 28px;
