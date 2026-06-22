@@ -31,7 +31,7 @@ export default function Destinos() {
       temporada: d.temporada,
       historia: d.historia,
       atracciones: d.atracciones,
-      imgs: d.galeria ?? [],
+      galeria: d.galeria ?? [],
     }));
   }, []);
 

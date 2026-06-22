@@ -1,9 +1,11 @@
 
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "@styles/Home.scss"; 
 
 const Home = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = "BRÚJULA - Agencia de viajes | Inicio";
   }, []);
@@ -39,7 +41,7 @@ const Home = () => {
           <p className="hero-sub">Dejanos planearlo para vos</p>
 
           <div className="cta" role="group" aria-label="Acciones principales">
-            <Link className="btn" to="/destinos">Destinos</Link>
+            <button onClick={() => navigate("/destinos")} className="btn">Destinos</button>
             <Link className="btn" to="/itinerario">Itinerario</Link>
             <Link className="btn" to="/contacto">Contacto</Link>
           </div>

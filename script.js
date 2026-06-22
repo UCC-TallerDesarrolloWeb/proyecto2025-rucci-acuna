@@ -1,8 +1,9 @@
 /**
- * @file BRÚJULA – 
+ * @file BRÚJULA – script principal (vanilla JS).
+ */
 
 /**
- * Tarjeta de destino 
+ * Tarjeta de destino
  * @typedef {HTMLElement & { dataset: DOMStringMap }} DestinationCard
  */
 

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import logoAsset from "@assets/logo.png";
 
 /**
  * Header de la página BRÚJULA
@@ -43,7 +44,7 @@ const Header = () => {
       <div className="wrap header-grid">
         {/* Brand */}
         <Link className="brand" to="/" aria-label="Volver al inicio">
-          <img src="/imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
+          <img src={logoAsset} alt="Logo de BRÚJULA" width="40" height="40" />
           <div className="brand-text">
             <h1 className="brand-title">BRÚJULA</h1>
             <span className="brand-sub">Agencia de viajes</span>
