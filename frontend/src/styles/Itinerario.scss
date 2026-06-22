@@ -157,3 +157,19 @@
     grid-template-columns: 1fr;
   }
 }
+
+.notice {
+  color: #e8e8e8;
+  font-size: 15px;
+  padding: 12px 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.acciones-globales {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
