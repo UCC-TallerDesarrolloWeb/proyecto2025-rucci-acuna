@@ -1,35 +1,30 @@
 import { useState } from "react";
-import ModalDestino from "@/components/ModalDestino.jsx";
+import ModalDestino from "@components/ModalDestino";
 
-export default function CardDestino({ destino }) {
-  const [open, setOpen] = useState(false);
-  if (!destino) return null;
+/* Tarjeta de un destino. Al tocar "Detalles" abre el modal. */
+const CardDestino = ({ destino }) => {
+  const [abierto, setAbierto] = useState(false);
+  const imagen = destino.imagen.replace(/^\//, "");
 
   return (
-    <>
-      <article
-        className="card"
-        data-id={destino.id}
-        data-nombre={destino.nombre}
-        data-precio={destino.precio}
-        data-categorias={(destino.categorias || []).join(",")}
-      >
-        <img
-          src={destino.cardImg}
-          alt={destino.nombre}
-          className="card-img"
-        />
-        <div className="card-body">
-          <h3 className="card-title">{destino.nombre}</h3>
-          <button className="btn btn-detalles" onClick={() => setOpen(true)}>
-            Detalles
-          </button>
-        </div>
-      </article>
+    <article className="card">
+      <img src={imagen} alt={destino.nombre} className="card-img" />
+      <div className="card-body">
+        <h3 className="card-title">{destino.nombre}</h3>
+        <button
+          type="button"
+          className="btn btn-detalles"
+          onClick={() => setAbierto(true)}
+        >
+          Detalles
+        </button>
+      </div>
 
-      {open && (
-        <ModalDestino open={open} onClose={() => setOpen(false)} destino={destino} />
+      {abierto && (
+        <ModalDestino destino={destino} onCerrar={() => setAbierto(false)} />
       )}
-    </>
+    </article>
   );
-}
+};
+
+export default CardDestino;

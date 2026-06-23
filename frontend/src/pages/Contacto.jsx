@@ -1,94 +1,88 @@
-import { useEffect, useState } from "react";
-import {
-  isOnlyLettersAndSpaces,
-  isValidEmail,
-  setFieldError,
-} from "@utils/validate.js";
+import { useState, useEffect } from "react";
+import Input from "@components/Input";
+import Button from "@components/Button";
+import { soloLetras, emailValido } from "@utils/validate";
+import "@styles/Contacto.scss";
 
-/** @type {{ nombre: string, apellido: string, email: string, pais: string }} */
-const EMPTY_ERRORS = { nombre: "", apellido: "", email: "", pais: "" };
-
-/**
- * Página de Contacto con validación React controlada.
- * Los errores se muestran inline; no usa alert() ni window.initContacto().
- * @returns {JSX.Element}
- */
 const Contacto = () => {
-  const [nombre,   setNombre]   = useState("");
+  const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
-  const [email,    setEmail]    = useState("");
-  const [pais,     setPais]     = useState("");
-  const [errores,  setErrores]  = useState(EMPTY_ERRORS);
-  const [exito,    setExito]    = useState(false);
+  const [email, setEmail] = useState("");
+  const [pais, setPais] = useState("");
+  const [errores, setErrores] = useState({});
+  const [enviado, setEnviado] = useState(false);
 
   useEffect(() => {
     document.title = "BRÚJULA - Contacto";
-    window.scrollTo(0, 0);
   }, []);
 
-  /**
-   * Borra el error de un campo cuando el usuario empieza a editarlo.
-   * @param {keyof typeof EMPTY_ERRORS} campo
-   * @returns {void}
-   */
-  const clearError = (campo) =>
-    setErrores((prev) => ({ ...prev, [campo]: "" }));
-
-  /**
-   * Valida todos los campos y devuelve un objeto con los mensajes de error.
-   * @returns {typeof EMPTY_ERRORS}
-   */
-  const validar = () => {
-    const errs = { ...EMPTY_ERRORS };
-    const nom = nombre.trim();
-    const ape = apellido.trim();
-    const em  = email.trim();
-
-    if (!nom)
-      errs.nombre = 'El campo "Nombre" es obligatorio.';
-    else if (!isOnlyLettersAndSpaces(nom))
-      errs.nombre = '"Nombre" debe tener solo letras y espacios (2 a 40 caracteres).';
-
-    if (!ape)
-      errs.apellido = 'El campo "Apellido" es obligatorio.';
-    else if (!isOnlyLettersAndSpaces(ape))
-      errs.apellido = '"Apellido" debe tener solo letras y espacios (2 a 40 caracteres).';
-
-    if (!em)
-      errs.email = 'El campo "Correo electrónico" es obligatorio.';
-    else if (!isValidEmail(em))
-      errs.email = 'Ingresá un correo electrónico válido (ej: nombre@dominio.com).';
-
-    if (!pais)
-      errs.pais = 'Seleccioná un país.';
-
-    return errs;
+  /* Devuelve el mensaje de error de un campo. */
+  const validarCampo = (campo, valor) => {
+    if (campo === "nombre" && !soloLetras(valor.trim())) {
+      return "El nombre debe tener solo letras y espacios (2 a 40).";
+    }
+    if (campo === "apellido" && !soloLetras(valor.trim())) {
+      return "El apellido debe tener solo letras y espacios (2 a 40).";
+    }
+    if (campo === "email" && !emailValido(valor.trim())) {
+      return "Ingresá un correo electrónico válido (ej: nombre@dominio.com).";
+    }
+    if (campo === "pais" && valor === "") {
+      return "Seleccioná un país.";
+    }
+    return "";
   };
 
-  /**
-   * Maneja el envío: valida, muestra errores inline o mensaje de éxito.
-   * @param {React.FormEvent<HTMLFormElement>} e
-   * @returns {void}
-   */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const errs = validar();
-    if (Object.values(errs).some(Boolean)) {
-      setErrores(errs);
-      setExito(false);
-      return;
+  /* Actualiza un campo y lo valida mientras el usuario escribe. */
+  const cambiarCampo = (campo, valor, guardar) => {
+    guardar(valor);
+    setEnviado(false);
+    setErrores((anteriores) => ({
+      ...anteriores,
+      [campo]: validarCampo(campo, valor),
+    }));
+  };
+
+  /* Valida todos los campos y devuelve un objeto con los errores. */
+  const validar = () => {
+    const nuevos = {};
+    const errorNombre = validarCampo("nombre", nombre);
+    const errorApellido = validarCampo("apellido", apellido);
+    const errorEmail = validarCampo("email", email);
+    const errorPais = validarCampo("pais", pais);
+    if (errorNombre) {
+      nuevos.nombre = errorNombre;
     }
-    setExito(true);
-    setNombre("");
-    setApellido("");
-    setEmail("");
-    setPais("");
-    setErrores(EMPTY_ERRORS);
+    if (errorApellido) {
+      nuevos.apellido = errorApellido;
+    }
+    if (errorEmail) {
+      nuevos.email = errorEmail;
+    }
+    if (errorPais) {
+      nuevos.pais = errorPais;
+    }
+    return nuevos;
+  };
+
+  const enviar = (e) => {
+    e.preventDefault();
+    const nuevos = validar();
+    setErrores(nuevos);
+
+    if (Object.keys(nuevos).length === 0) {
+      setEnviado(true);
+      setNombre("");
+      setApellido("");
+      setEmail("");
+      setPais("");
+    } else {
+      setEnviado(false);
+    }
   };
 
   return (
     <div className="page-contacto">
-      {/* Encabezado */}
       <section className="wrap contacto-head">
         <header>
           <h2 className="page-title">CONTACTO</h2>
@@ -96,108 +90,61 @@ const Contacto = () => {
         </header>
       </section>
 
-      <section className="wrap contacto-layout" aria-label="Formulario y datos de contacto">
-
-        {/* Formulario */}
-        <form
-          id="form-contacto"
-          className="contacto-form"
-          noValidate
-          aria-labelledby="titulo-form"
-          onSubmit={handleSubmit}
-        >
-          <h3 id="titulo-form" className="sr-only">Formulario de contacto</h3>
-
-          {exito && (
+      <section className="wrap contacto-layout">
+        <form className="contacto-form" onSubmit={enviar} noValidate>
+          {enviado && (
             <p className="form-success" role="alert">
               ¡Gracias! Recibimos tus datos y te contactaremos a la brevedad.
             </p>
           )}
 
-          {/* Nombre */}
-          <div className="field">
-            <label htmlFor="nombre">Nombre:</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              value={nombre}
-              onChange={(e) => { setNombre(e.target.value); clearError("nombre"); }}
-              placeholder="Ingresa tu nombre"
-              maxLength={40}
-              autoComplete="given-name"
-              required
-              aria-invalid={errores.nombre ? "true" : "false"}
-              aria-describedby={errores.nombre ? "err-nombre" : undefined}
-              className={errores.nombre ? "is-invalid" : ""}
-            />
-            {errores.nombre && (
-              <small id="err-nombre" className="error-text" role="alert">
-                {errores.nombre}
-              </small>
-            )}
-          </div>
+          <Input
+            label="Nombre:"
+            id="nombre"
+            value={nombre}
+            onChange={(e) => cambiarCampo("nombre", e.target.value, setNombre)}
+            placeholder="Ingresa tu nombre"
+            maxLength={40}
+            error={errores.nombre}
+            required
+            autoComplete="given-name"
+          />
 
-          {/* Apellido */}
-          <div className="field">
-            <label htmlFor="apellido">Apellido:</label>
-            <input
-              type="text"
-              id="apellido"
-              name="apellido"
-              value={apellido}
-              onChange={(e) => { setApellido(e.target.value); clearError("apellido"); }}
-              placeholder="Ingresa tu apellido"
-              maxLength={40}
-              autoComplete="family-name"
-              required
-              aria-invalid={errores.apellido ? "true" : "false"}
-              aria-describedby={errores.apellido ? "err-apellido" : undefined}
-              className={errores.apellido ? "is-invalid" : ""}
-            />
-            {errores.apellido && (
-              <small id="err-apellido" className="error-text" role="alert">
-                {errores.apellido}
-              </small>
-            )}
-          </div>
+          <Input
+            label="Apellido:"
+            id="apellido"
+            value={apellido}
+            onChange={(e) => cambiarCampo("apellido", e.target.value, setApellido)}
+            placeholder="Ingresa tu apellido"
+            maxLength={40}
+            error={errores.apellido}
+            required
+            autoComplete="family-name"
+          />
 
-          {/* Email */}
-          <div className="field">
-            <label htmlFor="email">Correo electrónico:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => { setEmail(e.target.value); clearError("email"); }}
-              placeholder="ejemplo@correo.com"
-              maxLength={60}
-              autoComplete="email"
-              required
-              aria-invalid={errores.email ? "true" : "false"}
-              aria-describedby={errores.email ? "err-email" : undefined}
-              className={errores.email ? "is-invalid" : ""}
-            />
-            {errores.email && (
-              <small id="err-email" className="error-text" role="alert">
-                {errores.email}
-              </small>
-            )}
-          </div>
+          <Input
+            label="Correo electrónico:"
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => cambiarCampo("email", e.target.value, setEmail)}
+            placeholder="ejemplo@correo.com"
+            maxLength={60}
+            error={errores.email}
+            required
+            autoComplete="email"
+          />
 
-          {/* País */}
           <div className="field select">
             <label htmlFor="pais">País</label>
             <select
               id="pais"
-              name="pais"
               value={pais}
-              onChange={(e) => { setPais(e.target.value); clearError("pais"); }}
+              onChange={(e) => cambiarCampo("pais", e.target.value, setPais)}
+              className={errores.pais ? "is-invalid" : ""}
               required
               aria-invalid={errores.pais ? "true" : "false"}
-              aria-describedby={errores.pais ? "err-pais" : undefined}
-              className={errores.pais ? "is-invalid" : ""}
+              aria-describedby={errores.pais ? "pais-error" : undefined}
             >
               <option value="" disabled>Seleccione una opción</option>
               <option value="Argentina">Argentina</option>
@@ -209,30 +156,22 @@ const Contacto = () => {
               <option value="Otro">Otro</option>
             </select>
             {errores.pais && (
-              <small id="err-pais" className="error-text" role="alert">
-                {errores.pais}
-              </small>
+              <small id="pais-error" className="error-text" role="alert">{errores.pais}</small>
             )}
           </div>
 
           <div className="actions">
-            <button type="submit" className="btn">Enviar</button>
+            <Button type="submit">Enviar</Button>
           </div>
         </form>
 
-        {/* Datos y Mapa */}
-        <aside className="contacto-aside" aria-labelledby="titulo-aside">
-          <h3 id="titulo-aside" className="aside-title">CONTACTANOS</h3>
+        <aside className="contacto-aside">
+          <h3 className="aside-title">CONTACTANOS</h3>
 
           <ul className="contacto-list">
-            <li>
-              <strong>Teléfono:</strong>{" "}
-              <a href="tel:3517338697">3517338697</a>
-            </li>
+            <li><strong>Teléfono:</strong> 3517338697</li>
             <li><strong>Email:</strong> lueisa@gmail.com</li>
-            <li>
-              <strong>Dirección:</strong> Av. Armada Argentina 3555, Córdoba, Argentina
-            </li>
+            <li><strong>Dirección:</strong> Av. Armada Argentina 3555, Córdoba, Argentina</li>
           </ul>
 
           <div className="mapa">
@@ -241,10 +180,8 @@ const Contacto = () => {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d218198.9361962344!2d-64.43249685141848!3d-31.2938385269709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432a3df896024af%3A0xfac12a594425f547!2sUniversidad%20Cat%C3%B3lica%20de%20C%C3%B3rdoba%20-%20Campus%20Universitario!5e0!3m2!1ses!2sar!4v1759517661560!5m2!1ses!2sar"
               width="600"
               height="360"
-              style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
         </aside>

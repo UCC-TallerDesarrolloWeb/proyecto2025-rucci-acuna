@@ -1,6 +1,3 @@
-@use "./variables" as *;
-
-@layer components {
   .card {
     background: var(--card);
     color: #fff;
@@ -32,4 +29,3 @@
   .btn.btn-detalles {
     padding: 14px 32px;
   }
-}

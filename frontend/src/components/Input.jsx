@@ -1,51 +1,41 @@
-/**
- * Input reutilizable con el estilo del formulario de contacto.
- * - Muestra label, input y mensaje de error
- */
+/* Campo de texto reutilizable con label y mensaje de error. */
 const Input = ({
-  id,
   label,
-  type = 'text',
-  name,
+  id,
+  type = "text",
   value,
   onChange,
-  onBlur,
   placeholder,
   maxLength,
+  error,
   required = false,
-  error = '',           
   autoComplete,
 }) => {
-  const describedId = error ? `${id}-err` : undefined
-  const invalid = Boolean(error)
+  const errorId = id + "-error";
 
   return (
     <div className="field">
-      <label htmlFor={id}>{label}{required && ' *'}</label>
+      <label htmlFor={id}>{label}</label>
       <input
         id={id}
-        name={name || id}
         type={type}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
         placeholder={placeholder}
         maxLength={maxLength}
         required={required}
         autoComplete={autoComplete}
-        className={invalid ? 'is-invalid' : ''}
-        aria-invalid={invalid ? 'true' : 'false'}
-        aria-describedby={describedId}
+        className={error ? "is-invalid" : ""}
+        aria-invalid={error ? "true" : "false"}
+        aria-describedby={error ? errorId : undefined}
       />
-      {/* Mensaje de error  */}
-      {invalid && (
-        <small id={describedId} className="error-text" role="alert">
+      {error && (
+        <small id={errorId} className="error-text" role="alert">
           {error}
         </small>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Input
-
+export default Input;

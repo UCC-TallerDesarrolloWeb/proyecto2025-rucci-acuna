@@ -1,17 +1,7 @@
-@use "./variables" as *;
-
-@layer pages {
   .page-contacto {
     background: var(--beige);
     color: #fff;
-
-    main {
-      background: var(--beige);
-    }
-
-    .wrap {
-      padding-bottom: var(--y-wrap-bottom);
-    }
+    padding-bottom: var(--y-wrap-bottom);
   }
 
   .contacto-head {
@@ -125,14 +115,35 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     margin-bottom: 6px;
   }
+
+/* Mensajes de error y de éxito del formulario */
+.error-text {
+  color: #ffd2d2;
+  font-size: 13px;
+}
+
+.form-success {
+  background: #2f5d3a;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.contacto-form input.is-invalid,
+.contacto-form select.is-invalid {
+  border-color: #ff8a8a;
 }
 
 /* Media específicas de contacto */
 @media (max-width: 640px) {
-  .page-contacto main > .wrap:last-of-type {
-    padding-bottom: 72px;
-  }
   .page-contacto .contacto-layout {
     margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .contacto-layout {
+    grid-template-columns: 1fr;
   }
 }

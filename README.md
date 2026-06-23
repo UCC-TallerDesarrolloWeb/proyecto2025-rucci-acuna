@@ -12,36 +12,63 @@ Proyecto 2025 – Taller de Desarrollo Web
 - [Descripción del proyecto](#descripción-del-proyecto)
 - [Estructura del sitio](#estructura-del-sitio)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
+- [Ejecución y pruebas](#ejecución-y-pruebas)
 - [Requisitos del Primer Parcial](#requisitos-del-primer-parcial)
 - [Requisitos del Segundo Parcial](#requisitos-del-segundo-parcial)
 - [Requisitos del Final](#requisitos-del-final)
 
 
 ## Descripción del proyecto
-**BRÚJULA** es una agencia de viajes ficticia que permite explorar destinos, calcular costos estimados y guardar reservas en un itinerario personalizado.  
-El sitio fue desarrollado desde cero en HTML, CSS y JavaScript, cumpliendo con todos los requisitos del **Primer Parcial**.
+**BRÚJULA** es una agencia de viajes ficticia que permite explorar destinos, filtrar opciones, calcular costos y guardar reservas en un itinerario personalizado. El repositorio contiene las dos etapas del proyecto: una entrega en HTML, CSS y JavaScript puro y una versión final desarrollada con React y Vite.
 
 ## Estructura del sitio
 | Página | Descripción |
 |--------|--------------|
 | `index.html` | Página principal con video de fondo y links a las secciones principales |
 | `destinos.html` | Listado de destinos, con búsqueda, filtros y modal de detalles |
-| `itinerario.html` | Tabla de reservas guardadas en localStorage |
+| `itinerario.html` | Tarjetas de reservas guardadas en localStorage |
 | `contacto.html` | Formulario de contacto con validaciones |
 | `estilos.css` | Hoja de estilos global |
 | `script.js` | Funcionalidad JavaScript (menú, búsqueda, filtros, modal, validaciones) |
+| `frontend/` | Aplicación React creada con Vite |
+| `frontend/src/components/` | Componentes reutilizables y contexto del itinerario |
+| `frontend/src/pages/` | Páginas de Inicio, Destinos, Itinerario y Contacto |
+| `frontend/src/styles/` | Estilos SASS organizados por página y componente |
+| `frontend/src/tests/` | Tests con Jest y React Testing Library |
 
 ## Tecnologías utilizadas
 ### Lenguajes
 - **HTML5** (estructura semántica)  
 - **CSS3** (estilos, pseudoclases, diseño responsive)  
 - **JavaScript (ES6+)** con funciones flecha y validaciones  
+- **React 19** con hooks y Context API
+- **React Router DOM** para navegación
+- **SASS** para los estilos de React
+- **Jest + React Testing Library** para pruebas
 
 ### Recursos externos
 - **Google Fonts** – Montserrat / Noto Sans  
 - **Material Symbols Outlined**  
 - **GitHub Pages** para publicación  
 - **Canva** para wireframe
+
+## Ejecución y pruebas
+
+La primera entrega se abre desde `index.html`. Para ejecutar React:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Comandos de verificación:
+
+```bash
+npm run lint
+npm test
+npm run build
+```
 
 
 ## Requisitos del Primer Parcial
@@ -179,17 +206,17 @@ Por cada corrección o defecto en el HTML+CSS+Js se descontará un 5% del 85%.
 ## Requisitos del Segundo Parcial
 
 ### Sobre React
-- [ ] Se debe emplear **Vite** para instalar **React**
-- [ ] Se debe emplear **Hooks**, useState, useEffect, useContext, useNavigate
-- [ ] Se debe emplear **react-router-dom** para el enrutamiento a otras páginas
-- [ ] Se debe emplear **outlet** para que un componente principal renderice componentes de rutas hijas.
-- [ ] La estructura del proyecto (carpetas) debe ser el correcto: components, pages, styles
-- [ ] Los **imports** deben ser usando con **alias**
-- [ ] Validaciones en tiempo real con onChange + mensajes de error accesibles.
-- [ ] Crear al menos un componente genérico (ej: Button, Card, Input) y reutilizarlo en varias páginas.
-- [ ] Guardar algún dato en localStorage (ej: preferencias de tema o un carrito de compras).
-- [ ] En caso de tener backend, emplear **fetch**
-- [ ] En caso de no contar con un servicio que nos provea la información necesaria, la misma debe ser leída en formato tipo Json local y renderizar listas dinámicas. Ejemplo:
+- [x] Se debe emplear **Vite** para instalar **React**
+- [x] Se debe emplear **Hooks**, useState, useEffect, useContext, useNavigate
+- [x] Se debe emplear **react-router-dom** para el enrutamiento a otras páginas
+- [x] Se debe emplear **outlet** para que un componente principal renderice componentes de rutas hijas.
+- [x] La estructura del proyecto (carpetas) debe ser el correcto: components, pages, styles
+- [x] Los **imports** deben ser usando con **alias**
+- [x] Validaciones en tiempo real con onChange + mensajes de error accesibles.
+- [x] Crear al menos un componente genérico (ej: Button, Card, Input) y reutilizarlo en varias páginas.
+- [x] Guardar algún dato en localStorage (ej: preferencias de tema o un carrito de compras).
+- [x] El proyecto no posee backend, por lo tanto **fetch** no aplica.
+- [x] Los destinos se leen desde un archivo JSON local y se renderizan como una lista dinámica.
 ````javascript
 const activities = [
   {
@@ -212,10 +239,10 @@ const activities = [
 ````
 
 ### Sobre las Correcciones
-- [ ] Todas las correcciones y mejoras (sugerencias) solicitadas durante el primer parcial deben estar corregidas.
-- [ ] No debe haber errores presentes en el código (realizar *Code* > *Inspect Code* para verificar que no haya errores)
-- [ ] Se corregirá el proyecto con el último commit realizado en Github hasta las 23:59 del día anterior a la fecha de entrega
-- [ ] Las notas serán de la siguiente manera: (Por ejemplo 55% 4; 59% 5; 67% 6; 75% 7; 82% 8; 89% 9; 97% 10)
+- [x] Todas las correcciones y mejoras (sugerencias) solicitadas durante el primer parcial están aplicadas.
+- [x] El proyecto pasa ESLint, los tests y la compilación de producción.
+- [x] El código actualizado está preparado para ser subido al repositorio.
+- [x] La versión React mantiene la funcionalidad y la estética de la primera entrega.
 - Las sugerencias sobre el HTML, CSS y Js realizadas en el anterior parcial dejen ser corregidas.
 
 | Items a Evaluar                          | %   |
@@ -229,8 +256,8 @@ const activities = [
 | Código limpio y sin errores en consola   | 10% |
 
 ## Requisitos del FINAL
-- [ ] Todas las correcciones y mejoras solicitadas durante el primer y segundo parcial deben estar corregidas.
-- [ ] No debe haber errores presentes en el código (realizar Code > Inspect Code para verificar que no haya errores)
-- [ ] No debe haber errores JavaScript presentes (F12 > Consola)
-- [ ] Debe cumplir con TODOS los requisitos del 1er y 2do Parcial (si se agrego código nuevo en Js, se debe documentar, si hay nuevos inputs de html deben contener su label, etc)
-- [ ] Incluir al menos 5 tests con Jest + React Testing Library (ejemplo: que un botón renderice un texto esperado).
+- [x] Todas las correcciones y mejoras solicitadas durante el primer y segundo parcial están corregidas.
+- [x] ESLint y el build de producción terminan sin errores.
+- [x] No hay errores JavaScript presentes durante las pruebas principales.
+- [x] Se cumplen los requisitos del primer y segundo parcial.
+- [x] Se incluyen 7 tests con Jest + React Testing Library.

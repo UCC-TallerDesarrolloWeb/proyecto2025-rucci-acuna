@@ -1,115 +1,107 @@
-import { useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import data from "@data/db.json";
 import CardDestino from "@components/CardDestino";
+import Button from "@components/Button";
+import "@styles/Destinos.scss";
 
-export default function Destinos() {
+const Destinos = () => {
+  const [busqueda, setBusqueda] = useState("");
+  const [maxPrecio, setMaxPrecio] = useState(300);
+  const [categoria, setCategoria] = useState("todas");
+  const [orden, setOrden] = useState("asc");
+  const [filtrosAbierto, setFiltrosAbierto] = useState(false);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
     document.title = "BRÚJULA - Destinos";
-
-    // Asegura que runPerRoute() se ejecute con el DOM ya montado en esta ruta
-    // (no agrega listeners duplicados; solo dispara tu listener global de hashchange).
-    setTimeout(() => {
-      try {
-        window.dispatchEvent(new HashChangeEvent("hashchange"));
-      } catch {
-        // fallback para navegadores viejos
-        window.dispatchEvent(new Event("hashchange"));
-      }
-    }, 0);
   }, []);
 
-  const destinos = useMemo(() => {
-    const arr = Array.isArray(data?.destinos) ? data.destinos : [];
-    return arr.map((d) => ({
-      id: d.id,
-      nombre: d.nombre,
-      cardImg: d.imagen,
-      precio: d.precioDia,
-      categorias: d.categorias ?? [],
-      duracion: d.duracion,
-      temporada: d.temporada,
-      historia: d.historia,
-      atracciones: d.atracciones,
-      galeria: d.galeria ?? [],
-    }));
-  }, []);
+  /* Filtra los destinos por nombre, precio y categoría. */
+  const destinos = data.destinos.filter((d) => {
+    const pasaNombre = d.nombre.toLowerCase().includes(busqueda.toLowerCase());
+    const pasaPrecio = d.precioDia <= maxPrecio;
+    const pasaCategoria = categoria === "todas" || d.categorias.includes(categoria);
+    return pasaNombre && pasaPrecio && pasaCategoria;
+  });
+
+  /* Ordena la lista por nombre. */
+  if (orden === "asc") {
+    destinos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  } else {
+    destinos.sort((a, b) => b.nombre.localeCompare(a.nombre));
+  }
+
+  const limpiar = () => {
+    setBusqueda("");
+    setMaxPrecio(300);
+    setCategoria("todas");
+    setOrden("asc");
+  };
 
   return (
     <div className="page-destinos">
-      {/* Encabezado de la página */}
       <section className="wrap destinos-head">
         <header>
           <h2 className="page-title">DESTINOS</h2>
         </header>
 
         <div className="destinos-actions">
-          <button
-            id="btnFiltros"
-            className="btn-filtro"
-            aria-controls="filtrosOverlay"
-            aria-expanded="false"
-            type="button"
-          >
-            <span className="material-symbols-outlined" aria-hidden="true">
-              tune
-            </span>
-            FILTROS
+          <label htmlFor="buscarDestino" className="sr-only">Buscar destinos</label>
+          <input
+            id="buscarDestino"
+            className="buscar-destino"
+            type="text"
+            placeholder="Buscar"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+          <button className="btn-filtro" type="button" onClick={() => setFiltrosAbierto(true)}>
+            <span className="material-symbols-outlined" aria-hidden="true">tune</span> FILTROS
           </button>
         </div>
       </section>
 
-      {/* GRID DE DESTINOS */}
       <section className="wrap destinos-layout">
-        <div className="destinos-grid" id="destinosGrid" aria-live="polite">
+        <div className="destinos-grid">
+          {destinos.length === 0 && <p className="empty-msg">No se encontraron destinos.</p>}
           {destinos.map((destino) => (
             <CardDestino key={destino.id} destino={destino} />
           ))}
         </div>
       </section>
 
-      {/* FILTROS (overlay) */}
-      <div id="filtrosOverlay" className="filtros-overlay" hidden>
-        <div className="filtros-backdrop" data-close="1"></div>
-        <section
-          className="filtros-panel"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="titulo-filtros"
-        >
-          <button
-            type="button"
-            className="filtros-close"
-            aria-label="Cerrar filtros"
-          >
-            ✕
-          </button>
+      {filtrosAbierto && (
+        <div className="filtros-overlay">
+          <div className="filtros-backdrop" onClick={() => setFiltrosAbierto(false)}></div>
+          <section className="filtros-panel">
+            <button
+              className="filtros-close"
+              aria-label="Cerrar filtros"
+              onClick={() => setFiltrosAbierto(false)}
+            >
+              ✕
+            </button>
+            <h3>
+              <span className="material-symbols-outlined" aria-hidden="true">filter_alt</span> Filtros
+            </h3>
 
-          <h3 id="titulo-filtros">
-            <span className="material-symbols-outlined" aria-hidden="true">
-              filter_alt
-            </span>
-            Filtros
-          </h3>
-
-          <form id="form-filtros" className="filtros-form" noValidate>
             <div className="filtro-item">
               <label htmlFor="rangoPrecio">Precio por día (USD)</label>
               <div className="range-wrap">
                 <input
-                  type="range"
                   id="rangoPrecio"
+                  type="range"
                   min="50"
                   max="300"
-                  defaultValue="300"
+                  value={maxPrecio}
+                  onChange={(e) => setMaxPrecio(Number(e.target.value))}
                 />
-                <output id="precioOut">300</output>
+                <output>{maxPrecio}</output>
               </div>
             </div>
 
             <div className="filtro-item">
               <label htmlFor="categoria">Categoría</label>
-              <select id="categoria" defaultValue="todas">
+              <select id="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                 <option value="todas">Todas</option>
                 <option value="playa">Playa</option>
                 <option value="naturaleza">Naturaleza</option>
@@ -127,19 +119,21 @@ export default function Destinos() {
 
             <div className="filtro-item">
               <label htmlFor="orden">Orden alfabético</label>
-              <select id="orden" defaultValue="asc">
+              <select id="orden" value={orden} onChange={(e) => setOrden(e.target.value)}>
                 <option value="asc">Ascendente (A-Z)</option>
                 <option value="desc">Descendente (Z-A)</option>
               </select>
             </div>
 
             <div className="filtro-actions">
-              <button className="btn" type="submit">Aplicar</button>
-              <button className="btn btn-sec" type="reset">Limpiar</button>
+              <Button onClick={() => setFiltrosAbierto(false)}>Aplicar</Button>
+              <Button variante="secundario" onClick={limpiar}>Limpiar</Button>
             </div>
-          </form>
-        </section>
-      </div>
+          </section>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default Destinos;

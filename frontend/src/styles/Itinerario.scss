@@ -1,38 +1,11 @@
-@use "./variables" as *;
-
-@layer pages {
   .page-itinerario {
     background: var(--beige);
     color: #fff;
-
-    main {
-      background: var(--beige);
-
-      > .wrap:last-of-type {
-        padding-bottom: 72px;
-      }
-    }
+    padding-bottom: 72px;
 
     .itinerario-head {
-      padding: 40px 0 18px;
-    }
-
-    .filtros {
-      background: var(--card);
-      color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
-      padding: 18px;
-
-      &-title {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin: 0 0 10px;
-        font-size: 18px;
-        font-weight: 800;
-        text-transform: uppercase;
-      }
+      padding-top: 40px;
+      padding-bottom: 18px;
     }
 
     b,
@@ -120,20 +93,7 @@
       gap: 0.75rem;
     }
 
-    .itinerario-totalbar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-
-      #btnVaciarRes {
-        margin-left: auto;
-      }
-    }
   }
-}
 
 /* Responsive Itinerario */
 @media (max-width: 900px) {
@@ -162,10 +122,6 @@
   color: #e8e8e8;
   font-size: 15px;
   padding: 12px 0;
-}
-
-.mb-10 {
-  margin-bottom: 10px;
 }
 
 .acciones-globales {

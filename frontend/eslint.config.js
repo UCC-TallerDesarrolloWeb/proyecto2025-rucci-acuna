@@ -50,4 +50,10 @@ export default defineConfig([
       'curly': 'error',
     },
   },
+  {
+    files: ['src/tests/**/*.{js,jsx}'],
+    languageOptions: {
+      globals: globals.jest,
+    },
+  },
 ])

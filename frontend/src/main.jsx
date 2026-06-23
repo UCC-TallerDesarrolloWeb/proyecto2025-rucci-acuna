@@ -1,19 +1,28 @@
-/**
- * Punto de entrada principal del proyecto BRÚJULA.
- * Renderiza el componente App dentro de <HashRouter> para habilitar la navegación.
- */
-
-import React from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter } from "react-router-dom"; 
-import App from "./App.jsx";
-import "@styles/index.scss"; 
-import "./utils/funcionalidades.js";
+import { HashRouter, Routes, Route } from "react-router-dom";
+
+import ItinerarioProvider from "@components/ItinerarioContext";
+import Layout from "@components/Layout";
+import Home from "@pages/Home";
+import Destinos from "@pages/Destinos";
+import Itinerario from "@pages/Itinerario";
+import Contacto from "@pages/Contacto";
+import "@styles/index.scss";
 
 createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </React.StrictMode>
+  <StrictMode>
+    <ItinerarioProvider>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="destinos" element={<Destinos />} />
+            <Route path="itinerario" element={<Itinerario />} />
+            <Route path="contacto" element={<Contacto />} />
+          </Route>
+        </Routes>
+      </HashRouter>
+    </ItinerarioProvider>
+  </StrictMode>
 );

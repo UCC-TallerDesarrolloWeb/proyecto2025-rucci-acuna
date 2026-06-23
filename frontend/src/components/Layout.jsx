@@ -1,21 +1,21 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Header from "@/components/Header.jsx";
-import Footer from "@/components/Footer.jsx";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
 
+/* En la página de inicio no se muestran el header ni el footer (es pantalla completa). */
 const Layout = () => {
   const location = useLocation();
-  const isHome = location.pathname === "/";
+  const esHome = location.pathname === "/";
 
   return (
-    <div className={`layout ${isHome ? "layout--home" : ""}`}>
-      {!isHome && <Header />}
+    <div className="layout">
+      {!esHome && <Header />}
       <main id="main">
         <Outlet />
       </main>
-      {!isHome && <Footer />}
+      {!esHome && <Footer />}
     </div>
   );
 };
 
 export default Layout;
-
