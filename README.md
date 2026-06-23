@@ -6,7 +6,7 @@ Proyecto 2025 – Taller de Desarrollo Web
 - Isabela Acuña - 2405404  
 
 ## Link al sitio
-→ [Visitar BRÚJULA en GitHub Pages](https://isaacunaa.github.io/proyecto2025-rucci-acuna/)
+→ [Visitar BRÚJULA en GitHub Pages](https://ucc-tallerdesarrolloweb.github.io/proyecto2025-rucci-acuna/)
 
 ## Índice
 - [Descripción del proyecto](#descripción-del-proyecto)
