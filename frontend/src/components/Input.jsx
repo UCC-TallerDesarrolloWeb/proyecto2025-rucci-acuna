@@ -1,37 +1,27 @@
 /* Campo de texto reutilizable con label y mensaje de error. */
-const Input = ({
-  label,
-  id,
-  type = "text",
-  value,
-  onChange,
-  placeholder,
-  maxLength,
-  error,
-  required = false,
-  autoComplete,
-}) => {
-  const errorId = id + "-error";
+const Input = (props) => {
+  const errorId = props.id + "-error";
+  const tipo = props.type ? props.type : "text";
 
   return (
     <div className="field">
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={props.id}>{props.label}</label>
       <input
-        id={id}
-        type={type}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        required={required}
-        autoComplete={autoComplete}
-        className={error ? "is-invalid" : ""}
-        aria-invalid={error ? "true" : "false"}
-        aria-describedby={error ? errorId : undefined}
+        id={props.id}
+        type={tipo}
+        value={props.value}
+        onChange={props.onChange}
+        placeholder={props.placeholder}
+        maxLength={props.maxLength}
+        required={props.required}
+        autoComplete={props.autoComplete}
+        className={props.error ? "is-invalid" : ""}
+        aria-invalid={props.error ? "true" : "false"}
+        aria-describedby={props.error ? errorId : undefined}
       />
-      {error && (
+      {props.error && (
         <small id={errorId} className="error-text" role="alert">
-          {error}
+          {props.error}
         </small>
       )}
     </div>

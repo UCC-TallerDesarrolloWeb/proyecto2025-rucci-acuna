@@ -11,9 +11,9 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="hero" aria-label="Presentación BRÚJULA">
+    <section className="hero">
       <video className="hero-video" src="imagenes/videofondo.mp4" autoPlay muted loop playsInline />
-      <div className="hero-overlay" aria-hidden="true" />
+      <div className="hero-overlay" />
 
       <header className="hero-content wrap">
         <div className="logo">

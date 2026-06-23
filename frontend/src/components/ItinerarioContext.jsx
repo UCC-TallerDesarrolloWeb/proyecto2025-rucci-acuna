@@ -13,12 +13,13 @@ const leerStorage = () => {
   return JSON.parse(data);
 };
 
-const ItinerarioProvider = ({ children }) => {
-  const [reservas, setReservas] = useState(leerStorage);
+const ItinerarioProvider = (props) => {
+  const [reservas, setReservas] = useState(leerStorage());
 
   /* Agrega una reserva y la guarda en localStorage. */
   const guardarReserva = (reserva) => {
-    const nuevas = [...reservas, reserva];
+    const nuevas = reservas.slice();
+    nuevas.push(reserva);
     setReservas(nuevas);
     localStorage.setItem("itinerario", JSON.stringify(nuevas));
   };
@@ -40,7 +41,7 @@ const ItinerarioProvider = ({ children }) => {
     <ItinerarioContext.Provider
       value={{ reservas, guardarReserva, eliminarReserva, vaciarItinerario }}
     >
-      {children}
+      {props.children}
     </ItinerarioContext.Provider>
   );
 };

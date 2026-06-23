@@ -4,7 +4,8 @@ import { ItinerarioContext } from "@components/ItinerarioContext";
 import "@styles/Itinerario.scss";
 
 const Itinerario = () => {
-  const { reservas, eliminarReserva, vaciarItinerario } = useContext(ItinerarioContext);
+  const itinerario = useContext(ItinerarioContext);
+  const reservas = itinerario.reservas;
   const [abierto, setAbierto] = useState(null);
 
   useEffect(() => {
@@ -26,14 +27,14 @@ const Itinerario = () => {
 
   const confirmarEliminar = (indice) => {
     if (confirm(`¿Eliminar "${reservas[indice].destino}" del itinerario?`)) {
-      eliminarReserva(indice);
+      itinerario.eliminarReserva(indice);
       setAbierto(null);
     }
   };
 
   const confirmarVaciar = () => {
     if (confirm("¿Vaciar todo el itinerario?")) {
-      vaciarItinerario();
+      itinerario.vaciarItinerario();
       setAbierto(null);
     }
   };
@@ -47,7 +48,7 @@ const Itinerario = () => {
         </header>
       </section>
 
-      <section className="wrap" aria-label="Mis reservas">
+      <section className="wrap">
         <div className="itinerario-cards">
           {reservas.length === 0 && (
             <p className="notice">

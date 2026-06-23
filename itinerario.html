@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>BRÚJULA - Itinerario</title>
 
-    <meta name="author" content="Lu-Isa" />
+    <meta name="author" content="Lucía Rucci; Isabela Acuña" />
     <meta name="description" content="Explorá itinerarios sugeridos y administrá tus reservas guardadas en BRÚJULA." />
     <meta name="keywords" content="itinerarios, turismo, viajes, reservas, destinos" />
 
@@ -23,7 +23,7 @@
   <body class="page-itinerario" onload="cargarItinerario(); initAnio()">
     <header class="site-header">
       <div class="wrap header-grid">
-        <a class="brand" href="index.html" aria-label="Volver al inicio">
+        <a class="brand" href="index.html">
           <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
           <div class="brand-text">
             <h1 class="brand-title">BRÚJULA</h1>
@@ -34,17 +34,16 @@
         <div class="top-actions">
           <!-- Menú -->
           <div class="menu-wrapper" id="menuWrapper">
-            <button id="btnMenu" class="btn-hamb" type="button"
-                    aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false" onclick="toggleMenu()">
-              <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            <button id="btnMenu" class="btn-hamb" type="button" onclick="toggleMenu()">
+              <span class="material-symbols-outlined">menu</span>
             </button>
 
-            <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
+            <nav id="panelMenu" class="panel-menu" hidden>
               <ul class="menu-list">
-                <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> INICIO</a></li>
-                <li><a href="destinos.html"><span class="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS</a></li>
-                <li><a href="itinerario.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO</a></li>
-                <li><a href="contacto.html"><span class="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO</a></li>
+                <li><a href="index.html"><span class="material-symbols-outlined">home</span> INICIO</a></li>
+                <li><a href="destinos.html"><span class="material-symbols-outlined">map</span> DESTINOS</a></li>
+                <li><a href="itinerario.html"><span class="material-symbols-outlined">calendar_add_on</span> ITINERARIO</a></li>
+                <li><a href="contacto.html"><span class="material-symbols-outlined">contact_page</span> CONTACTO</a></li>
               </ul>
             </nav>
           </div>
@@ -62,7 +61,7 @@
       </section>
 
       <!-- ===== LISTA EN TARJETAS ===== -->
-      <section class="wrap" aria-label="Mis reservas">
+      <section class="wrap">
         <div class="itinerario-cards">
 
           <!-- Que ocurre al estar vacío -->
@@ -70,7 +69,7 @@
             Aún no agregaste reservas. Abrí Destinos, elegí un lugar, y en el modal usá <em>Calcular costo</em> → Guardar en Itinerario.
           </p>
 
-          <section id="lista-itinerario" class="lista-itinerario" aria-live="polite"></section>
+          <section id="lista-itinerario" class="lista-itinerario"></section>
 
           <!-- Acciones globales (solo si hay detalles abiertos) -->
           <div id="acciones-globales" class="acciones-globales">

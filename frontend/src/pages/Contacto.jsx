@@ -9,7 +9,10 @@ const Contacto = () => {
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
   const [pais, setPais] = useState("");
-  const [errores, setErrores] = useState({});
+  const [errorNombre, setErrorNombre] = useState("");
+  const [errorApellido, setErrorApellido] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPais, setErrorPais] = useState("");
   const [enviado, setEnviado] = useState(false);
 
   useEffect(() => {
@@ -33,44 +36,59 @@ const Contacto = () => {
     return "";
   };
 
-  /* Actualiza un campo y lo valida mientras el usuario escribe. */
-  const cambiarCampo = (campo, valor, guardar) => {
-    guardar(valor);
+  /* Actualiza y valida el nombre mientras el usuario escribe. */
+  const cambiarNombre = (e) => {
+    const valor = e.target.value;
+    setNombre(valor);
     setEnviado(false);
-    setErrores((anteriores) => ({
-      ...anteriores,
-      [campo]: validarCampo(campo, valor),
-    }));
+    setErrorNombre(validarCampo("nombre", valor));
   };
 
-  /* Valida todos los campos y devuelve un objeto con los errores. */
+  /* Actualiza y valida el apellido mientras el usuario escribe. */
+  const cambiarApellido = (e) => {
+    const valor = e.target.value;
+    setApellido(valor);
+    setEnviado(false);
+    setErrorApellido(validarCampo("apellido", valor));
+  };
+
+  /* Actualiza y valida el correo mientras el usuario escribe. */
+  const cambiarEmail = (e) => {
+    const valor = e.target.value;
+    setEmail(valor);
+    setEnviado(false);
+    setErrorEmail(validarCampo("email", valor));
+  };
+
+  /* Actualiza y valida el pais seleccionado. */
+  const cambiarPais = (e) => {
+    const valor = e.target.value;
+    setPais(valor);
+    setEnviado(false);
+    setErrorPais(validarCampo("pais", valor));
+  };
+
+  /* Valida todos los campos y devuelve true si son correctos. */
   const validar = () => {
-    const nuevos = {};
-    const errorNombre = validarCampo("nombre", nombre);
-    const errorApellido = validarCampo("apellido", apellido);
-    const errorEmail = validarCampo("email", email);
-    const errorPais = validarCampo("pais", pais);
-    if (errorNombre) {
-      nuevos.nombre = errorNombre;
-    }
-    if (errorApellido) {
-      nuevos.apellido = errorApellido;
-    }
-    if (errorEmail) {
-      nuevos.email = errorEmail;
-    }
-    if (errorPais) {
-      nuevos.pais = errorPais;
-    }
-    return nuevos;
+    const nuevoErrorNombre = validarCampo("nombre", nombre);
+    const nuevoErrorApellido = validarCampo("apellido", apellido);
+    const nuevoErrorEmail = validarCampo("email", email);
+    const nuevoErrorPais = validarCampo("pais", pais);
+
+    setErrorNombre(nuevoErrorNombre);
+    setErrorApellido(nuevoErrorApellido);
+    setErrorEmail(nuevoErrorEmail);
+    setErrorPais(nuevoErrorPais);
+
+    return nuevoErrorNombre === "" &&
+      nuevoErrorApellido === "" &&
+      nuevoErrorEmail === "" &&
+      nuevoErrorPais === "";
   };
 
   const enviar = (e) => {
     e.preventDefault();
-    const nuevos = validar();
-    setErrores(nuevos);
-
-    if (Object.keys(nuevos).length === 0) {
+    if (validar()) {
       setEnviado(true);
       setNombre("");
       setApellido("");
@@ -102,10 +120,10 @@ const Contacto = () => {
             label="Nombre:"
             id="nombre"
             value={nombre}
-            onChange={(e) => cambiarCampo("nombre", e.target.value, setNombre)}
+            onChange={cambiarNombre}
             placeholder="Ingresa tu nombre"
             maxLength={40}
-            error={errores.nombre}
+            error={errorNombre}
             required
             autoComplete="given-name"
           />
@@ -114,10 +132,10 @@ const Contacto = () => {
             label="Apellido:"
             id="apellido"
             value={apellido}
-            onChange={(e) => cambiarCampo("apellido", e.target.value, setApellido)}
+            onChange={cambiarApellido}
             placeholder="Ingresa tu apellido"
             maxLength={40}
-            error={errores.apellido}
+            error={errorApellido}
             required
             autoComplete="family-name"
           />
@@ -127,10 +145,10 @@ const Contacto = () => {
             id="email"
             type="email"
             value={email}
-            onChange={(e) => cambiarCampo("email", e.target.value, setEmail)}
+            onChange={cambiarEmail}
             placeholder="ejemplo@correo.com"
             maxLength={60}
-            error={errores.email}
+            error={errorEmail}
             required
             autoComplete="email"
           />
@@ -140,11 +158,11 @@ const Contacto = () => {
             <select
               id="pais"
               value={pais}
-              onChange={(e) => cambiarCampo("pais", e.target.value, setPais)}
-              className={errores.pais ? "is-invalid" : ""}
+              onChange={cambiarPais}
+              className={errorPais ? "is-invalid" : ""}
               required
-              aria-invalid={errores.pais ? "true" : "false"}
-              aria-describedby={errores.pais ? "pais-error" : undefined}
+              aria-invalid={errorPais ? "true" : "false"}
+              aria-describedby={errorPais ? "pais-error" : undefined}
             >
               <option value="" disabled>Seleccione una opción</option>
               <option value="Argentina">Argentina</option>
@@ -155,8 +173,8 @@ const Contacto = () => {
               <option value="Peru">Perú</option>
               <option value="Otro">Otro</option>
             </select>
-            {errores.pais && (
-              <small id="pais-error" className="error-text" role="alert">{errores.pais}</small>
+            {errorPais && (
+              <small id="pais-error" className="error-text" role="alert">{errorPais}</small>
             )}
           </div>
 

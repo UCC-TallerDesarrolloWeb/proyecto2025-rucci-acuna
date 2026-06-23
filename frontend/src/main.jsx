@@ -15,8 +15,8 @@ createRoot(document.getElementById("root")).render(
     <ItinerarioProvider>
       <HashRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route element={<Layout />}>
             <Route path="destinos" element={<Destinos />} />
             <Route path="itinerario" element={<Itinerario />} />
             <Route path="contacto" element={<Contacto />} />

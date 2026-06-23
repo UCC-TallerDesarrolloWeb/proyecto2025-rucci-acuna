@@ -226,12 +226,12 @@ let initAnio = () => {
  * @return No retorna valor.
  */
 let toggleMenu = () => {
-  let wrapper = document.getElementById("menuWrapper");
-  let btn = document.getElementById("btnMenu");
-  let icono = btn.getElementsByClassName("material-symbols-outlined")[0];
+  const btn = document.getElementById("btnMenu");
+  const panel = document.getElementById("panelMenu");
+  const icono = btn.getElementsByClassName("material-symbols-outlined")[0];
 
-  let abierto = wrapper.classList.toggle("is-open");
-  btn.setAttribute("aria-expanded", abierto);
+  const abierto = panel.hidden;
+  panel.hidden = !abierto;
   icono.textContent = abierto ? "close" : "menu";
 };
 
@@ -346,7 +346,8 @@ let limpiarFiltros = () => {
  * @return No retorna valor.
  */
 let abrirModal = (id) => {
-  let d = destinos.find((destino) => destino.id === id);
+  const destinosFiltrados = destinos.filter((destino) => destino.id === id);
+  const d = destinosFiltrados[0];
   if (d == null) {
     return;
   }
@@ -434,7 +435,7 @@ let calcularCosto = () => {
     document.getElementById("res-fecha").value = "";
     return;
   }
-  if (isNaN(dias) || !Number.isInteger(dias) || dias < 1 || dias > 60) {
+  if (isNaN(dias) || dias % 1 !== 0 || dias < 1 || dias > 60) {
     alert("Ingresá una cantidad de días válida (entero entre 1 y 60).");
     document.getElementById("res-dias").value = "";
     return;

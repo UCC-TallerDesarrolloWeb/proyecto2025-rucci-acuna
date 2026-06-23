@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "@assets/logo.png";
 
 const Header = () => {
@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="site-header">
       <div className="wrap header-grid">
-        <Link className="brand" to="/" aria-label="Volver al inicio">
+        <Link className="brand" to="/">
           <img src={logo} alt="Logo de BRÚJULA" width="40" height="40" />
           <div className="brand-text">
             <h1 className="brand-title">BRÚJULA</h1>
@@ -17,45 +17,44 @@ const Header = () => {
         </Link>
 
         <div className="top-actions">
-          <div className={abierto ? "menu-wrapper is-open" : "menu-wrapper"}>
+          <div className="menu-wrapper">
             <button
               id="btnMenu"
               className="btn-hamb"
               type="button"
-              aria-label={abierto ? "Cerrar menú" : "Abrir menú"}
-              aria-controls="panelMenu"
-              aria-expanded={abierto}
               onClick={() => setAbierto(!abierto)}
             >
-              <span className="material-symbols-outlined" aria-hidden="true">
+              <span className="material-symbols-outlined">
                 {abierto ? "close" : "menu"}
               </span>
             </button>
 
-            <nav id="panelMenu" className="panel-menu" aria-label="Menú principal">
-              <ul className="menu-list" onClick={() => setAbierto(false)}>
-                <li>
-                  <NavLink to="/">
-                    <span className="material-symbols-outlined" aria-hidden="true">home</span> INICIO
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/destinos">
-                    <span className="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/itinerario">
-                    <span className="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/contacto">
-                    <span className="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
+            {abierto && (
+              <nav id="panelMenu" className="panel-menu">
+                <ul className="menu-list" onClick={() => setAbierto(false)}>
+                  <li>
+                    <Link to="/">
+                      <span className="material-symbols-outlined">home</span> INICIO
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/destinos">
+                      <span className="material-symbols-outlined">map</span> DESTINOS
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/itinerario">
+                      <span className="material-symbols-outlined">calendar_add_on</span> ITINERARIO
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/contacto">
+                      <span className="material-symbols-outlined">contact_page</span> CONTACTO
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            )}
           </div>
         </div>
       </div>

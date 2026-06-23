@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>BRÚJULA - Destinos</title>
 
-    <meta name="author" content="Lu-Isa" />
+    <meta name="author" content="Lucía Rucci; Isabela Acuña" />
     <meta
       name="description"
       content="Explorá los destinos disponibles de BRÚJULA: ciudades, imágenes y detalles de viaje."
@@ -31,7 +31,7 @@
   <body class="page-destinos" onload="cargarDestinos(); initAnio()">
     <header class="site-header">
       <div class="wrap header-grid">
-        <a class="brand" href="index.html" aria-label="Volver al inicio">
+        <a class="brand" href="index.html">
           <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
           <div class="brand-text">
             <h1 class="brand-title">BRÚJULA</h1>
@@ -41,26 +41,26 @@
 
         <div class="top-actions">
           <!-- Buscador -->
-          <form id="form-buscar" class="search" role="search" aria-label="Buscar destinos" onsubmit="filtrarDestinos(); return false;">
+          <form id="form-buscar" class="search" onsubmit="filtrarDestinos(); return false;">
             <label for="q" class="sr-only">Buscar</label>
             <input id="q" name="q" type="text" placeholder="Buscar" size="18" maxlength="32" oninput="filtrarDestinos()" />
-            <button type="submit" aria-label="Buscar">
-              <span class="material-symbols-outlined" aria-hidden="true">search</span>
+            <button type="submit">
+              <span class="material-symbols-outlined">search</span>
             </button>
           </form>
 
           <!-- Menú -->
           <div class="menu-wrapper" id="menuWrapper">
-            <button id="btnMenu" class="btn-hamb" type="button" aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false" onclick="toggleMenu()">
-              <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            <button id="btnMenu" class="btn-hamb" type="button" onclick="toggleMenu()">
+              <span class="material-symbols-outlined">menu</span>
             </button>
 
-            <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
+            <nav id="panelMenu" class="panel-menu" hidden>
               <ul class="menu-list">
-                <li><a href="index.html"><span class="material-symbols-outlined" aria-hidden="true">home</span> INICIO</a></li>
-                <li><a href="destinos.html"><span class="material-symbols-outlined" aria-hidden="true">map</span> DESTINOS</a></li>
-                <li><a href="itinerario.html"><span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span> ITINERARIO</a></li>
-                <li><a href="contacto.html"><span class="material-symbols-outlined" aria-hidden="true">contact_page</span> CONTACTO</a></li>
+                <li><a href="index.html"><span class="material-symbols-outlined">home</span> INICIO</a></li>
+                <li><a href="destinos.html"><span class="material-symbols-outlined">map</span> DESTINOS</a></li>
+                <li><a href="itinerario.html"><span class="material-symbols-outlined">calendar_add_on</span> ITINERARIO</a></li>
+                <li><a href="contacto.html"><span class="material-symbols-outlined">contact_page</span> CONTACTO</a></li>
               </ul>
             </nav>
           </div>
@@ -76,8 +76,8 @@
         </header>
 
         <div class="destinos-filtros">
-          <button id="btnFiltros" class="btn-filtro" type="button" aria-controls="filtrosOverlay" onclick="abrirFiltros()">
-            <span class="material-symbols-outlined" aria-hidden="true">tune</span>
+          <button id="btnFiltros" class="btn-filtro" type="button" onclick="abrirFiltros()">
+            <span class="material-symbols-outlined">tune</span>
             FILTROS
           </button>
         </div>
@@ -85,17 +85,17 @@
 
       <!-- Grilla (se llena con cargarDestinos() en script.js) -->
       <section class="wrap destinos-layout">
-        <div class="destinos-grid" id="destinosGrid" aria-live="polite"></div>
+        <div class="destinos-grid" id="destinosGrid"></div>
       </section>
     </main>
 
     <!-- FILTROS -->
     <div id="filtrosOverlay" class="filtros-overlay" hidden>
       <div class="filtros-backdrop" onclick="cerrarFiltros()"></div>
-      <section class="filtros-panel" role="dialog" aria-modal="true" aria-labelledby="titulo-filtros">
-        <button type="button" class="filtros-close" aria-label="Cerrar filtros" onclick="cerrarFiltros()">✕</button>
-        <h3 id="titulo-filtros">
-          <span class="material-symbols-outlined" aria-hidden="true">filter_alt</span>
+      <section class="filtros-panel">
+        <button type="button" class="filtros-close" onclick="cerrarFiltros()">✕</button>
+        <h3>
+          <span class="material-symbols-outlined">filter_alt</span>
           Filtros
         </h3>
 
@@ -143,20 +143,19 @@
     </div>
 
     <!-- DETALLES y RESERVA -->
-    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div id="modal" class="modal" hidden>
       <div class="modal-backdrop" onclick="cerrarModal()"></div>
-      <section class="modal-card" aria-describedby="modal-desc">
-        <button id="modal-close" class="modal-close" aria-label="Cerrar detalles" onclick="cerrarModal()">✕</button>
+      <section class="modal-card">
+        <button id="modal-close" class="modal-close" onclick="cerrarModal()">✕</button>
 
         <h3 id="modal-title">Destino: detalle</h3>
 
-        <div class="slider" aria-label="Galería de imágenes">
-          <button type="button" class="slider-prev" aria-label="Imagen anterior" onclick="moverSlider(-1)">‹</button>
+        <div class="slider">
+          <button type="button" class="slider-prev" onclick="moverSlider(-1)">‹</button>
           <figure class="slider-frame">
             <img id="slider-img" src="" alt="Imagen del destino" />
-            <figcaption id="modal-desc" class="sr-only">Imágenes ilustrativas del destino.</figcaption>
           </figure>
-          <button type="button" class="slider-next" aria-label="Imagen siguiente" onclick="moverSlider(1)">›</button>
+          <button type="button" class="slider-next" onclick="moverSlider(1)">›</button>
         </div>
 
         <article class="modal-info">
@@ -181,7 +180,7 @@
 
             <div class="reserva-actions">
               <button type="button" id="btnCalcular" class="btn" onclick="calcularCosto()">Calcular costo</button>
-              <span id="res-total" class="reserva-total" aria-live="polite"></span>
+              <span id="res-total" class="reserva-total"></span>
             </div>
 
             <button type="button" id="btnReservar" class="btn btn-reservar" onclick="guardarReserva()" hidden>

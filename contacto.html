@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>BRÚJULA - Contacto</title>
 
-    <meta name="author" content="Lu-Isa" />
+    <meta name="author" content="Lucía Rucci; Isabela Acuña" />
     <meta name="description" content="Formulario de contacto de BRÚJULA: dejanos tus datos." />
     <meta name="keywords" content="contacto, formulario, agencia de viajes, ubicación" />
 
@@ -23,7 +23,7 @@
   <body class="page-contacto" onload="initAnio()">
     <header class="site-header">
       <div class="wrap header-grid">
-        <a class="brand" href="index.html" aria-label="Volver al inicio">
+        <a class="brand" href="index.html">
           <img src="imagenes/logo.png" alt="Logo de BRÚJULA" width="40" height="40" />
           <div class="brand-text">
             <h1 class="brand-title">BRÚJULA</h1>
@@ -33,33 +33,33 @@
 
         <div class="top-actions">
           <div class="menu-wrapper" id="menuWrapper">
-            <button id="btnMenu" class="btn-hamb" aria-label="Abrir menú" aria-controls="panelMenu" aria-expanded="false" type="button" onclick="toggleMenu()">
-              <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+            <button id="btnMenu" class="btn-hamb" type="button" onclick="toggleMenu()">
+              <span class="material-symbols-outlined">menu</span>
             </button>
 
-            <nav id="panelMenu" class="panel-menu" aria-label="Menú principal">
+            <nav id="panelMenu" class="panel-menu" hidden>
               <ul class="menu-list">
                 <li>
                   <a href="index.html">
-                    <span class="material-symbols-outlined" aria-hidden="true">home</span>
+                    <span class="material-symbols-outlined">home</span>
                     INICIO
                   </a>
                 </li>
                 <li>
                   <a href="destinos.html">
-                    <span class="material-symbols-outlined" aria-hidden="true">map</span>
+                    <span class="material-symbols-outlined">map</span>
                     DESTINOS
                   </a>
                 </li>
                 <li>
                   <a href="itinerario.html">
-                    <span class="material-symbols-outlined" aria-hidden="true">calendar_add_on</span>
+                    <span class="material-symbols-outlined">calendar_add_on</span>
                     ITINERARIO
                   </a>
                 </li>
                 <li>
-                  <a href="contacto.html" aria-current="page">
-                    <span class="material-symbols-outlined" aria-hidden="true">contact_page</span>
+                  <a href="contacto.html">
+                    <span class="material-symbols-outlined">contact_page</span>
                     CONTACTO
                   </a>
                 </li>
@@ -80,11 +80,9 @@
         </header>
       </section>
 
-      <section class="wrap contacto-layout" aria-label="Formulario y datos de contacto">
+      <section class="wrap contacto-layout">
         <!-- Formulario -->
-        <form id="form-contacto" class="contacto-form" novalidate aria-labelledby="titulo-form" onsubmit="return validarContacto()">
-          <h3 id="titulo-form" class="sr-only">Formulario de contacto</h3>
-
+        <form id="form-contacto" class="contacto-form" novalidate onsubmit="return validarContacto()">
           <div class="field">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" size="36" maxlength="40" autocomplete="given-name" oninput="filtrarLetras(this)" required />
@@ -120,8 +118,8 @@
         </form>
 
         <!-- Datos y Mapa -->
-        <aside class="contacto-aside" aria-labelledby="titulo-aside">
-          <h3 id="titulo-aside" class="aside-title">CONTACTANOS</h3>
+        <aside class="contacto-aside">
+          <h3 class="aside-title">CONTACTANOS</h3>
 
           <ul class="contacto-list">
             <li><strong>Teléfono:</strong> 3517338697</li>

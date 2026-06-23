@@ -2,13 +2,13 @@ import { useState } from "react";
 import ModalDestino from "@components/ModalDestino";
 
 /* Tarjeta de un destino. Al tocar "Detalles" abre el modal. */
-const CardDestino = ({ destino }) => {
+const CardDestino = (props) => {
+  const destino = props.destino;
   const [abierto, setAbierto] = useState(false);
-  const imagen = destino.imagen.replace(/^\//, "");
 
   return (
     <article className="card">
-      <img src={imagen} alt={destino.nombre} className="card-img" />
+      <img src={destino.imagen} alt={destino.nombre} className="card-img" />
       <div className="card-body">
         <h3 className="card-title">{destino.nombre}</h3>
         <button

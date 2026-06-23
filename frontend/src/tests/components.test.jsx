@@ -22,7 +22,7 @@ describe("Componentes reutilizables", () => {
   test("Modal obliga a recalcular cuando cambian los días", () => {
     const destino = {
       nombre: "Tokio",
-      galeria: ["imagenes/destinos/tokio.jpg"],
+      galeria: ["/imagenes/destinos/tokio.jpg"],
       precioDia: 100,
       historia: "Historia",
       atracciones: "Atracciones",
@@ -74,7 +74,9 @@ describe("Componentes reutilizables", () => {
 
   test("Footer muestra el año actual", () => {
     render(<Footer />);
-    expect(screen.getByText(new RegExp(String(new Date().getFullYear())))).toBeInTheDocument();
+    expect(screen.getByRole("contentinfo")).toHaveTextContent(
+      String(new Date().getFullYear())
+    );
   });
 
   test("Contacto valida el nombre durante onChange", () => {

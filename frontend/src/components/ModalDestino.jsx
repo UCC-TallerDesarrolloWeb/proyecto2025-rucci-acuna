@@ -4,13 +4,15 @@ import { fechaValidaNoPasado } from "@utils/validate";
 import { ItinerarioContext } from "@components/ItinerarioContext";
 
 /* Modal con el detalle del destino, el slider de imágenes y la reserva. */
-const ModalDestino = ({ destino, onCerrar }) => {
-  const { guardarReserva } = useContext(ItinerarioContext);
+const ModalDestino = (props) => {
+  const destino = props.destino;
+  const onCerrar = props.onCerrar;
+  const itinerario = useContext(ItinerarioContext);
   const [indice, setIndice] = useState(0);
   const [fecha, setFecha] = useState("");
   const [dias, setDias] = useState("");
   const [total, setTotal] = useState(null);
-  const galeria = destino.galeria.map((imagen) => imagen.replace(/^\//, ""));
+  const galeria = destino.galeria;
 
   const anterior = () => {
     if (indice === 0) {
@@ -53,7 +55,7 @@ const ModalDestino = ({ destino, onCerrar }) => {
   };
 
   const reservar = () => {
-    guardarReserva({
+    itinerario.guardarReserva({
       destino: destino.nombre,
       fecha: fecha,
       dias: Number(dias),
@@ -65,23 +67,23 @@ const ModalDestino = ({ destino, onCerrar }) => {
   };
 
   return (
-    <div className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div className="modal">
       <div className="modal-backdrop" onClick={onCerrar}></div>
       <section className="modal-card">
-        <button className="modal-close" aria-label="Cerrar detalles" onClick={onCerrar}>
+        <button className="modal-close" onClick={onCerrar}>
           ✕
         </button>
 
-        <h3 id="modal-title">{destino.nombre}: Detalle de destino</h3>
+        <h3>{destino.nombre}: Detalle de destino</h3>
 
         <div className="slider">
-          <button className="slider-prev" aria-label="Imagen anterior" onClick={anterior}>
+          <button className="slider-prev" onClick={anterior}>
             ‹
           </button>
           <figure className="slider-frame">
             <img src={galeria[indice]} alt={`Imagen ${indice + 1} de ${destino.nombre}`} />
           </figure>
-          <button className="slider-next" aria-label="Imagen siguiente" onClick={siguiente}>
+          <button className="slider-next" onClick={siguiente}>
             ›
           </button>
         </div>

@@ -1,10 +1,11 @@
 /* Botón reutilizable. La variante "secundario" usa el estilo btn-sec. */
-const Button = ({ children, onClick, type = "button", variante = "primary" }) => {
-  const clase = variante === "secundario" ? "btn btn-sec" : "btn";
+const Button = (props) => {
+  const clase = props.variante === "secundario" ? "btn btn-sec" : "btn";
+  const tipo = props.type ? props.type : "button";
 
   return (
-    <button type={type} className={clase} onClick={onClick}>
-      {children}
+    <button type={tipo} className={clase} onClick={props.onClick}>
+      {props.children}
     </button>
   );
 };

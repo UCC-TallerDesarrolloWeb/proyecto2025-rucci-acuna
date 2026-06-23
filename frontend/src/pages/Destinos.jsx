@@ -55,7 +55,7 @@ const Destinos = () => {
             onChange={(e) => setBusqueda(e.target.value)}
           />
           <button className="btn-filtro" type="button" onClick={() => setFiltrosAbierto(true)}>
-            <span className="material-symbols-outlined" aria-hidden="true">tune</span> FILTROS
+            <span className="material-symbols-outlined">tune</span> FILTROS
           </button>
         </div>
       </section>
@@ -75,13 +75,12 @@ const Destinos = () => {
           <section className="filtros-panel">
             <button
               className="filtros-close"
-              aria-label="Cerrar filtros"
               onClick={() => setFiltrosAbierto(false)}
             >
               ✕
             </button>
             <h3>
-              <span className="material-symbols-outlined" aria-hidden="true">filter_alt</span> Filtros
+              <span className="material-symbols-outlined">filter_alt</span> Filtros
             </h3>
 
             <div className="filtro-item">

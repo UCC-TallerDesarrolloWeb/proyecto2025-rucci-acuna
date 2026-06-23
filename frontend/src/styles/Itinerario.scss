@@ -73,7 +73,7 @@
     .det-grid {
       display: grid;
       gap: 1rem;
-      grid-template-columns: repeat(3, minmax(120px, 180px));
+      grid-template-columns: repeat(3, 1fr);
       margin-bottom: 0.75rem;
 
       span {
