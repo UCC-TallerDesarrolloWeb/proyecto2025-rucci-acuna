@@ -34,7 +34,6 @@ Proyecto 2025 – Taller de Desarrollo Web
 | `frontend/src/components/` | Componentes reutilizables y contexto del itinerario |
 | `frontend/src/pages/` | Páginas de Inicio, Destinos, Itinerario y Contacto |
 | `frontend/src/styles/` | Estilos SASS organizados por página y componente |
-| `frontend/src/tests/` | Tests con Jest y React Testing Library |
 
 ## Tecnologías utilizadas
 ### Lenguajes
@@ -44,7 +43,6 @@ Proyecto 2025 – Taller de Desarrollo Web
 - **React 19** con hooks y Context API
 - **React Router DOM** para navegación
 - **SASS** para los estilos de React
-- **Jest + React Testing Library** para pruebas
 
 ### Recursos externos
 - **Google Fonts** – Montserrat / Noto Sans  
@@ -215,8 +213,8 @@ Por cada corrección o defecto en el HTML+CSS+Js se descontará un 5% del 85%.
 - [x] Validaciones en tiempo real con onChange + mensajes de error accesibles.
 - [x] Crear al menos un componente genérico (ej: Button, Card, Input) y reutilizarlo en varias páginas.
 - [x] Guardar algún dato en localStorage (ej: preferencias de tema o un carrito de compras).
-- [x] El proyecto no posee backend, por lo tanto **fetch** no aplica.
-- [x] Los destinos se leen desde un archivo JSON local y se renderizan como una lista dinámica.
+- [ ] En caso de tener backend, emplear **fetch**
+- [x] En caso de no contar con un servicio que nos provea la información necesaria, la misma debe ser leída en formato tipo Json local y renderizar listas dinámicas. Ejemplo:
 ````javascript
 const activities = [
   {
@@ -260,4 +258,3 @@ const activities = [
 - [x] ESLint y el build de producción terminan sin errores.
 - [x] No hay errores JavaScript presentes durante las pruebas principales.
 - [x] Se cumplen los requisitos del primer y segundo parcial.
-- [x] Se incluyen 7 tests con Jest + React Testing Library.
